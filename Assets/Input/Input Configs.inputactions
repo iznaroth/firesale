@@ -1,0 +1,107 @@
+{
+    "name": "Input Configs",
+    "maps": [
+        {
+            "name": "InGame",
+            "id": "c425bf23-eb8c-48e8-a74d-a9434b134d2e",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "678490ff-2a95-4813-be32-2ea85fb105e5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ff105e82-61a6-4b77-ae83-8cd25ddd54f2",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Kbm",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Minigame",
+            "id": "68e9ccb7-b825-41a7-b241-07dbe583b8d7",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "f6a6d607-90be-43ca-a42a-8ce48cd70f88",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "025a8d82-6275-43b5-be85-cae14b3cf593",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Kbm",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "8ee613cd-7000-478d-a90f-ed15443ef03e",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "dc123e46-17d8-4d04-8d07-aa1443b0c5e2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "10ce8b36-54ac-40ef-b2c4-a3778fd63991",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Kbm",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Kbm",
+            "bindingGroup": "Kbm",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
