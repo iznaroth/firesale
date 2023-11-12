@@ -7,6 +7,9 @@ public class PedestrianManager : MonoBehaviour
 {
     public static PedestrianManager instance;
 
+    static List<AvoidPoint> avoidancePoints = new List<AvoidPoint>();
+
+
     public List<GameObject> pedestrianPrefabs;
     public int maxPedestrians;
     public Vector2 spawnTimeBounds;
@@ -35,12 +38,6 @@ public class PedestrianManager : MonoBehaviour
         {
             instance = null;
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     public void RegisterPedestrian(PedestrianAI ped)
@@ -81,5 +78,23 @@ public class PedestrianManager : MonoBehaviour
         GameObject prefab = pedestrianPrefabs[Random.Range(0, pedestrianPrefabs.Count)];
 
         Instantiate(prefab, spawnPoint, spawnRot);
+    }
+
+    public static void AddAvoidancePoint(AvoidPoint avoid)
+    {
+        if (!avoidancePoints.Contains(avoid))
+        {
+            avoidancePoints.Add(avoid);
+        }
+    }
+
+    public static void RemoveAvoidancePoint(AvoidPoint avoid)
+    {
+        avoidancePoints.Remove(avoid);
+    }
+
+    public static List<AvoidPoint> GetAvoidancePoints()
+    {
+        return avoidancePoints;
     }
 }

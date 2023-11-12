@@ -204,12 +204,14 @@ MonoBehaviour:
   pedRadius: 1
   viewMask:
     serializedVersion: 2
-    m_Bits: 193
+    m_Bits: 192
   goalForceStrength: 5
   avoidanceForceStrength: 1
   avoidanceBonusRadius: 0
   minCollisionTime: 0.1
-  turnSpeed: 10
+  turnSpeed: 6
+  maxForceStrength: 30
+  pointAvoidanceStrenth: 10
 --- !u!1 &6118373735924248156
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,9 +21,13 @@ public class PedestrianAI : MonoBehaviour
     public float avoidanceBonusRadius = 0.5f;
     public float minCollisionTime = 0.1f;
     public float turnSpeed = 1f;
+    public float maxForceStrength = 50f;
+    public float pointAvoidanceStrenth = 5f;
 
     public UnityAction OnRemove;
 
+
+    float currentMaxSpeed;
     Rigidbody2D rb;
     List<PathingNode> path = new List<PathingNode>();
 
@@ -40,6 +44,8 @@ public class PedestrianAI : MonoBehaviour
         }
 
         GeneratePath();
+
+        currentMaxSpeed = maxSpeed;
     }
 
     void GeneratePath()
@@ -165,20 +171,48 @@ public class PedestrianAI : MonoBehaviour
                 float dist = dir.magnitude - pedRadius - avoidanceBonusRadius;
                 float ttc = dist / componentVelocity;
 
-                if (dist < 0) // already in collision
+                // print("NORMAL OBstACLe: dist: " + dist + ", ttc: " + ttc);
+
+                if (dist < minCollisionTime) // already in collision
                 {
                     ttc = minCollisionTime;
                 }
 
                 if (ttc < 0f) continue; // no collision
 
-                force += avoidanceBonusRadius * (-normal) / (ttc);
+                force += avoidanceForceStrength * (-normal) / (ttc);
             }
         }
 
+        float tempMaxSpeed = maxSpeed;
+
+        // Finally condiser avoidance points
+        List<AvoidPoint> pointAvoiders = PedestrianManager.GetAvoidancePoints();
+        foreach (AvoidPoint avoid in pointAvoiders)
+        {
+            Vector2 offset = transform.position - avoid.transform.position; // pointing TO player since we wwanna avoid it
+            float sqrDist = offset.sqrMagnitude;
+            float dist = offset.magnitude;
+            Vector2 normal = offset.normalized;
+
+            force += normal * pointAvoidanceStrenth * avoid.avoidStrength / sqrDist;
+
+            if (dist < avoid.pedSpeedInfluenceDistance)
+            {
+                float t = (dist - pedRadius) / avoid.pedSpeedInfluenceDistance;
+                t = 1f - Mathf.Clamp01(t);
+                float multiplier = Mathf.Lerp(1f, avoid.pedSpeedMultiplier, t);
+                tempMaxSpeed = Mathf.Max(tempMaxSpeed, maxSpeed * multiplier);
+            }
+        }
+
+        force = Vector2.ClampMagnitude(force, maxForceStrength);
+
+        currentMaxSpeed = tempMaxSpeed;
+
         rb.AddForce(force);
         Vector2 newVel = rb.velocity;
-        newVel = Vector2.ClampMagnitude(newVel, maxSpeed);
+        newVel = Vector2.ClampMagnitude(newVel, currentMaxSpeed);
         rb.velocity = newVel;
     }
 
