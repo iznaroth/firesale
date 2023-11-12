@@ -67,7 +67,7 @@ public class PedestrianAI : MonoBehaviour
         while (availableNodes.Count > 0)
         {
             int index = Random.Range(0, availableNodes.Count);
-            if (Vector2.Distance(availableNodes[index].transform.position, transform.position) < 1f)
+            if (Vector2.Distance(availableNodes[index].transform.position, transform.position) < 5f)
             {
                 availableNodes.RemoveAt(index);
                 continue;

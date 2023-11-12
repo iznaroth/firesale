@@ -200,7 +200,7 @@ MonoBehaviour:
   maxSpeed: 2
   startSpeed: 1
   minMiddleNodes: 0
-  maxmiddleNodes: 3
+  maxmiddleNodes: 2
   pedRadius: 1
   viewMask:
     serializedVersion: 2
