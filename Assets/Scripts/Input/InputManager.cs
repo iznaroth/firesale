@@ -59,7 +59,7 @@ public class InputManager : MonoBehaviour
     public EActionMap defaultMap = EActionMap.IN_GAME;
 
     PlayerInput playerInput;
-    Stack<EActionMap> actionMapStack; // the stack saves the previous action maps used (does NOT include the current map)
+    Stack<EActionMap> actionMapStack = new Stack<EActionMap>(); // the stack saves the previous action maps used (does NOT include the current map)
     EActionMap currentMap;
 
     void Awake()
