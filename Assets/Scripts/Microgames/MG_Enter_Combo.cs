@@ -48,7 +48,6 @@ public class MG_Enter_Combo : Microgame_Base
 
     public void OnTextInput(char ch)
     {
-        Debug.Log(inputPos);
         if(ch > 126 || ch < 33) 
         { 
             return;

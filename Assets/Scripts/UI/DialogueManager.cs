@@ -31,7 +31,7 @@ public class DialogueManager : MonoBehaviour
     private void OnEnable()
     {
         customerTextbox.text = customerStartBarks[0];
-        playerTextbox.text = playerBarks[0];
+        playerTextbox.text = playerBarks[0].ToUpper();
     }
 
     // Update is called once per frame
