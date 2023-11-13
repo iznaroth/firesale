@@ -4,16 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Microgame_Base : MonoBehaviour
+public class MicrogameManager : MonoBehaviour
 {
     public TextMeshProUGUI titleText;
     public Slider timerBar;
+    public Microgame_Base currentGame;
 
-    public string microgameTitle;
-    public float microgameTimeLimit;
-    public int microgameDifficulty; // difficulty of completion, used to determine if player has to do another microgame to convince the npc
+    public float timeLimit;
     private bool microgameWon = false;
-
 
     private float timeLeft = 10;
 
@@ -31,7 +29,7 @@ public class Microgame_Base : MonoBehaviour
     private void Update()
     {
         timeLeft -= Time.deltaTime;
-        timerBar.value = timeLeft / microgameTimeLimit;
+        timerBar.value = timeLeft / timeLimit;
         if(timeLeft < 0)
         {
             EndGame();
@@ -40,11 +38,15 @@ public class Microgame_Base : MonoBehaviour
 
     public void StartGame()
     {
-        timeLeft = microgameTimeLimit;
+        titleText.text = currentGame.microgameTitle;
+        timeLimit = currentGame.microgameTimeLimit;
+        timeLeft = timeLimit;
+        currentGame.StartGame();
     }
 
     public bool EndGame()
     {
+        currentGame.EndGame();
         return false;
     }
 }
