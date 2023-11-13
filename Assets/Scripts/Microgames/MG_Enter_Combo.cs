@@ -9,8 +9,6 @@ public class MG_Enter_Combo : Microgame_Base
     public TextMeshProUGUI goalTextBox;
     public TextMeshProUGUI playerTextBox;
     public string comboValue;
-    public bool backspaceAllowed = false;
-    public bool wrongKeyStillIncrements = true;
     private int inputPos = 0;
     private string curText = "";
 
@@ -20,16 +18,14 @@ public class MG_Enter_Combo : Microgame_Base
         //do we give a shit about repeat inputs?
         //add a thing for underlining
         //what happens with characters not in the text asset?
-        if (backspaceAllowed && Keyboard.current.backspaceKey.wasPressedThisFrame)
-        {
-            curText = curText.Substring(0, curText.Length - 2);
-        }
         playerTextBox.text = curText;
     }
     public override void StartGame()
     {
         Debug.Log("add a thing for underlining the wrong characters 4 eyes, and also characters not in the unicode asset for text");
-        goalTextBox.text = comboValue;
+        goalTextBox.text = "<u>" + comboValue + "</u>";
+        curText = comboValue;
+        microgameWon = false;
     }
     public override bool EndGame()
     {
@@ -52,46 +48,21 @@ public class MG_Enter_Combo : Microgame_Base
 
     public void OnTextInput(char ch)
     {
-        if(ch == null)
-        {
-            return;
-        }
-
-        //Player has typed past the character count but can backspace so fuck it they just keep typing
-        if(inputPos >= comboValue.Length && backspaceAllowed)
-        {
-            ++inputPos;
-            curText += ch;
-            microgameWon = false;
+        Debug.Log(inputPos);
+        if(ch > 126 || ch < 33) 
+        { 
             return;
         }
 
         if (comboValue[inputPos] == ch)
         {
-            ++inputPos;
-            curText += ch;
-            if (inputPos == comboValue.Length)
+            inputPos++;
+            curText = curText.Substring(1);
+            if (inputPos == comboValue.Length && curText == "")
             {
                 microgameWon = true;
                 EndGame();
             }  
-        }
-        else
-        {
-            microgameWon = false;
-            //put that character in, but don't move forward forcing the player to type that shit right if they can backspace
-            if (backspaceAllowed)
-            {
-                curText += ch;
-                if (wrongKeyStillIncrements)
-                {
-                    inputPos++;
-                }
-            }
-            else
-            {
-                EndGame();
-            } 
         }
     }
 }
