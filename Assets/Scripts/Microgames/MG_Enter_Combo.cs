@@ -19,16 +19,16 @@ public class MG_Enter_Combo : Microgame_Base
     {
         //do we give a shit about repeat inputs?
         //add a thing for underlining
+        //what happens with characters not in the text asset?
         if (backspaceAllowed && Keyboard.current.backspaceKey.wasPressedThisFrame)
         {
-            Debug.Log("FUCK!");
             curText = curText.Substring(0, curText.Length - 2);
         }
         playerTextBox.text = curText;
     }
     public override void StartGame()
     {
-        Debug.Log("add a thing for underlining the wrong characters 4 eyes");
+        Debug.Log("add a thing for underlining the wrong characters 4 eyes, and also characters not in the unicode asset for text");
         goalTextBox.text = comboValue;
     }
     public override bool EndGame()
