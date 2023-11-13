@@ -7,7 +7,7 @@ public class DialogueManager : MonoBehaviour
 {
     public TextMeshProUGUI customerTextbox;
     public TextMeshProUGUI playerTextbox;
-    public TextMeshProUGUI microgameTextbox;
+    public GameObject microgameBox;
 
     public string currentCurioName;
     public string[] playerBarks;
@@ -20,9 +20,6 @@ public class DialogueManager : MonoBehaviour
     public int customerChances = 2; //How many times the player can fail before taking damage
     public int customerWinAmount = 2; //How many times the player needs to win to convince the customer to buy
 
-    public GameObject microgameObject;
-    private float microgameTitle;
-    private float microgameTimeLimit;
     private bool microgameWon = false;
 
 
@@ -30,6 +27,11 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         
+    }
+    private void OnEnable()
+    {
+        customerTextbox.text = customerStartBarks[0];
+        playerTextbox.text = playerBarks[0];
     }
 
     // Update is called once per frame
