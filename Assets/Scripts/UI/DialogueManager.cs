@@ -5,9 +5,9 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    public TextMeshProUGUI customerTextbox;
-    public TextMeshProUGUI playerTextbox;
-    public GameObject microgameBox;
+    public GameObject customerTextbox;  // these maybe just need to be the typewriter effects tbh
+    public GameObject playerTextbox;    // these maybe just need to be the typewriter effects tbh
+    public GameObject microgameBox;     
 
     public string currentCurioName;
     public string[] playerBarks;
@@ -21,28 +21,37 @@ public class DialogueManager : MonoBehaviour
     public int customerWinAmount = 2; //How many times the player needs to win to convince the customer to buy
 
     private bool microgameWon = false;
+    public static bool playerCanRespond = false;
+    private bool playerAlreadyResponded = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //customerTextbox.GetComponent<TypewriterEffect>().NewText(customerStartBarks[0]);
     }
     private void OnEnable()
     {
-        customerTextbox.text = customerStartBarks[0];
-        playerTextbox.text = playerBarks[0].ToUpper();
+        customerTextbox.GetComponent<TypewriterEffect>().NewText(customerStartBarks[0]);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(playerCanRespond && !playerAlreadyResponded)
+        {
+            playerAlreadyResponded = true;
+            playerTextbox.GetComponent<TypewriterEffect>().NewText(playerBarks[0].ToUpper());
+        }
+        if(playerCanRespond && playerAlreadyResponded)
+        {
+            SummonMicrogame();
+        }
     }
 
-    private void SummonMinigame()
+    private void SummonMicrogame()
     {
-
+        microgameBox.SetActive(true);
     }
 
     public static void ForceHide()
