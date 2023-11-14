@@ -497,13 +497,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   customerTextbox: {fileID: 8808549247041730200}
   playerTextbox: {fileID: 6410977054262400308}
+  customerImage: {fileID: 6079803354048864163}
   microgameManager: {fileID: 3158080493879675986}
-  microgameStatusText: {fileID: 0}
   healthbar: {fileID: 7623659255882991824}
   moneyText: {fileID: 5654118429730094929}
-  currentCurioName: CURSED TEMP NAME
   playerBarks:
   - Please god buy this
+  - THE MUST HAVE AMNESIA BECAUSE THE FORGOT I'M HIM!
   customerStartBarks:
   - oh... hello. what is this {item} you have?
   customerSoldBarks:
@@ -514,9 +514,8 @@ MonoBehaviour:
   - hmmmm, well i'm just not sure i need {item}
   customerNegativeBarks:
   - yeah, I doubt i need a "{item}"
-  customerChances: 2
-  customerWinAmount: 2
-  npcType: 2
+  customerChancesRange: {x: 1, y: 2}
+  customerDifficultyRange: {x: 2, y: 2}
   animationDone: 0
 --- !u!95 &4267382610965787070
 Animator:
@@ -1988,7 +1987,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 615.26, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &634347142987339589
@@ -2101,9 +2100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayBeforeStart: 0
-  delayAfterEnd: 1
-  timeBtwChars: 0.025
-  timeBtwWords: 0.1
+  delayAfterEnd: 0.1
+  timeBtwChars: 0.05
+  timeBtwWords: 0.075
   leadingChar: 
   leadingCharBeforeDelay: 1
 --- !u!114 &743771895367158589
@@ -2156,7 +2155,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 950, y: 138.5}
+  m_SizeDelta: {x: 950, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6251012173529280113
 CanvasRenderer:
@@ -2213,8 +2212,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 128
-  m_fontSizeBase: 128
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2269,8 +2268,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delayBeforeStart: 0
   delayAfterEnd: 5
-  timeBtwChars: 0.1
-  timeBtwWords: 0.1
+  timeBtwChars: 0.05
+  timeBtwWords: 0.05
   leadingChar: 
   leadingCharBeforeDelay: 0
 --- !u!1 &7316856853845456174
@@ -2852,7 +2851,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 32, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &3951222387867545511
@@ -2964,10 +2963,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95e6628d6f7629a4694937ce0d3c6f0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBeforeStart: 0.05
+  delayBeforeStart: 0
   delayAfterEnd: 0
-  timeBtwChars: 0.1
-  timeBtwWords: 0.1
+  timeBtwChars: 0.075
+  timeBtwWords: 0.075
   leadingChar: 
   leadingCharBeforeDelay: 0
 --- !u!114 &3443799798470915737

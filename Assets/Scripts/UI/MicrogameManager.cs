@@ -6,6 +6,9 @@ using TMPro;
 
 public class MicrogameManager : MonoBehaviour
 {
+    public static float difficultyMultiplier = 1;
+
+    [Header("Object Connections")]
     public TextMeshProUGUI titleText;
     public TextMeshProUGUI statusText;
     public Slider timerBar;
@@ -13,6 +16,7 @@ public class MicrogameManager : MonoBehaviour
     public Microgame_Base currentGame;
     public Microgame_Base[] AllMicrogames; // TODO UPDATE THIS TO AUTO ADD
     public Dictionary<NPC_Types, List<Microgame_Base>> gamesDict = new Dictionary<NPC_Types, List<Microgame_Base>>();
+    private DialogueManager DM;
     private Animator anime;
 
     private float timeLimit;
@@ -35,6 +39,7 @@ public class MicrogameManager : MonoBehaviour
         }
 
         anime = this.GetComponent<Animator>();
+        DM = GetComponentInParent<DialogueManager>();
         //might need to generate initial queues   
         foreach (Microgame_Base mg in AllMicrogames)
         {
@@ -60,6 +65,14 @@ public class MicrogameManager : MonoBehaviour
             if (input.HasFlag(value))
                 yield return value;
     }
+    private void OnEnable()
+    {
+        Microgame_Base.winCheckEvent += GameResult;
+    }
+    private void OnDisable()
+    {
+        Microgame_Base.winCheckEvent -= GameResult;
+    }
 
     private void Update()
     {
@@ -67,7 +80,7 @@ public class MicrogameManager : MonoBehaviour
         {
             timeLeft -= Time.deltaTime;
             timerBar.value = timeLeft / timeLimit;
-            float roundedTime = Mathf.Round(timeLeft);
+            float roundedTime = Mathf.Round(timeLeft) + 1;
             if (roundedTime <= 5)
             {
                 timerText.gameObject.SetActive(true);
@@ -79,6 +92,7 @@ public class MicrogameManager : MonoBehaviour
             }
             if (timeLeft < 0)
             {
+                pauseTimer = true;
                 EndGame();
             }
         }
@@ -100,29 +114,28 @@ public class MicrogameManager : MonoBehaviour
     public void GameResult(bool result)
     {
         pauseTimer = true;
-        currentGame.EndGame();
         titleText.gameObject.SetActive(false);
         statusText.gameObject.SetActive(true);
 
         if (result)
         {
-
             statusText.GetComponent<TypewriterEffect>().NewText(winPhrases[Random.Range(0, winPhrases.Length - 1)]);
         }
         else
         {
-
-            statusText.GetComponent<TypewriterEffect>().NewText(losePhrases[Random.Range(0, winPhrases.Length - 1)]);
-
+            statusText.GetComponent<TypewriterEffect>().NewText(losePhrases[Random.Range(0, losePhrases.Length - 1)]);
         }
 
         DialogueManager.wonLastMicrogame = result;
         DialogueManager.dialogueState++;
+        DM.MicrogameResult();
     }
 
     public void EndGame()
     {
-
+        pauseTimer = true;
+        timerBar.gameObject.SetActive(false);
+        GameResult(false);
     }
 
 
@@ -155,7 +168,7 @@ public class MicrogameManager : MonoBehaviour
         statusText.gameObject.SetActive(false);
         titleText.gameObject.SetActive(true);
         titleText.text = currentGame.microgameTitle;
-        timeLimit = currentGame.microgameTimeLimit;
+        timeLimit = currentGame.microgameTimeLimit * difficultyMultiplier;
         timeLeft = timeLimit;
         timerBar.gameObject.SetActive(true);
         currentGame.StartGame();

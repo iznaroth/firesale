@@ -15,6 +15,7 @@ public class TypewriterEffect : MonoBehaviour
 	[SerializeField] float timeBtwWords = 0.1f;
 	[SerializeField] string leadingChar = "";
 	[SerializeField] bool leadingCharBeforeDelay = false;
+	[SerializeField] bool skippable = true;
 
 	// Use this for initialization
 	void Start()
@@ -35,6 +36,7 @@ public class TypewriterEffect : MonoBehaviour
     {
 		_tmpProText = GetComponent<TMP_Text>()!;
 		writer = newText;
+		_tmpProText.text = "";
 		DialogueManager.newDialogueStarted = true;
 		Keyboard.current.onTextInput += SkipText;
 		StartCoroutine("TypeWriterTMP");
@@ -42,10 +44,13 @@ public class TypewriterEffect : MonoBehaviour
 
 	public void SkipText(char ch)
     {
-		StopCoroutine("TypeWriterTMP");
-		Keyboard.current.onTextInput -= SkipText;
-		_tmpProText.text = writer;
-		DialogueManager.newDialogueStarted = false;
+		if (skippable)
+		{
+			StopCoroutine("TypeWriterTMP");
+			Keyboard.current.onTextInput -= SkipText;
+			_tmpProText.text = writer;
+			DialogueManager.newDialogueStarted = false;
+		}
 	}
 
 	IEnumerator TypeWriterTMP()

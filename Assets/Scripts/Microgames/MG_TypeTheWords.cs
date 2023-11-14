@@ -6,18 +6,20 @@ using UnityEngine.InputSystem;
 
 public class MG_TypeTheWords : Microgame_Base
 {
+    [Header("Type The Words Variables")]
+    public GameObject wordMicrogamePrefab;
     public int wordAmount = 3;
+    public float timeBonusPerCharacter = 0.1f;
     public Vector2[] popupPositions;
-    public float positionRandomizationAmountX = 400;
-    public float positionRandomizationAmountY = 50;
-    public GameObject wordMicrogameObject;
     public string[] wordList;
+    public float currentBoxScale = 1.75f;
+    public float unselectedBoxScale = 0.75f;
+
     private Queue<string> selectedWords = new Queue<string>();
     private Stack<int> selectedPositions = new Stack<int>();
     private GameObject[] wordsToType;
     private int currentWordIndex = 0;
     private MG_Enter_Combo currentCombo;
-    public float timeBonusPerCharacter = 0.1f;
 
     public override bool SetupGame()
     {
@@ -45,11 +47,11 @@ public class MG_TypeTheWords : Microgame_Base
         }
         for (int i = 0; i < wordAmount; i++)
         {
-            wordsToType[i] = Instantiate(wordMicrogameObject, this.transform.GetChild(0).transform, true);
+            wordsToType[i] = Instantiate(wordMicrogamePrefab, this.transform.GetChild(0).transform, true);
             wordsToType[i].GetComponent<RectTransform>().localPosition = Vector3.zero;
             wordsToType[i].transform.localScale = Vector3.one;
-            wordsToType[i].transform.GetChild(0).GetComponent<RectTransform>().localScale = Vector3.one;
-            wordsToType[i].transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().localScale = Vector3.one;
+            wordsToType[i].transform.GetChild(0).GetComponent<RectTransform>().localScale = Vector3.one * unselectedBoxScale;
+            wordsToType[i].transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().localScale = Vector3.one * unselectedBoxScale;
             wordsToType[i].GetComponent<MG_Enter_Combo>().comboValue = selectedWords.Dequeue();
             wordsToType[i].GetComponent<MG_Enter_Combo>().StartGame();
             wordsToType[i].GetComponent<MG_Enter_Combo>().owner = this;
@@ -65,7 +67,7 @@ public class MG_TypeTheWords : Microgame_Base
         }
         currentCombo = wordsToType[wordAmount - 1].GetComponent<MG_Enter_Combo>();
         currentCombo.isActive = true;
-        currentCombo.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().localScale = Vector3.one * 1.5f;
+        currentCombo.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().localScale = Vector3.one * currentBoxScale;
         currentWordIndex = wordAmount - 1;
         microgameWon = false;
         microgameTimeLimit = numberofCharacters * timeBonusPerCharacter;
@@ -89,7 +91,7 @@ public class MG_TypeTheWords : Microgame_Base
 
                 currentCombo = wordsToType[currentWordIndex].GetComponent<MG_Enter_Combo>();
                 currentCombo.isActive = true;
-                currentCombo.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().localScale = Vector3.one * 1.5f;
+                currentCombo.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().localScale = Vector3.one * currentBoxScale;
             }
         }
         else

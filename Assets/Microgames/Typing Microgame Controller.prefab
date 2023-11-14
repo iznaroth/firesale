@@ -161,10 +161,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   microgameTitle: Type the Words!
   npcType: -1
-  microgameStartDelay: 0.5
-  microgameTimeLimit: 5
+  microgameStartDelay: 1
+  microgameTimeLimit: 1
   microgameDifficulty: 1
+  wordMicrogamePrefab: {fileID: 6007858649203126873, guid: 9006debd0749fc54681f5b60fbfc51b0, type: 3}
   wordAmount: 3
+  timeBonusPerCharacter: 0.5
   popupPositions:
   - {x: -307, y: 229}
   - {x: 339, y: 118}
@@ -173,9 +175,6 @@ MonoBehaviour:
   - {x: 197, y: 37}
   - {x: 449, y: -93}
   - {x: -476, y: -57}
-  positionRandomizationAmountX: 400
-  positionRandomizationAmountY: 50
-  wordMicrogameObject: {fileID: 6007858649203126873, guid: 9006debd0749fc54681f5b60fbfc51b0, type: 3}
   wordList:
   - Pizazz
   - Suburban
@@ -217,4 +216,5 @@ MonoBehaviour:
   - I Say
   - That's wonderful!
   - Truly inspiring
-  timeBonusPerCharacter: 1
+  currentBoxScale: 1.5
+  unselectedBoxScale: 0.85
