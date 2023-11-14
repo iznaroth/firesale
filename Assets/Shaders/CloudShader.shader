@@ -3,14 +3,15 @@ Shader "Unlit/CloudShader"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _Color("Color", Color) = (1, 1, 1, 1)
+        _Color ("Color", Color) = (1, 1, 1, 1)
+        _OutlineColor ("OutlineColor", Color) = (0, 0, 0, 1)
         _Segments ("Segments", Integer) = 8
         _Variation ("Segment Variation", Range(0.0, 1.0)) = 0.5
         _BumpDepth ("Bump Depth", Range(0.0, 1.0)) = 0.1
         _SegmentNoiseSpeed ("Segment Noise Speed", Float) = 1.0
         _DepthVariation ("Depth Variation", Range(0.0, 1.0)) = 0.5
-        _DepthNoiseSpeed("Depth Noise Speed", Float) = 1.0
-        _Thickness("Thickness", Range(0.0, 1.0)) = 1.0
+        _DepthNoiseSpeed ("Depth Noise Speed", Float) = 1.0
+        _Thickness ("Thickness", Range(0.0, 1.0)) = 1.0
     }
     SubShader
     {
@@ -93,6 +94,7 @@ Shader "Unlit/CloudShader"
             sampler2D _MainTex;
             float4 _MainTex_ST;
             float4 _Color;
+            float4 _OutlineColor;
             int _Segments;
             float _Variation;
             float _BumpDepth;
@@ -169,11 +171,21 @@ Shader "Unlit/CloudShader"
                 float depthMult = 1.f - _DepthVariation * noise(segmentNum, _DepthNoiseSpeed * _Time);
                 float depth = _BumpDepth * depthMult;
 
+                float offset = depth * abs(t * t) + (1.f - depthMult) * _BumpDepth;
+
                 rad += depth * abs(t*t) + (1.f - depthMult) * _BumpDepth;
 
+                /*theta *= 2.f * 3.141592f;
+                float sec = 1.f / cos(theta);
+                float csc = 1.f / sin(theta);
+                float cuttoffVal = min(abs(sec), abs(csc));
+
+                rad /= cuttoffVal;*/
+
                 col.a = 1.f - saturate(floor(rad));
-                col.a *= saturate(ceil(rad - (1.f - _Thickness)));
-                col.rgb *= _Color;
+
+                float border = saturate(ceil(rad - (1.f - _Thickness)));
+                col.rgba *= _OutlineColor * border + _Color * (1.f - border);
 
                 return col;
             }

@@ -4,6 +4,7 @@ Shader "Unlit/SpikeyShader"
     {
         _MainTex ("Texture", 2D) = "white" {}
         _Color ("Color", Color) = (1, 1, 1, 1)
+        _OutlineColor ("Outline Color", Color) = (0, 0, 0, 1)
         _Segments("Segments", Integer) = 8
         _Variation("Segment Variation", Range(0.0, 1.0)) = 0.5
         _InnerRadius("Inner Radius", Range(0.0, 1.0)) = 0.4
@@ -94,6 +95,7 @@ Shader "Unlit/SpikeyShader"
             sampler2D _MainTex;
             float4 _MainTex_ST;
             float4 _Color;
+            float4 _OutlineColor;
             int _Segments;
             float _Variation;
             float _InnerRadius;
@@ -176,9 +178,9 @@ Shader "Unlit/SpikeyShader"
                 rad += 1.f - ((height - _InnerRadius) * abs(t*t) + _InnerRadius);
 
                 col.a = 1.f - saturate(floor(rad));
-                col.a *= saturate(ceil(rad - (1.f - _Thickness)));
-                col.rgb *= _Color;
-                // col.xyz *= theta;
+
+                float border = saturate(ceil(rad - (1.f - _Thickness)));
+                col.rgba *= _OutlineColor * border + _Color * (1.f - border);
 
                 return col;
             }
