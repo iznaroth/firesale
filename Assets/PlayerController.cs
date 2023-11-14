@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,15 +16,20 @@ public class PlayerController : MonoBehaviour
     public float accelRate;
     public float decelRate;
     public Rigidbody2D body;
-
     private Vector2 moveVector = Vector2.zero;
-
     public float speedLimit;
+    private Item holding;
+
+    private InputAction pickupAction;
+    public static event Action interactEvent;
 
     void Awake()
     {
         // find the "move" action, and keep the reference to it, for use in Update
         moveAction = actions.FindActionMap("InGame").FindAction("Move");
+        pickupAction = actions.FindActionMap("InGame").FindAction("Pick Up");
+        pickupAction.performed += PickUp;
+
     }
     void Update()
     {
@@ -43,7 +49,9 @@ public class PlayerController : MonoBehaviour
             velY += (decelRate * -velY);
         }
 
-        body.velocity = new Vector2(velX, velY);
+        Vector2 vel = new Vector2(velX, velY);
+        body.velocity = Vector2.ClampMagnitude(vel, speedLimit);
+        //Debug.Log(body.velocity);
     }
 
     void OnEnable()
@@ -55,5 +63,17 @@ public class PlayerController : MonoBehaviour
     {
         //moveAction.Disable();
         actions.FindActionMap("InGame").Disable();
+    }
+
+    private void PickUp(InputAction.CallbackContext context){
+        interactEvent?.Invoke();
+    }
+
+    public void setHolding(Item to){
+        this.holding = to;
+    }
+
+    public Item getHolding(){
+        return this.holding;
     }
 }
