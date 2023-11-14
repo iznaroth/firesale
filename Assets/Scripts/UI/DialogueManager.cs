@@ -10,7 +10,6 @@ public class DialogueManager : MonoBehaviour
     public GameObject customerTextbox;  // these maybe just need to be the typewriter effects tbh
     public GameObject playerTextbox;    // these maybe just need to be the typewriter effects tbh
     public MicrogameManager microgameManager;
-    public TextMeshProUGUI microgameStatusText;
     private Animator anime;
 
     private Microgame_Base currentMicrogame;
@@ -51,6 +50,7 @@ public class DialogueManager : MonoBehaviour
         this.transform.GetChild(0).gameObject.SetActive(false);
         anime = this.GetComponent<Animator>();
         microgameActive = false;
+        microgameManager.transform.GetChild(0).transform.localScale = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -95,7 +95,6 @@ public class DialogueManager : MonoBehaviour
         switch (dialogueState)
         {
             case 0:
-                microgameManager.transform.GetChild(0).gameObject.SetActive(false);
                 if (newDialogueStarted)
                 {
                     currentDialogue = customerStartBarks[Random.Range(0, playerBarks.Length - 1)].Replace("{item}", "<i>" + currentCurioName + "</i>");

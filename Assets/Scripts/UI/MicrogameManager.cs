@@ -13,6 +13,7 @@ public class MicrogameManager : MonoBehaviour
     public Microgame_Base currentGame;
     public Microgame_Base[] AllMicrogames; // TODO UPDATE THIS TO AUTO ADD
     public Dictionary<NPC_Types, List<Microgame_Base>> gamesDict = new Dictionary<NPC_Types, List<Microgame_Base>>();
+    private Animator anime;
 
     private float timeLimit;
     public static bool pauseTimer = false;
@@ -33,6 +34,7 @@ public class MicrogameManager : MonoBehaviour
             Debug.Log("SHID! SOMEONE FORGOT TO SET THE OBJECTS ON: " + this.gameObject.name + ". \n WHAT A MORON!");
         }
 
+        anime = this.GetComponent<Animator>();
         //might need to generate initial queues   
         foreach (Microgame_Base mg in AllMicrogames)
         {
@@ -49,7 +51,8 @@ public class MicrogameManager : MonoBehaviour
                 gamesDict.TryAdd(types, currentList);
             }
         }
-        this.transform.GetChild(0).transform.gameObject.SetActive(false);
+        statusText.gameObject.SetActive(true);
+        this.transform.GetChild(0).transform.localScale = Vector3.zero;
     }
     private IEnumerable<NPC_Types> GetFlags(NPC_Types input)
     {
@@ -79,25 +82,42 @@ public class MicrogameManager : MonoBehaviour
                 EndGame();
             }
         }
+        if (!DialogueManager.newDialogueStarted && DialogueManager.dialogueState >= 3)
+        {
+            DialogueManager.dialogueState = 0;
+            anime.Play("MG_Out");
+        }
     }
 
     public void StartNewGame()
     {
+        anime.Play("MG_In");
+        statusText.text = currentGame.microgameTitle;
+        Debug.Log(statusText.text);
         StartCoroutine("StartDelay");
     }
 
     public void GameResult(bool result)
     {
+        pauseTimer = true;
+        currentGame.EndGame();
+        titleText.gameObject.SetActive(false);
+        statusText.gameObject.SetActive(true);
+
         if (result)
         {
-            pauseTimer = true;
-            currentGame.EndGame();
-            titleText.gameObject.SetActive(false);
-            statusText.gameObject.SetActive(true);
+
             statusText.GetComponent<TypewriterEffect>().NewText(winPhrases[Random.Range(0, winPhrases.Length - 1)]);
-            DialogueManager.wonLastMicrogame = result;
-            DialogueManager.dialogueState = 0;
         }
+        else
+        {
+
+            statusText.GetComponent<TypewriterEffect>().NewText(losePhrases[Random.Range(0, winPhrases.Length - 1)]);
+
+        }
+
+        DialogueManager.wonLastMicrogame = result;
+        DialogueManager.dialogueState++;
     }
 
     public void EndGame()
@@ -110,13 +130,14 @@ public class MicrogameManager : MonoBehaviour
     {
         currentList = null;
         Microgame_Base newGame;
-
         gamesDict.TryGetValue(npcType, out currentList);
         newGame = Instantiate(currentList[0]);
         currentList.RemoveAt(0);
         currentList.Add(newGame);
         gamesDict.Remove(npcType);
         gamesDict.TryAdd(npcType, currentList);
+        statusText.text = newGame.microgameTitle;
+        statusText.gameObject.SetActive(true);
         currentGame = newGame;
         return newGame;
     }
@@ -126,12 +147,14 @@ public class MicrogameManager : MonoBehaviour
         pauseTimer = true;
         timerBar.gameObject.SetActive(false);
         timerText.gameObject.SetActive(false);
-        statusText.gameObject.SetActive(false);
-        titleText.gameObject.SetActive(true);
+        titleText.gameObject.SetActive(false);
+        statusText.text = currentGame.microgameTitle;
         bool timeWaster = currentGame.SetupGame();
-        titleText.text = currentGame.microgameTitle;
         yield return new WaitForSeconds(currentGame.microgameStartDelay);
         currentGame.gameObject.SetActive(true);
+        statusText.gameObject.SetActive(false);
+        titleText.gameObject.SetActive(true);
+        titleText.text = currentGame.microgameTitle;
         timeLimit = currentGame.microgameTimeLimit;
         timeLeft = timeLimit;
         timerBar.gameObject.SetActive(true);
