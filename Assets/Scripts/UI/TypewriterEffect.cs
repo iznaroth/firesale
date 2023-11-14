@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using TMPro;
 
 public class TypewriterEffect : MonoBehaviour
@@ -28,6 +29,7 @@ public class TypewriterEffect : MonoBehaviour
 	}
     private void Awake()
     {
+
 		_tmpProText = GetComponent<TMP_Text>()!;
 	}
 
@@ -36,7 +38,15 @@ public class TypewriterEffect : MonoBehaviour
 		_tmpProText = GetComponent<TMP_Text>()!;
 		writer = newText;
 		DialogueManager.playerCanRespond = false;
+		Keyboard.current.onTextInput += SkipText;
 		StartCoroutine("TypeWriterTMP");
+	}
+
+	public void SkipText(char ch)
+    {
+		StopCoroutine("TypeWriterTMP");
+		Keyboard.current.onTextInput -= SkipText;
+		_tmpProText.text = writer;
 	}
 
 	IEnumerator TypeWriterTMP()
@@ -94,5 +104,6 @@ public class TypewriterEffect : MonoBehaviour
 
 		yield return new WaitForSeconds(delayAfterEnd);
 		DialogueManager.playerCanRespond = true;
+		Keyboard.current.onTextInput -= SkipText;
 	}
 }
