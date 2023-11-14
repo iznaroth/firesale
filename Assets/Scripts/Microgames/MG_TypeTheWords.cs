@@ -18,13 +18,6 @@ public class MG_TypeTheWords : Microgame_Base
     private int currentWordIndex = 0;
     private MG_Enter_Combo currentCombo;
 
-    private void Update()
-    {
-        if (Keyboard.current.backspaceKey.wasPressedThisFrame)
-        {
-            EndGame();
-        }
-    }
     public override void StartGame()
     {
         wordsToType = new GameObject[wordAmount];
@@ -82,12 +75,10 @@ public class MG_TypeTheWords : Microgame_Base
             {
                 wordsToType[currentWordIndex].SetActive(false);
                 microgameWon = true;
-                Debug.Log("Huh?");
                 EndGame();
             }
             else
             {
-                Debug.Log("Huh?23");
                 wordsToType[currentWordIndex].SetActive(false);
                 currentWordIndex--;
 

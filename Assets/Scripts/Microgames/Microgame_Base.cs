@@ -23,7 +23,7 @@ public class Microgame_Base : MonoBehaviour
 
 
     public delegate void WinCheck(bool result);
-    public event WinCheck winCheckEvent;
+    public static event WinCheck winCheckEvent;
 
     // Start is called before the first frame update
     public virtual void StartGame()
@@ -33,11 +33,7 @@ public class Microgame_Base : MonoBehaviour
 
     public virtual void EndGame()
     {
-        if (winCheckEvent != null)
-        {
-            Debug.Log("poggers");
-           winCheckEvent(microgameWon);
-        }
+        winCheckEvent?.Invoke(microgameWon);
     }
     static IEnumerable<NPC_Types> GetFlags(NPC_Types input)
     {

@@ -30,7 +30,6 @@ public class DialogueManager : MonoBehaviour
     public NPC_Types npcType = NPC_Types.Capitalist;
     public Microgame_Base[] microgames;
 
-    private bool microgameWon = false;
     private bool microgameActive = false;
     public static bool playerCanRespond = false;
     private bool playerAlreadyResponded = false;
@@ -73,17 +72,16 @@ public class DialogueManager : MonoBehaviour
         microgameManager.gameObject.SetActive(true);
         currentMicrogame = microgameManager.GetNewMicrogame(NPC_Types.Anarchist);
         microgameManager.StartNewGame();
-        currentMicrogame.winCheckEvent += MicrogameResult;
+        Microgame_Base.winCheckEvent += MicrogameResult;
         microgameActive = true;
     }
 
     public void MicrogameResult(bool result)
     {
-        Debug.Log("Result: " + microgameWon);
-        currentMicrogame.winCheckEvent -= MicrogameResult;
-        microgameWon = result;
+        Debug.Log("Result: " + result);
+        Microgame_Base.winCheckEvent -= MicrogameResult;
         Destroy(currentMicrogame.gameObject);
-        microgameActive = false;
+        //microgameActive = false;
         microgameManager.GameResult(result);
         
     }
