@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   microgameTitle: Type the Words!
-  npcType: 2
+  npcType: 3
   microgameTimeLimit: 10
   microgameDifficulty: 2
   wordAmount: 3
@@ -216,3 +216,4 @@ MonoBehaviour:
   - I Say
   - That's wonderful!
   - Truly inspiring
+  timeBonusPerCharacter: 1

@@ -19,7 +19,6 @@ public class TypewriterEffect : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-		DialogueManager.playerCanRespond = false;
 		_tmpProText = GetComponent<TMP_Text>()!;
 
 		if (_tmpProText != null)
@@ -29,7 +28,6 @@ public class TypewriterEffect : MonoBehaviour
 	}
     private void Awake()
     {
-
 		_tmpProText = GetComponent<TMP_Text>()!;
 	}
 
@@ -37,7 +35,7 @@ public class TypewriterEffect : MonoBehaviour
     {
 		_tmpProText = GetComponent<TMP_Text>()!;
 		writer = newText;
-		DialogueManager.playerCanRespond = false;
+		DialogueManager.newDialogueStarted = true;
 		Keyboard.current.onTextInput += SkipText;
 		StartCoroutine("TypeWriterTMP");
 	}
@@ -47,11 +45,12 @@ public class TypewriterEffect : MonoBehaviour
 		StopCoroutine("TypeWriterTMP");
 		Keyboard.current.onTextInput -= SkipText;
 		_tmpProText.text = writer;
+		DialogueManager.newDialogueStarted = false;
 	}
 
 	IEnumerator TypeWriterTMP()
 	{
-		DialogueManager.playerCanRespond = false;
+		DialogueManager.newDialogueStarted = true;
 		_tmpProText.text = leadingCharBeforeDelay ? leadingChar : "";
 		string styleMarker = "";
 		bool changingStyle = false;
@@ -103,7 +102,7 @@ public class TypewriterEffect : MonoBehaviour
 		}
 
 		yield return new WaitForSeconds(delayAfterEnd);
-		DialogueManager.playerCanRespond = true;
+		DialogueManager.newDialogueStarted = false;
 		Keyboard.current.onTextInput -= SkipText;
 	}
 }

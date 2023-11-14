@@ -31,6 +31,7 @@ public class Microgame_Base : MonoBehaviour
 {
     public string microgameTitle;
     public NPC_Types npcType;
+    public float microgameStartDelay = 1.5f;
     public float microgameTimeLimit;
     public int microgameDifficulty; // difficulty of completion, used to determine if player has to do another microgame to convince the npc
 

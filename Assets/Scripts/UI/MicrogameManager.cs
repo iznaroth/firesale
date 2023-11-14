@@ -7,7 +7,9 @@ using TMPro;
 public class MicrogameManager : MonoBehaviour
 {
     public TextMeshProUGUI titleText;
+    public TextMeshProUGUI statusText;
     public Slider timerBar;
+    public TextMeshProUGUI timerText;
     public Microgame_Base currentGame;
     public Microgame_Base[] AllMicrogames; // TODO UPDATE THIS TO AUTO ADD
     public Dictionary<NPC_Types, List<Microgame_Base>> gamesDict = new Dictionary<NPC_Types, List<Microgame_Base>>();
@@ -21,24 +23,23 @@ public class MicrogameManager : MonoBehaviour
     private static System.Random rng = new System.Random();
     private List<Microgame_Base> currentList = new List<Microgame_Base>();
 
+    public string[] winPhrases;
+    public string[] losePhrases;
+
     private void Start()
     {
-        if(titleText.gameObject == null || timerBar.gameObject == null)
+        if (titleText.gameObject == null || timerBar.gameObject == null || statusText.gameObject == null)
         {
             Debug.Log("SHID! SOMEONE FORGOT TO SET THE OBJECTS ON: " + this.gameObject.name + ". \n WHAT A MORON!");
-            titleText = this.GetComponentInChildren<TextMeshProUGUI>();
-            timerBar = this.GetComponentInChildren<Slider>();
         }
 
-
-
         //might need to generate initial queues   
-        foreach(Microgame_Base mg in AllMicrogames)
+        foreach (Microgame_Base mg in AllMicrogames)
         {
-            foreach(NPC_Types types in GetFlags(mg.npcType))
+            foreach (NPC_Types types in GetFlags(mg.npcType))
             {
                 gamesDict.TryGetValue(types, out currentList);
-                if(currentList == null)
+                if (currentList == null)
                 {
                     currentList = new List<Microgame_Base>();
                 }
@@ -48,7 +49,7 @@ public class MicrogameManager : MonoBehaviour
                 gamesDict.TryAdd(types, currentList);
             }
         }
-        this.gameObject.SetActive(false);
+        this.transform.GetChild(0).transform.gameObject.SetActive(false);
     }
     private IEnumerable<NPC_Types> GetFlags(NPC_Types input)
     {
@@ -59,11 +60,21 @@ public class MicrogameManager : MonoBehaviour
 
     private void Update()
     {
-        if (!pauseTimer) 
-        { 
+        if (!pauseTimer)
+        {
             timeLeft -= Time.deltaTime;
             timerBar.value = timeLeft / timeLimit;
-            if(timeLeft < 0)
+            float roundedTime = Mathf.Round(timeLeft);
+            if (roundedTime <= 5)
+            {
+                timerText.gameObject.SetActive(true);
+                timerText.text = roundedTime.ToString();
+                if (roundedTime <= 3)
+                {
+                    timerText.text += "!";
+                }
+            }
+            if (timeLeft < 0)
             {
                 EndGame();
             }
@@ -72,29 +83,29 @@ public class MicrogameManager : MonoBehaviour
 
     public void StartNewGame()
     {
-        bool timeWaster = currentGame.SetupGame();
-        titleText.text = currentGame.microgameTitle;
-        timeLimit = currentGame.microgameTimeLimit;
-        timeLeft = timeLimit;
-        currentGame.StartGame();
-        pauseTimer = false;
+        StartCoroutine("StartDelay");
     }
 
     public void GameResult(bool result)
     {
         if (result)
         {
-            titleText.text = "Success!";
             pauseTimer = true;
             currentGame.EndGame();
+            titleText.gameObject.SetActive(false);
+            statusText.gameObject.SetActive(true);
+            statusText.GetComponent<TypewriterEffect>().NewText(winPhrases[Random.Range(0, winPhrases.Length - 1)]);
+            DialogueManager.wonLastMicrogame = result;
+            DialogueManager.dialogueState = 0;
         }
     }
+
     public void EndGame()
     {
 
     }
 
-    
+
     public Microgame_Base GetNewMicrogame(NPC_Types npcType)
     {
         currentList = null;
@@ -106,7 +117,26 @@ public class MicrogameManager : MonoBehaviour
         currentList.Add(newGame);
         gamesDict.Remove(npcType);
         gamesDict.TryAdd(npcType, currentList);
+        currentGame = newGame;
         return newGame;
+    }
+
+    IEnumerator StartDelay()
+    {
+        pauseTimer = true;
+        timerBar.gameObject.SetActive(false);
+        timerText.gameObject.SetActive(false);
+        statusText.gameObject.SetActive(false);
+        titleText.gameObject.SetActive(true);
+        bool timeWaster = currentGame.SetupGame();
+        titleText.text = currentGame.microgameTitle;
+        yield return new WaitForSeconds(currentGame.microgameStartDelay);
+        currentGame.gameObject.SetActive(true);
+        timeLimit = currentGame.microgameTimeLimit;
+        timeLeft = timeLimit;
+        timerBar.gameObject.SetActive(true);
+        currentGame.StartGame();
+        pauseTimer = false;
     }
 }
 public static class IListExtensions
