@@ -7,7 +7,7 @@ using System;
 public class PlayerController : MonoBehaviour
 {
         // assign the actions asset to this field in the inspector:
-    public InputActionAsset actions;
+    // public InputActionAsset actions;
 
     // private field to store move action reference
     private InputAction moveAction;
@@ -26,44 +26,72 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         // find the "move" action, and keep the reference to it, for use in Update
-        moveAction = actions.FindActionMap("InGame").FindAction("Move");
-        pickupAction = actions.FindActionMap("InGame").FindAction("Pick Up");
+        moveAction = InputManager.GetInputAction(EInGameAction.MOVE);
+        pickupAction = InputManager.GetInputAction(EInGameAction.PICK_UP);
+
+        moveAction.performed += OnMove;
+        moveAction.canceled += OnMove;
         pickupAction.performed += PickUp;
 
     }
     void Update()
     {
         // our update loop polls the "move" action value each frame
-        moveVector = moveAction.ReadValue<Vector2>();
+        // moveVector = moveAction.ReadValue<Vector2>();
     }
 
     private void FixedUpdate(){
         //
-        float velX = Mathf.Clamp(body.velocity.x + (moveVector.x * accelRate), -speedLimit, speedLimit);
-        float velY = Mathf.Clamp(body.velocity.y + (moveVector.y * accelRate), -speedLimit, speedLimit);
+        // float velX = Mathf.Clamp(body.velocity.x + (moveVector.x * accelRate), -speedLimit, speedLimit);
+        // float velY = Mathf.Clamp(body.velocity.y + (moveVector.y * accelRate), -speedLimit, speedLimit);
 
+        Vector2 vel = body.velocity;
+
+        if (moveVector.sqrMagnitude < 0.1f)
+		{
+            float slowdownAmt = decelRate * Time.fixedDeltaTime;
+            slowdownAmt = Mathf.Min(slowdownAmt, vel.magnitude);
+
+            vel -= slowdownAmt * vel.normalized;
+		}
+        else
+		{
+            Vector2 accelDir = moveVector * speedLimit - vel;
+            float accelAmt = accelRate * Time.fixedDeltaTime;
+            
+            vel += accelAmt * accelDir.normalized;
+		}
+
+        body.velocity = Vector2.ClampMagnitude(vel, speedLimit);
+
+        /*
         if(moveVector.x == 0){
+
             velX += (decelRate * -velX);
         }
         if(moveVector.y == 0){
             velY += (decelRate * -velY);
         }
+        */
 
-        Vector2 vel = new Vector2(velX, velY);
-        body.velocity = Vector2.ClampMagnitude(vel, speedLimit);
         //Debug.Log(body.velocity);
     }
 
     void OnEnable()
     {
-        //moveAction.Enable();
-        actions.FindActionMap("InGame").Enable();
+        // moveAction.Enable();
+        // actions.FindActionMap("InGame").Enable();
     }
     void OnDisable()
     {
-        //moveAction.Disable();
-        actions.FindActionMap("InGame").Disable();
+        // moveAction.Disable();
+        // actions.FindActionMap("InGame").Disable();
     }
+
+    private void OnMove(InputAction.CallbackContext context)
+	{
+        moveVector = context.ReadValue<Vector2>();
+	}
 
     private void PickUp(InputAction.CallbackContext context){
         interactEvent?.Invoke();

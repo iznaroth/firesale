@@ -10,6 +10,26 @@ public enum EActionMap
     UI
 }
 
+public enum EInGameAction
+{
+    MOVE,
+    PICK_UP,
+
+}
+
+public enum EMinigameAction
+{
+    SELECT,
+
+}
+
+public enum EUIAction
+{
+    SELECT,
+
+}
+
+[RequireComponent(typeof(PlayerInput))]
 public class InputManager : MonoBehaviour
 {
     #region StaticInterface
@@ -24,16 +44,33 @@ public class InputManager : MonoBehaviour
 
         Debug.LogWarning("Warning: No input manager instance found. Creating default one");
 
-        GameObject newManager = new GameObject("DefaultInputManager");
-        return newManager.AddComponent<InputManager>();
+        GameObject newManagerGO = new GameObject("DefaultInputManager");
+        return newManagerGO.AddComponent<InputManager>();
     }
 
-    static Dictionary<EActionMap, string> actionMapNames= new Dictionary<EActionMap, string>
+    static Dictionary<EActionMap, string> actionMapNames = new Dictionary<EActionMap, string>
     {
-        {EActionMap.IN_GAME, "InGame" },
-        {EActionMap.MINIGAME, "Minigame" },
-        {EActionMap.UI, "UI" },
+        { EActionMap.IN_GAME, "InGame" },
+        { EActionMap.MINIGAME, "Minigame" },
+        { EActionMap.UI, "UI" },
     };
+
+	static Dictionary<EInGameAction, string> inGameActionNames = new Dictionary<EInGameAction, string>
+	{
+        { EInGameAction.MOVE, "Move" },
+        { EInGameAction.PICK_UP, "Pick Up" },
+    };
+
+    static Dictionary<EMinigameAction, string> minigameActionNames = new Dictionary<EMinigameAction, string>
+    {
+        { EMinigameAction.SELECT, "Select" },
+    };
+
+    static Dictionary<EUIAction, string> uiActionNames = new Dictionary<EUIAction, string>
+    {
+        { EUIAction.SELECT, "Select" },
+    };
+
 
     // Switch to new action map while keeping track of the one we were just using
     public static void PushActionMap(EActionMap newMap)
@@ -51,6 +88,27 @@ public class InputManager : MonoBehaviour
     public static void OverrideActionMap(EActionMap newMap, bool clearStack = false)
     {
         GetInstance().OverrideActionMap_Internal(newMap, clearStack);
+    }
+
+    public static InputAction GetInputAction(EInGameAction action)
+	{
+        InputActionAsset controls = GetInstance().playerInput.actions;
+        InputActionMap map = controls.FindActionMap(actionMapNames[EActionMap.IN_GAME]);
+        return map.FindAction(inGameActionNames[action]);
+	}
+
+    public static InputAction GetInputAction(EMinigameAction action)
+	{
+        InputActionAsset controls = GetInstance().playerInput.actions;
+        InputActionMap map = controls.FindActionMap(actionMapNames[EActionMap.MINIGAME]);
+        return map.FindAction(minigameActionNames[action]);
+    }
+
+    public static InputAction GetInputAction(EUIAction action)
+    {
+        InputActionAsset controls = GetInstance().playerInput.actions;
+        InputActionMap map = controls.FindActionMap(actionMapNames[EActionMap.UI]);
+        return map.FindAction(uiActionNames[action]);
     }
 
     #endregion // StaticInterface
@@ -79,6 +137,7 @@ public class InputManager : MonoBehaviour
         {
             Debug.LogWarning("Warning: No PlayerInput component found on " + name + ", creating one");
             playerInput = gameObject.AddComponent<PlayerInput>();
+            playerInput.actions = FindAnyObjectByType<InputActionAsset>();
         }
     }
 

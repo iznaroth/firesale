@@ -164,7 +164,7 @@
             "id": "68e9ccb7-b825-41a7-b241-07dbe583b8d7",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Select",
                     "type": "Button",
                     "id": "f6a6d607-90be-43ca-a42a-8ce48cd70f88",
                     "expectedControlType": "Button",
@@ -177,11 +177,22 @@
                 {
                     "name": "",
                     "id": "025a8d82-6275-43b5-be85-cae14b3cf593",
-                    "path": "",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Kbm",
-                    "action": "New action",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ebe004d9-6892-451f-be66-f1d5d6167829",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -192,7 +203,7 @@
             "id": "8ee613cd-7000-478d-a90f-ed15443ef03e",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Select",
                     "type": "Button",
                     "id": "dc123e46-17d8-4d04-8d07-aa1443b0c5e2",
                     "expectedControlType": "Button",
@@ -205,11 +216,22 @@
                 {
                     "name": "",
                     "id": "10ce8b36-54ac-40ef-b2c4-a3778fd63991",
-                    "path": "",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Kbm",
-                    "action": "New action",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "690e7b74-254b-4326-a23d-ffd6d278faa8",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -236,7 +258,13 @@
         {
             "name": "Gamepad",
             "bindingGroup": "Gamepad",
-            "devices": []
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
         }
     ]
 }
