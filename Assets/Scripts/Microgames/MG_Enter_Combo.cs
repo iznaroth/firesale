@@ -1,40 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 using UnityEngine.InputSystem;
 
-public class MG_Enter_Combo : Microgame_Base
+public class MG_Enter_Combo : MonoBehaviour
 {
+    [HideInInspector] public MG_TypeTheWords owner; 
     public TextMeshProUGUI goalTextBox;
     public TextMeshProUGUI playerTextBox;
     public string comboValue;
     private int inputPos = 0;
     private string curText = "";
-
+    public bool isActive = false;
 
     private void Update()
     {
-        //do we give a shit about repeat inputs?
-        //add a thing for underlining
-        //what happens with characters not in the text asset?
         playerTextBox.text = curText;
     }
-    public override void StartGame()
+    public void StartGame()
     {
-        Debug.Log("add a thing for underlining the wrong characters 4 eyes, and also characters not in the unicode asset for text");
         goalTextBox.text = "<u>" + comboValue + "</u>";
         curText = comboValue;
-        microgameWon = false;
     }
-    public override bool EndGame()
-    {
-        Debug.Log("Result: " + microgameWon);
-        Keyboard.current.onTextInput -= OnTextInput;
-        Destroy(this.gameObject);
-        return microgameWon;
-    }
-
 
     protected void OnEnable()
     {
@@ -48,20 +37,22 @@ public class MG_Enter_Combo : Microgame_Base
 
     public void OnTextInput(char ch)
     {
-        if(ch > 126 || ch < 33) 
-        { 
-            return;
-        }
-
-        if (comboValue[inputPos] == ch)
+        if (isActive)
         {
-            inputPos++;
-            curText = curText.Substring(1);
-            if (inputPos == comboValue.Length && curText == "")
+            if (ch > 126 || ch < 31)
             {
-                microgameWon = true;
-                EndGame();
-            }  
+                return;
+            }
+
+            if (comboValue[inputPos] == ch)
+            {
+                inputPos++;
+                curText = curText.Substring(1);
+                if (inputPos == comboValue.Length && curText == "")
+                {
+                    owner.FinishedAMicroGame(true);
+                }
+            }
         }
     }
 }

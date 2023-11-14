@@ -11,6 +11,7 @@ public class TypewriterEffect : MonoBehaviour
 	[SerializeField] float delayBeforeStart = 0f;
 	[SerializeField] float delayAfterEnd = 0f;
 	[SerializeField] float timeBtwChars = 0.1f;
+	[SerializeField] float timeBtwWords = 0.1f;
 	[SerializeField] string leadingChar = "";
 	[SerializeField] bool leadingCharBeforeDelay = false;
 
@@ -42,6 +43,8 @@ public class TypewriterEffect : MonoBehaviour
 	{
 		DialogueManager.playerCanRespond = false;
 		_tmpProText.text = leadingCharBeforeDelay ? leadingChar : "";
+		string styleMarker = "";
+		bool changingStyle = false;
 
 		yield return new WaitForSeconds(delayBeforeStart);
 
@@ -51,9 +54,37 @@ public class TypewriterEffect : MonoBehaviour
 			{
 				_tmpProText.text = _tmpProText.text.Substring(0, _tmpProText.text.Length - leadingChar.Length);
 			}
-			_tmpProText.text += c;
-			_tmpProText.text += leadingChar;
-			yield return new WaitForSeconds(timeBtwChars);
+			if(c == '<')
+            {
+				styleMarker += c;
+				changingStyle = true;
+            }
+			else if (c == '>')
+            {
+				changingStyle = false;
+				styleMarker += c;
+				_tmpProText.text += styleMarker;
+				styleMarker = "";
+			}
+			
+            else if (!changingStyle)
+            {
+				_tmpProText.text += c;
+				_tmpProText.text += leadingChar;
+				if(c != ' ')
+                {
+					yield return new WaitForSeconds(timeBtwChars);
+				}
+                else
+                {
+					yield return new WaitForSeconds(timeBtwWords);
+				}
+
+			}
+            else
+            {
+				styleMarker += c;
+			}
 		}
 
 		if (leadingChar != "")

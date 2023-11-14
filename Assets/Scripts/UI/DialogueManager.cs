@@ -1,13 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
     public GameObject customerTextbox;  // these maybe just need to be the typewriter effects tbh
     public GameObject playerTextbox;    // these maybe just need to be the typewriter effects tbh
-    public GameObject microgameBox;     
+    public MicrogameManager microgameManager;
+
+    private Microgame_Base currentMicrogame;
+    public Slider healthbar;
+    public TextMeshProUGUI moneyText;
+    public static float PlayerHealth = 100;
+    public static float PlayerIncome = 666;
 
     public string currentCurioName;
     public string[] playerBarks;
@@ -19,10 +27,14 @@ public class DialogueManager : MonoBehaviour
     public string[] customerNegativeBarks;
     public int customerChances = 2; //How many times the player can fail before taking damage
     public int customerWinAmount = 2; //How many times the player needs to win to convince the customer to buy
+    public NPC_Types npcType = NPC_Types.Capitalist;
+    public Microgame_Base[] microgames;
 
     private bool microgameWon = false;
+    private bool microgameActive = false;
     public static bool playerCanRespond = false;
     private bool playerAlreadyResponded = false;
+
 
 
     // Start is called before the first frame update
@@ -32,28 +44,49 @@ public class DialogueManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        customerTextbox.GetComponent<TypewriterEffect>().NewText(customerStartBarks[0]);
+        string currentDialogue = customerStartBarks[0].Replace("{item}", "<i>" + currentCurioName + "</i>");
+        customerTextbox.GetComponent<TypewriterEffect>().NewText(currentDialogue);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(playerCanRespond && !playerAlreadyResponded)
+        if (!microgameActive)
         {
-            playerAlreadyResponded = true;
-            playerTextbox.GetComponent<TypewriterEffect>().NewText(playerBarks[0].ToUpper());
+            if (playerCanRespond && !playerAlreadyResponded)
+            {
+                playerAlreadyResponded = true;
+                playerTextbox.GetComponent<TypewriterEffect>().NewText(playerBarks[0].ToUpper());
+            }
+            if (playerCanRespond && playerAlreadyResponded)
+            {
+                SummonMicrogame();
+            }
         }
-        if(playerCanRespond && playerAlreadyResponded)
-        {
-            SummonMicrogame();
-        }
+
+        healthbar.value = PlayerHealth;
+        moneyText.text = PlayerIncome.ToString("#,##0");
     }
 
     private void SummonMicrogame()
     {
-        microgameBox.SetActive(true);
+        microgameManager.gameObject.SetActive(true);
+        currentMicrogame = microgameManager.GetNewMicrogame(NPC_Types.Anarchist);
+        microgameManager.StartNewGame();
+        currentMicrogame.winCheckEvent += MicrogameResult;
+        microgameActive = true;
     }
 
+    public void MicrogameResult(bool result)
+    {
+        Debug.Log("Result: " + microgameWon);
+        currentMicrogame.winCheckEvent -= MicrogameResult;
+        microgameWon = result;
+        Destroy(currentMicrogame.gameObject);
+        microgameActive = false;
+        microgameManager.GameResult(result);
+        
+    }
     public static void ForceHide()
     {
         //hide this object instantly
@@ -72,10 +105,6 @@ public class DialogueManager : MonoBehaviour
 
     }
 
-    private void TypeText()
-    {
-
-    }
     private void PickRandomCustomerPortrait()
     {
 
