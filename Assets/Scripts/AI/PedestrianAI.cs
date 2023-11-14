@@ -23,6 +23,8 @@ public class PedestrianAI : MonoBehaviour
     public float turnSpeed = 1f;
     public float maxForceStrength = 50f;
     public float pointAvoidanceStrenth = 5f;
+    [Range(0f, 1f)]
+    public float obstacleForceCurlAmt = 0.5f;
 
     public UnityAction OnRemove;
 
@@ -167,6 +169,16 @@ public class PedestrianAI : MonoBehaviour
                 Vector2 closestPoint = collider.ClosestPoint(transform.position);
                 Vector2 dir = closestPoint - (Vector2)transform.position;
                 Vector2 normal = dir.normalized;
+                Vector2 tangent;
+                if (Vector2.Dot(rb.velocity, normal) > 0.01f)
+				{
+                    tangent = rb.velocity - Vector2.Dot(rb.velocity, normal) * normal;
+                    tangent.Normalize();
+				}
+                else
+				{
+                    tangent = Vector3.Cross(normal, Vector3.forward);
+                }
                 float componentVelocity = Vector2.Dot(normal, rb.velocity);
                 float dist = dir.magnitude - pedRadius - avoidanceBonusRadius;
                 float ttc = dist / componentVelocity;
@@ -180,7 +192,8 @@ public class PedestrianAI : MonoBehaviour
 
                 if (ttc < 0f) continue; // no collision
 
-                force += avoidanceForceStrength * (-normal) / (ttc);
+                Vector2 forceDir = Vector2.Lerp(-normal, tangent, obstacleForceCurlAmt);
+                force += avoidanceForceStrength * forceDir / (ttc * ttc);
             }
         }
 

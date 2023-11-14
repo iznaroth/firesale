@@ -204,14 +204,15 @@ MonoBehaviour:
   pedRadius: 1
   viewMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 1216
   goalForceStrength: 5
-  avoidanceForceStrength: 1
-  avoidanceBonusRadius: 0
+  avoidanceForceStrength: 2
+  avoidanceBonusRadius: 0.2
   minCollisionTime: 0.1
   turnSpeed: 6
   maxForceStrength: 30
   pointAvoidanceStrenth: 10
+  obstacleForceCurlAmt: 0.581
 --- !u!1 &6118373735924248156
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,7 +374,9 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 5, y: 6}
+      - {x: 1, y: 4}
       - {x: 0, y: 1}
       - {x: 0, y: -1}
+      - {x: 1, y: -4}
       - {x: 5, y: -6}
   m_UseDelaunayMesh: 0
