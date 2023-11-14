@@ -17,14 +17,16 @@ public class MG_TypeTheWords : Microgame_Base
     private GameObject[] wordsToType;
     private int currentWordIndex = 0;
     private MG_Enter_Combo currentCombo;
+    public float timeBonusPerCharacter = 0.1f;
 
-    public override void StartGame()
+    public override bool SetupGame()
     {
         wordsToType = new GameObject[wordAmount];
         string tempWord = wordList[Random.Range(0, wordList.Length - 1)];
         int tempInt = Random.Range(0, popupPositions.Length - 1);
         selectedWords.Enqueue(tempWord);
         selectedPositions.Push(tempInt);
+        int numberofCharacters = 0;
         for (int i = 1; i < wordAmount; i++)
         {
             tempWord = wordList[Random.Range(0, wordList.Length - 1)];
@@ -37,6 +39,7 @@ public class MG_TypeTheWords : Microgame_Base
             {
                 tempInt = Random.Range(0, popupPositions.Length - 1);
             }
+            numberofCharacters += tempWord.Length;
             selectedWords.Enqueue(tempWord);
             selectedPositions.Push(tempInt);
         }
@@ -65,6 +68,8 @@ public class MG_TypeTheWords : Microgame_Base
         currentCombo.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().localScale = Vector3.one * 1.5f;
         currentWordIndex = wordAmount - 1;
         microgameWon = false;
+        microgameTimeLimit = numberofCharacters * timeBonusPerCharacter;
+        return false;
     }
 
     public void FinishedAMicroGame(bool result)

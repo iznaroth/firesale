@@ -25,7 +25,12 @@ public class Microgame_Base : MonoBehaviour
     public delegate void WinCheck(bool result);
     public static event WinCheck winCheckEvent;
 
-    // Start is called before the first frame update
+
+    public virtual bool SetupGame()
+    {
+        return false;
+    }
+
     public virtual void StartGame()
     {
         

@@ -1315,7 +1315,6 @@ MonoBehaviour:
   currentGame: {fileID: 4232473501329977771}
   AllMicrogames:
   - {fileID: 4232473501329977771}
-  timeLimit: 0
 --- !u!224 &762634073
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3028,6 +3027,10 @@ PrefabInstance:
     - target: {fileID: 4950380831886102734, guid: 468ea2b0c61416a41a3ddff7595e8c07, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7741748080109840330, guid: 468ea2b0c61416a41a3ddff7595e8c07, type: 3}
+      propertyPath: timeBonusPerCharacter
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8027558376191332461, guid: 468ea2b0c61416a41a3ddff7595e8c07, type: 3}
       propertyPath: m_Name

@@ -72,6 +72,7 @@ public class MicrogameManager : MonoBehaviour
 
     public void StartNewGame()
     {
+        bool timeWaster = currentGame.SetupGame();
         titleText.text = currentGame.microgameTitle;
         timeLimit = currentGame.microgameTimeLimit;
         timeLeft = timeLimit;
