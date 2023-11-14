@@ -8,8 +8,23 @@ public enum NPC_Types
 {
     Any = 0, 
     AnimeFan = 1, 
-    Anarchist = 2, 
-    Capitalist = 4
+    RichFella = 2, 
+    Intellectual = 4,
+    Gamer = 8,
+    InternetPoster = 16,
+    SmallChild = 32,
+    CrystalMommy = 64,
+    FineArtEnjoyer = 128,
+    LanguageEnjoyer = 256,
+    MusicFan = 512,
+    Streamers = 1024,
+    Deadbeat = 2048,
+    FanficWriter = 4096,
+    SalaryMan = 8192,
+    Edgelord = 16384,
+    SportsFan = 32768,
+    StepDad = 65536,
+    MadScientist = 131072
 }
 
 public class Microgame_Base : MonoBehaviour

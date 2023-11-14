@@ -27,7 +27,7 @@ public class DialogueManager : MonoBehaviour
     public string[] customerNegativeBarks;
     public int customerChances = 2; //How many times the player can fail before taking damage
     public int customerWinAmount = 2; //How many times the player needs to win to convince the customer to buy
-    public NPC_Types npcType = NPC_Types.Capitalist;
+    public NPC_Types npcType = NPC_Types.AnimeFan;
     public Microgame_Base[] microgames;
 
     private bool microgameActive = false;
@@ -70,7 +70,7 @@ public class DialogueManager : MonoBehaviour
     private void SummonMicrogame()
     {
         microgameManager.gameObject.SetActive(true);
-        currentMicrogame = microgameManager.GetNewMicrogame(NPC_Types.Anarchist);
+        currentMicrogame = microgameManager.GetNewMicrogame(NPC_Types.AnimeFan);
         microgameManager.StartNewGame();
         Microgame_Base.winCheckEvent += MicrogameResult;
         microgameActive = true;
