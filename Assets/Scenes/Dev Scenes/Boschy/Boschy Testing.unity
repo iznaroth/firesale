@@ -171,13 +171,61 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: customerChancesRange.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: playerBarks.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: customerDifficultyRange.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: playerBarks.Array.data[1]
+      value: THE MUST HAVE AMNESIA BECAUSE THE FORGOT I'M HIM!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472243766329538280, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: timeBtwChars
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472243766329538280, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: timeBtwWords
+      value: 0.075
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472243766329538280, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: delayAfterEnd
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 2551194966746024034, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
       propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235197603937724000, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: timeBtwChars
+      value: 0.075
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235197603937724000, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: timeBtwWords
+      value: 0.075
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235197603937724000, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: delayBeforeStart
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4341235791811688649, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
       propertyPath: m_SizeDelta.y
       value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5689463993925820306, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: timeBtwChars
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5689463993925820306, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: timeBtwWords
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 6264412573982543349, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
       propertyPath: m_AnchorMax.x

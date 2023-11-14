@@ -6,7 +6,6 @@ using UnityEngine.Events;
 [System.Flags]
 public enum NPC_Types
 {
-    Any = 0, 
     AnimeFan = 1, 
     RichFella = 2, 
     Intellectual = 4,
@@ -29,18 +28,15 @@ public enum NPC_Types
 
 public class Microgame_Base : MonoBehaviour
 {
+    [Header("Microgame Base Variables")]
     public string microgameTitle;
     public NPC_Types npcType;
     public float microgameStartDelay = 1.5f;
     public float microgameTimeLimit;
     public int microgameDifficulty; // difficulty of completion, used to determine if player has to do another microgame to convince the npc
-
     protected bool microgameWon = false;
-
-
     public delegate void WinCheck(bool result);
     public static event WinCheck winCheckEvent;
-
 
     public virtual bool SetupGame()
     {
@@ -55,11 +51,5 @@ public class Microgame_Base : MonoBehaviour
     public virtual void EndGame()
     {
         winCheckEvent?.Invoke(microgameWon);
-    }
-    static IEnumerable<NPC_Types> GetFlags(NPC_Types input)
-    {
-        foreach (NPC_Types value in NPC_Types.GetValues(input.GetType()))
-            if (input.HasFlag(value))
-                yield return value;
     }
 }

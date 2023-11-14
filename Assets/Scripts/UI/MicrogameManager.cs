@@ -86,6 +86,7 @@ public class MicrogameManager : MonoBehaviour
         {
             DialogueManager.dialogueState = 0;
             anime.Play("MG_Out");
+            DialogueManager.microgameActive = false;
         }
     }
 
@@ -93,7 +94,6 @@ public class MicrogameManager : MonoBehaviour
     {
         anime.Play("MG_In");
         statusText.text = currentGame.microgameTitle;
-        Debug.Log(statusText.text);
         StartCoroutine("StartDelay");
     }
 
@@ -132,10 +132,10 @@ public class MicrogameManager : MonoBehaviour
         Microgame_Base newGame;
         gamesDict.TryGetValue(npcType, out currentList);
         newGame = Instantiate(currentList[0]);
+        currentList.Add(currentList[0]);
         currentList.RemoveAt(0);
-        currentList.Add(newGame);
         gamesDict.Remove(npcType);
-        gamesDict.TryAdd(npcType, currentList);
+        gamesDict.Add(npcType, currentList);
         statusText.text = newGame.microgameTitle;
         statusText.gameObject.SetActive(true);
         currentGame = newGame;

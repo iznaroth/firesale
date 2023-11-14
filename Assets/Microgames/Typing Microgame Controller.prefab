@@ -160,9 +160,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   microgameTitle: Type the Words!
-  npcType: 3
-  microgameTimeLimit: 10
-  microgameDifficulty: 2
+  npcType: -1
+  microgameStartDelay: 0.5
+  microgameTimeLimit: 5
+  microgameDifficulty: 1
   wordAmount: 3
   popupPositions:
   - {x: -307, y: 229}
