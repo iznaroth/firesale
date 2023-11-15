@@ -50,6 +50,8 @@ public class DialogueManager : MonoBehaviour
     private int currentGameDifficulty = 0;
     private bool newDialogue = true;
 
+    public static DialogueManager instance;
+
     public static float PlayerHealth = 100;
     public static float PlayerIncome = 666;
     public static bool microgameActive = false;
@@ -58,8 +60,28 @@ public class DialogueManager : MonoBehaviour
     public static string currentCurio;
     public static int dialogueState = 0;
 
-    // Start is called before the first frame update
-    void Start()
+	private void Awake()
+	{
+		if (instance != null && instance != this)
+		{
+            Debug.LogWarning("Duplicate Dialogue Managers found, deleting " + name + "'s");
+            Destroy(this);
+            return;
+		}
+
+        instance = this;
+	}
+
+	private void OnDestroy()
+	{
+		if (instance == this)
+		{
+            instance = null;
+		}
+	}
+
+	// Start is called before the first frame update
+	void Start()
     {
         //customerTextbox.GetComponent<TypewriterEffect>().NewText(customerStartBarks[0]);
         anime = this.GetComponent<Animator>();

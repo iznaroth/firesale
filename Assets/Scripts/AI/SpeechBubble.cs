@@ -27,6 +27,15 @@ public class SpeechBubble : MonoBehaviour
     Tween positionTween;
     Tween scaleTween;
 
+    Vector2 localStartOffset;
+    Vector2 localEndOffset;
+
+	private void Start()
+	{
+        localStartOffset = transform.InverseTransformVector(speechBubbleStartOffset);
+        localEndOffset = transform.InverseTransformVector(speechBubbleEndOffset);
+	}
+
 	private void OnDestroy()
 	{
 		if (speechBubbleObject)
@@ -111,7 +120,7 @@ public class SpeechBubble : MonoBehaviour
 
         displayTextCoroutine = StartCoroutine(DisplayText(startTypewriterDelay, text));
 
-        positionTween = DOTween.To(() => speechBubbleObject.transform.localPosition, x => speechBubbleObject.transform.localPosition = x, (Vector3)speechBubbleEndOffset, openAnimDuration);
+        positionTween = DOTween.To(() => speechBubbleObject.transform.localPosition, x => speechBubbleObject.transform.localPosition = x, (Vector3)localEndOffset, openAnimDuration);
         scaleTween = DOTween.To(() => speechBubbleObject.transform.localScale, x => speechBubbleObject.transform.localScale = x, (Vector3)speechBubbleEndScale, openAnimDuration);
 
         if (!keepOpen)
@@ -146,7 +155,7 @@ public class SpeechBubble : MonoBehaviour
 
         deleteBubbleCoroutine = StartCoroutine(DeleteBubble(closeAnimDuration));
 
-        positionTween = DOTween.To(() => speechBubbleObject.transform.localPosition, x => speechBubbleObject.transform.localPosition = x, (Vector3)speechBubbleStartOffset, openAnimDuration);
+        positionTween = DOTween.To(() => speechBubbleObject.transform.localPosition, x => speechBubbleObject.transform.localPosition = x, (Vector3)localStartOffset, openAnimDuration);
         scaleTween = DOTween.To(() => speechBubbleObject.transform.localScale, x => speechBubbleObject.transform.localScale = x, (Vector3)speechBubbleStartScale, openAnimDuration);
     }
 

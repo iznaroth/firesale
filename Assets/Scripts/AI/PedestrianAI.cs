@@ -32,6 +32,7 @@ public class PedestrianAI : MonoBehaviour
     float currentMaxSpeed;
     Rigidbody2D rb;
     List<PathingNode> path = new List<PathingNode>();
+    bool frozen = false;
 
     // Start is called before the first frame update
     void Start()
@@ -86,9 +87,28 @@ public class PedestrianAI : MonoBehaviour
         }
     }
 
+    public void Freeze()
+	{
+        frozen = true;
+
+        rb.velocity = Vector2.zero;
+	}
+
+    public void UnFreeze()
+	{
+        if (!frozen) return;
+
+        frozen = false;
+	}
+
     // Update is called once per frame
     void Update()
     {
+        if (frozen)
+		{
+            return;
+		}
+
         if (path.Count < 1)
         {
             CompletePath();
