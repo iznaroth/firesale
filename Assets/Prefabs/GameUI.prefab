@@ -578,18 +578,108 @@ MonoBehaviour:
   moneyText: {fileID: 5654118429730094929}
   NPC_Name: {fileID: 3645050278019163852}
   playerBarks:
-  - Please god buy this
-  - THE MUST HAVE AMNESIA BECAUSE THE FORGOT I'M HIM!
+  - PLEASE GODS BUY THIS
+  - DO YOU HAVE AMNESIA BECAUSE YOU FORGOT THAT I'M HIM!
+  - GIVE ME ONE SECOND AND I CAN CHANGE YOUR MIND
+  - BUY IT BUY IT BUY IT!
+  - JUST A MOMENT OF YOUR TIME, I SWEAR
+  - HEY! WAIT! JUST CHECK THIS OUT REALLY QUICK!
+  - BUY IT NOW WHILE IT'S STILL AVAILABLE!
+  - NO TIME TO EXPLAIN. PLEASE, JUST BUY THIS {item}. PLEASE.
+  - HEYA PAL, GOT A SECOND TO CHAT?
+  - I GOT SOMETHING AMAZING TO SHOW YOU.
+  - WHY ARE YOU RUNNING?
+  - YOU WANT THIS!
+  - 'BEHOLD: {item}!'
+  - I'VE GOT A FRESH {item} FOR REAL CHEAP.
+  - HOLD ON! YOU HAVE LITERALLY NEVER SEEN A DEAL THIS GOOD IN YOUR LIFE.
+  - "THEY DON\u2019T WANT YOUR LOVE OF {item} TO EXIST, BUT I DO. "
+  - YOU JUST GOTTA BELIEVE IN IT, OR SOMETHING
+  - DON'T THINK SO HARD ABOUT THIS!
+  - TRUST ME, IT WORKS 9 TIMES OUT OF 10.
+  - COMPLIANT WITH ANY LAWS YOU CAN NAME!
+  - I'VE BEEN USING IT FOR YEARS, I KNOW IT WORKS!
+  - PLEASE. PLEASE. PLEASE. PLEASE. PLEASE. PLEASE. PLEASE. PLEASE. PLEASE. PLEASE.
+  - I NEED YOU TO BUY IT. YOU DON'T UNDERSTAND.
+  - JUST TRY IT OUT. SEE IF YOU LIKE IT!
+  - I'VE GOT A FAMILY TO FEED, Y'KNOW?
+  - YOU GOT A BRAIN , RIGHT? YOU WOULDN'T WANT TO MISS A DEAL LIKE THIS!
+  - "YOU\u2019RE EITHER A FART SMELLA OR A SMART FELLA, PICK THE RIGHT ONE AND BUY
+    THIS {item}"
+  - "HOW OFTEN ARE YOU GONNA FIND {item} AT THIS PRICE-POINT? NO\u2026 SERIOUSLY\u2026
+    PLEASE TELL ME."
+  - THIS IS A ONCE IN A LIFETIME OPPORTUNITY!
+  - I AM ON MY KNEES. I AM BEGGING YOU. PLEASE.
+  - 'LEGALLY SPEAKING? YEAH, SURE, WHATEVER MAKES YOU BUY. BUY PRODUCT! '
+  - <i>Cough</i>... <i>Cough</i>... <i>Cough</i>... PLEASE... BUY... UH....
   customerStartBarks:
-  - oh... hello. what is this {item} you have?
+  - Whats up?
+  - "Uhh... Hi\u2026\u2026 Are you okay?"
+  - Can I help you?
+  - What the hell?
+  - AAH! AAAAAAAH!
+  - Hm?
+  - Please don't hurt me.
+  - "...@#&$. Ow\u2026 Watch where you\u2019re skating creep!"
+  - OH GODS NO NOT AGAIN!!
+  - Woah, what <i>is</i>that?
+  - What is <i>that</i>?
+  - "I\u2019ll give ye thirty seconds"
+  - Is that supposed to look like that? Wait, are you OK?
+  - Watch it, psycho.
+  - Are you mentally unwell or something?
+  - Are you insane?
+  - HEY WATCH IT! YOU COULD HAVE KILLED ME!!
+  - Oh snap! what's good little dude?
+  - What've you got there?
+  - Hello there.
+  - "Excuse me sir, do you have a minute to talk about the current socio-political
+    climate of Our Royal Majesty\u2019s feudal- "
+  - Aye.
+  - Woah, get away from me!
+  - What the hell? The cards were right today.
+  - Ugh they were right... I dunno what you want, but @#&$ off.
+  - Howdy, what can I do you for?.
+  - I'm listening.
+  - Woah hey, did you need something pal?
+  - Oh man, no way. I was just looking for a {item}!
+  - Is that a {item}
+  - A {item}? For how much?
+  - What's that in your hands there? A "{item}"?
+  - ... Well? Get on with it!
   customerSoldBarks:
   - oh my god this {item} will change my life forever!
   customerRefusedBarks:
   - get away from me psycho!
   customerPositiveBarks:
-  - hmmmm, well i'm just not sure i need {item}
+  - Hmm, well i'm just not sure I need a {item}
+  - ...interesting...
+  - "I suppose it shan\u2019tn't be a bad ware to acquire."
+  - Hm, I guess I <i>could</i> use a new {item}..
+  - "\u2026and this is for how much?"
+  - Wow! I never really thought about it that way.
+  - I suppose that makes sense.
+  - Wait, and I can use this for what?
+  - Is this the only one you've got?
+  - "You\u2019ve really only got the one?"
+  - Tell me more...
+  - 'Mayhaps I do need a new {item}... '
   customerNegativeBarks:
-  - yeah, I doubt i need a "{item}"
+  - Yeah, I varily doubt I need a "{item}"
+  - "There\u2019s no way it truly works"
+  - I'm already saving my coin for a different ware.
+  - I haven't the coin right now for this waste.
+  - It appears to have scantly a practical use...
+  - "It seems to be a bit\u2026 uh\u2026 unstable?"
+  - I sincerely doubt it actually works.
+  - What's all that evil looking stuff comin' off it?
+  - Too expensive, do you take me for a fool?
+  - Are you sure? It looks haunted.
+  - Is this even yours?
+  - I'm getting a migraine...
+  - You're giving me a headache...
+  - 'No, and I barely even like these kinds of wares. '
+  - "Are you delusional? That {item}, for\u2026 Wait- how much?! "
   customerChancesRange: {x: 2, y: 2}
   customerDifficultyRange: {x: 2, y: 2}
   animationDone: 0
@@ -2253,7 +2343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delayBeforeStart: 0
   delayAfterEnd: 0.1
-  timeBtwChars: 0.05
+  timeBtwChars: 0.025
   timeBtwWords: 0.075
   leadingChar: 
   leadingCharBeforeDelay: 1
@@ -3407,8 +3497,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delayBeforeStart: 0
   delayAfterEnd: 0
-  timeBtwChars: 0.075
-  timeBtwWords: 0.075
+  timeBtwChars: 0.035
+  timeBtwWords: 0.035
   leadingChar: 
   leadingCharBeforeDelay: 0
   skippable: 1
@@ -3480,7 +3570,6 @@ MonoBehaviour:
   statusText: {fileID: 2051159882132897724}
   timerBar: {fileID: 7819778409347173326}
   timerText: {fileID: 4753118928122341971}
-  currentGame: {fileID: 0}
   AllMicrogames:
   - {fileID: 7741748080109840330, guid: 468ea2b0c61416a41a3ddff7595e8c07, type: 3}
   winPhrases:

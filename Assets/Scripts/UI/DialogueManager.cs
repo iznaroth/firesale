@@ -57,7 +57,7 @@ public class DialogueManager : MonoBehaviour
     public static bool microgameActive = false;
     public static bool wonLastMicrogame = false;
     public static bool newDialogueStarted = false;
-    public static string currentCurio;
+    public static string currentCurio = "Poggers";
     public static int dialogueState = 0;
 
 	private void Awake()
@@ -140,7 +140,7 @@ public class DialogueManager : MonoBehaviour
         {
             customerChances -= currentGameDifficulty;
         }
-        Destroy(currentMicrogame.gameObject);
+        if (currentMicrogame != null) { Destroy(currentMicrogame.gameObject); }
     }
 
     private void StartDialogue()
@@ -153,17 +153,17 @@ public class DialogueManager : MonoBehaviour
                 if (newDialogue)
                 {
                     newDialogue = false;
-                    currentDialogue = customerStartBarks[Random.Range(0, playerBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>");
+                    currentDialogue = customerStartBarks[Random.Range(0, customerStartBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>");
                     customerTextbox.GetComponent<TypewriterEffect>().NewText(currentDialogue);
                 }
                 else if(wonLastMicrogame && customerWinAmount > 0)
                 {
-                    currentDialogue = customerPositiveBarks[Random.Range(0, playerBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>");
+                    currentDialogue = customerPositiveBarks[Random.Range(0, customerPositiveBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>");
                     customerTextbox.GetComponent<TypewriterEffect>().NewText(currentDialogue);
                 }
                 else if (!wonLastMicrogame && customerWinAmount > 0)
                 {
-                    currentDialogue = customerNegativeBarks[Random.Range(0, playerBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>");
+                    currentDialogue = customerNegativeBarks[Random.Range(0, customerNegativeBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>");
                     customerTextbox.GetComponent<TypewriterEffect>().NewText(currentDialogue);
                 }
                 dialogueState++;
@@ -200,11 +200,11 @@ public class DialogueManager : MonoBehaviour
         anime.ResetTrigger("CutIn");
         if (wonLastMicrogame)
         {
-            currentNPC.GetComponent<SpeechBubble>().OpenSpeechBubble(customerSoldBarks[Random.Range(0, playerBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"), 3);
+            currentNPC.GetComponent<SpeechBubble>().OpenSpeechBubble(customerSoldBarks[Random.Range(0, customerSoldBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"), 5);
         }
         else
         {
-            currentNPC.GetComponent<SpeechBubble>().OpenSpeechBubble(customerRefusedBarks[Random.Range(0, playerBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"), 3);
+            currentNPC.GetComponent<SpeechBubble>().OpenSpeechBubble(customerRefusedBarks[Random.Range(0, customerRefusedBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"), 5);
         }
         currentNPC.GetComponent<PedestrianAI>()?.UnFreeze();
         InputManager.PopActionMap();

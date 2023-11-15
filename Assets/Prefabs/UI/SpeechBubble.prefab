@@ -386,8 +386,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delayBeforeStart: 0
   delayAfterEnd: 0
-  timeBtwChars: 0.05
-  timeBtwWords: 0.1
+  timeBtwChars: 0.035
+  timeBtwWords: 0.035
   leadingChar: 
   leadingCharBeforeDelay: 0
   skippable: 0
