@@ -5,13 +5,7 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     //Data class for Item representation.
-    public Sprite sprite;
-    public int curseVal;
-    public int weightVal;
+    public string name;
+    public int value;
 
-    public Item(Sprite nsprite, int nCurseVal, int nWeightVal){
-        this.sprite = nsprite;
-        this.curseVal = nCurseVal;
-        this.weightVal = nWeightVal;
-    }
 }

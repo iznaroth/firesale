@@ -5,25 +5,12 @@ using UnityEngine;
 public class ItemPedestal : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject storedItemSprite;
+    public GameObject storedItem;
     public GameObject interactIcon;
-    public Item itemStored;
-
     bool actionable = false;
-
     private PlayerController pl;
-
     void Awake(){
         PlayerController.interactEvent += PickUp;
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        //Item float anim based on properties
-
-
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -43,17 +30,19 @@ public class ItemPedestal : MonoBehaviour
             interactIcon.SetActive(false);
         }
     }
-
-    public void setItem(Item to){
-        this.itemStored = to;
-        this.storedItemSprite.GetComponent<SpriteRenderer>().sprite = (itemStored == null) ? null : itemStored.sprite;
-    }
-    
-    private void PickUp(){
-        Debug.Log("Pickup fired.");
+    private void PickUp(GameObject toSwap){
         if(pl != null){
-            this.setItem(pl.getHolding());
-            pl.setHolding(this.itemStored);
+            Vector3 hold = this.storedItem.transform.position;
+            this.storedItem.transform.position = toSwap.transform.position;
+            toSwap.transform.position = hold;
+
+            toSwap.transform.SetParent(this.gameObject.transform);
+            this.storedItem.transform.SetParent(pl.gameObject.transform);
+
+            pl.setHolding(this.storedItem);
+            this.storedItem = toSwap;
+
+            //disable animation clip
         }
     }
 
