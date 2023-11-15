@@ -18,10 +18,15 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D body;
     private Vector2 moveVector = Vector2.zero;
     public float speedLimit;
-    private Item holding;
+    public GameObject holding;
 
     private InputAction pickupAction;
-    public static event Action interactEvent;
+
+    public delegate void InteractEvent(GameObject payload);
+    public static event InteractEvent interactEvent;
+
+    public Transform holdAnchor;
+
 
     void Awake()
     {
@@ -77,31 +82,20 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(body.velocity);
     }
 
-    void OnEnable()
-    {
-        // moveAction.Enable();
-        // actions.FindActionMap("InGame").Enable();
-    }
-    void OnDisable()
-    {
-        // moveAction.Disable();
-        // actions.FindActionMap("InGame").Disable();
-    }
-
     private void OnMove(InputAction.CallbackContext context)
 	{
         moveVector = context.ReadValue<Vector2>();
 	}
 
     private void PickUp(InputAction.CallbackContext context){
-        interactEvent?.Invoke();
+        interactEvent?.Invoke(holding);
     }
 
-    public void setHolding(Item to){
+    public void setHolding(GameObject to){
         this.holding = to;
-    }
-
-    public Item getHolding(){
-        return this.holding;
-    }
+        to.GetComponent<Animation>().playAutomatically = false;
+        to.GetComponent<Animation>().Stop();
+        to.transform.position = holdAnchor.position;
+        //StartDialogueInteraction(to.GetComponent<Item>().name);
+    } 
 }
