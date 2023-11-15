@@ -161,7 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   microgameTitle: Type the Words!
   npcType: -1
-  microgameStartDelay: 1
+  microgameStartDelay: 1.5
   microgameTimeLimit: 1
   microgameDifficulty: 1
   wordMicrogamePrefab: {fileID: 6007858649203126873, guid: 9006debd0749fc54681f5b60fbfc51b0, type: 3}

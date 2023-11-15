@@ -198,6 +198,14 @@ public class DialogueManager : MonoBehaviour
         microgameManager.transform.GetChild(0).gameObject.SetActive(false);
         anime.SetTrigger("CutOut");
         anime.ResetTrigger("CutIn");
+        if (wonLastMicrogame)
+        {
+            currentNPC.GetComponent<SpeechBubble>().OpenSpeechBubble(customerSoldBarks[Random.Range(0, playerBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"), 3);
+        }
+        else
+        {
+            currentNPC.GetComponent<SpeechBubble>().OpenSpeechBubble(customerRefusedBarks[Random.Range(0, playerBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"), 3);
+        }
     }
 
     public void StartDialogueInteraction(GameObject newNPC)
@@ -215,6 +223,7 @@ public class DialogueManager : MonoBehaviour
             npcType = GetRandomEnum<NPC_Types>();
             PickRandomCustomerName();
             PickRandomCustomerPortrait();
+            currentNPC = newNPC;
             CutIn();
         }
     }
