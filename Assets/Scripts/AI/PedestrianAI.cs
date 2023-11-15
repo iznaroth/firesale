@@ -92,6 +92,7 @@ public class PedestrianAI : MonoBehaviour
         frozen = true;
 
         rb.velocity = Vector2.zero;
+        rb.simulated = false;
 	}
 
     public void UnFreeze()
@@ -99,7 +100,8 @@ public class PedestrianAI : MonoBehaviour
         if (!frozen) return;
 
         frozen = false;
-	}
+        rb.simulated = true;
+    }
 
     // Update is called once per frame
     void Update()

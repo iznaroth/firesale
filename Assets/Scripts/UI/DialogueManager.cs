@@ -206,6 +206,8 @@ public class DialogueManager : MonoBehaviour
         {
             currentNPC.GetComponent<SpeechBubble>().OpenSpeechBubble(customerRefusedBarks[Random.Range(0, playerBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"), 3);
         }
+        currentNPC.GetComponent<PedestrianAI>()?.UnFreeze();
+        InputManager.PopActionMap();
     }
 
     public void StartDialogueInteraction(GameObject newNPC)
@@ -225,6 +227,7 @@ public class DialogueManager : MonoBehaviour
             PickRandomCustomerPortrait();
             currentNPC = newNPC;
             CutIn();
+            InputManager.PushActionMap(EActionMap.MINIGAME);
         }
     }
 
