@@ -34,6 +34,7 @@ public class Microgame_Base : MonoBehaviour
     public float microgameStartDelay = 1.5f;
     public float microgameTimeLimit;
     public int microgameDifficulty; // difficulty of completion, used to determine if player has to do another microgame to convince the npc
+    public float microgameDamage = 10;
     protected bool microgameWon = false;
     public delegate void WinCheck(bool result);
     public static event WinCheck winCheckEvent;
