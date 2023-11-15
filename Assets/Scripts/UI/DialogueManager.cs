@@ -5,6 +5,13 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 
+public enum Start_Conditions
+{
+    Normal,
+    Grappled,
+    Rocketed
+}
+
 public class DialogueManager : MonoBehaviour
 {
     [Header("Object Connections")]
@@ -17,7 +24,7 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI NPC_Name;
     private Animator anime;
     private Microgame_Base currentMicrogame;
-    [HideInInspector] private string currentCurioName;
+    private GameObject currentNPC;
 
 
     [Space(10)]
@@ -41,12 +48,14 @@ public class DialogueManager : MonoBehaviour
 
     //weird emergency cache stuff to avoid errors
     private int currentGameDifficulty = 0;
+    private bool newDialogue = true;
 
     public static float PlayerHealth = 100;
     public static float PlayerIncome = 666;
     public static bool microgameActive = false;
     public static bool wonLastMicrogame = false;
     public static bool newDialogueStarted = false;
+    public static string currentCurio;
     public static int dialogueState = 0;
 
     // Start is called before the first frame update
@@ -119,25 +128,26 @@ public class DialogueManager : MonoBehaviour
         {
             case 0:
                 playerTextbox.GetComponent<TextMeshProUGUI>().text = "";
-                if (newDialogueStarted)
+                if (newDialogue)
                 {
-                    currentDialogue = customerStartBarks[Random.Range(0, playerBarks.Length - 1)].Replace("{item}", "<i>" + currentCurioName + "</i>");
+                    newDialogue = false;
+                    currentDialogue = customerStartBarks[Random.Range(0, playerBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>");
                     customerTextbox.GetComponent<TypewriterEffect>().NewText(currentDialogue);
                 }
                 else if(wonLastMicrogame && customerWinAmount > 0)
                 {
-                    currentDialogue = customerPositiveBarks[Random.Range(0, playerBarks.Length - 1)].Replace("{item}", "<i>" + currentCurioName + "</i>");
+                    currentDialogue = customerPositiveBarks[Random.Range(0, playerBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>");
                     customerTextbox.GetComponent<TypewriterEffect>().NewText(currentDialogue);
                 }
                 else if (!wonLastMicrogame && customerWinAmount > 0)
                 {
-                    currentDialogue = customerNegativeBarks[Random.Range(0, playerBarks.Length - 1)].Replace("{item}", "<i>" + currentCurioName + "</i>");
+                    currentDialogue = customerNegativeBarks[Random.Range(0, playerBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>");
                     customerTextbox.GetComponent<TypewriterEffect>().NewText(currentDialogue);
                 }
                 dialogueState++;
                 break;
             case 1:
-                currentDialogue = playerBarks[Random.Range(0, playerBarks.Length - 1)].Replace("{item}", "<i>" + currentCurioName + "</i>").ToUpper();
+                currentDialogue = playerBarks[Random.Range(0, playerBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>").ToUpper();
                 playerTextbox.GetComponent<TypewriterEffect>().NewText(currentDialogue);
                 dialogueState++;
                 break;
@@ -168,13 +178,14 @@ public class DialogueManager : MonoBehaviour
         anime.ResetTrigger("CutIn");
     }
 
-    public void StartDialogueInteraction(string currentCurio)
+    public void StartDialogueInteraction(GameObject newNPC)
     {
         if (!isThisEvenActive) 
         { 
             animationDone = false;
             wonLastMicrogame = false;
             microgameActive = false;
+            newDialogue = true;
             customerTextbox.GetComponent<TextMeshProUGUI>().text = "";
             playerTextbox.GetComponent<TextMeshProUGUI>().text = "";
             customerChances = (int)Random.Range(customerChancesRange.x, customerChancesRange.y);
@@ -182,7 +193,6 @@ public class DialogueManager : MonoBehaviour
             npcType = GetRandomEnum<NPC_Types>();
             PickRandomCustomerName();
             PickRandomCustomerPortrait();
-            currentCurioName = currentCurio;
             CutIn();
         }
     }
@@ -194,23 +204,23 @@ public class DialogueManager : MonoBehaviour
 
     private void PickRandomCustomerName()
     {
-        int which_varient = Random.Range(0,2);
+        int which_variant = Random.Range(0,2);
         switch (npcType)
         {
             case NPC_Types.AnimeFan:
-                if (which_varient == 0) { NPC_Name.text = "Anime Nerd"; }
-                else if (which_varient == 1) { NPC_Name.text = "Mangakan"; }
+                if (which_variant == 0) { NPC_Name.text = "Anime Nerd"; }
+                else if (which_variant == 1) { NPC_Name.text = "Mangakan"; }
                 break;
             case NPC_Types.RichFella:
                 NPC_Name.text = "Rich Fella";
                 break;
             case NPC_Types.Intellectual:
-                if (which_varient == 0) { NPC_Name.text = "Self Proclaimed \" Intellectual\""; }
-                else if(which_varient == 1) { NPC_Name.text = "Debate Pervert"; }
+                if (which_variant == 0) { NPC_Name.text = "Self Proclaimed \" Intellectual\""; }
+                else if(which_variant == 1) { NPC_Name.text = "Debate Pervert"; }
                 break;
             case NPC_Types.Gamer:
-                if (which_varient == 0) { NPC_Name.text = "Gamer\n(Derogatory)"; }
-                else if (which_varient == 1) { NPC_Name.text = "Person of Play"; }
+                if (which_variant == 0) { NPC_Name.text = "Gamer\n(Derogatory)"; }
+                else if (which_variant == 1) { NPC_Name.text = "Person of Play"; }
                 break;
             case NPC_Types.InternetPoster:
                 NPC_Name.text = "Internet Shitposter";
@@ -222,8 +232,8 @@ public class DialogueManager : MonoBehaviour
                 NPC_Name.text = "Crystal Mommy";
                 break;
             case NPC_Types.FineArtEnjoyer:
-                if (which_varient == 0) { NPC_Name.text = "Fine Arts Enjoyer"; }
-                else if(which_varient == 1)  { NPC_Name.text = "Fine Arts Snob"; }
+                if (which_variant == 0) { NPC_Name.text = "Fine Arts Enjoyer"; }
+                else if(which_variant == 1)  { NPC_Name.text = "Fine Arts Snob"; }
                 break;
             case NPC_Types.LanguageEnjoyer:
                 NPC_Name.text = "Polyglot";
@@ -232,7 +242,8 @@ public class DialogueManager : MonoBehaviour
                 NPC_Name.text = "Music Fan";
                 break;
             case NPC_Types.Streamers:
-                NPC_Name.text = "1k Andy";
+                if (which_variant == 0) { NPC_Name.text = "Local Funny Man"; }
+                else if (which_variant == 1) { NPC_Name.text = "\" Influencer\""; }
                 break;
             case NPC_Types.Deadbeat:
                 NPC_Name.text = "Prospectless Deadbeat";
@@ -247,14 +258,14 @@ public class DialogueManager : MonoBehaviour
                 NPC_Name.text = "r/niceguys Edgelord";
                 break;
             case NPC_Types.SportsFan:
-                NPC_Name.text = "SPORTS FANATIC";
+                NPC_Name.text = "SPORTS \nFANATIC";
                 break;
             case NPC_Types.StepDad:
                 NPC_Name.text = "Someone's\nStep-Dad";
                 break;
             case NPC_Types.MadScientist:
-                if(which_varient == 0) { NPC_Name.text = "Mad Scientist"; }
-                else if(which_varient == 1)  { NPC_Name.text = "Doofenshmirtz?"; }
+                if(which_variant == 0) { NPC_Name.text = "Mad Scientist"; }
+                else if(which_variant == 1)  { NPC_Name.text = "Doofenshmirtz?"; }
                 break;
             default:
                 break;

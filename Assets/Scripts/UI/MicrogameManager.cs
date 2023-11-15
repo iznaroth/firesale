@@ -13,7 +13,7 @@ public class MicrogameManager : MonoBehaviour
     public TextMeshProUGUI statusText;
     public Slider timerBar;
     public TextMeshProUGUI timerText;
-    public Microgame_Base currentGame;
+    private Microgame_Base currentGame;
     public Microgame_Base[] AllMicrogames; // TODO UPDATE THIS TO AUTO ADD
     public Dictionary<NPC_Types, List<Microgame_Base>> gamesDict = new Dictionary<NPC_Types, List<Microgame_Base>>();
     private DialogueManager DM;
