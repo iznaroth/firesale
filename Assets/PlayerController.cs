@@ -6,6 +6,7 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController player;
         // assign the actions asset to this field in the inspector:
     // public InputActionAsset actions;
 
@@ -29,8 +30,14 @@ public class PlayerController : MonoBehaviour
 
     public Transform holdAnchor;
 
+    bool frozen = false;
 
-    void Start()
+	private void Awake()
+	{
+        player = this;
+	}
+
+	void Start()
     {
         // find the "move" action, and keep the reference to it, for use in Update
         moveAction = InputManager.GetInputAction(EInGameAction.MOVE);
@@ -46,6 +53,25 @@ public class PlayerController : MonoBehaviour
         // our update loop polls the "move" action value each frame
         // moveVector = moveAction.ReadValue<Vector2>();
     }
+
+    public void Freeze()
+	{
+        if (frozen) return;
+
+        body.velocity = Vector2.zero;
+        body.simulated = false;
+
+        frozen = true;
+	}
+
+    public void UnFreeze()
+	{
+        if (!frozen) return;
+
+        body.simulated = true;
+
+        frozen = false;
+	}
 
     private void FixedUpdate(){
         //
