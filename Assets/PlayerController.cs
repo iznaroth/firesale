@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     public Transform holdAnchor;
 
 
-    void Awake()
+    void Start()
     {
         // find the "move" action, and keep the reference to it, for use in Update
         moveAction = InputManager.GetInputAction(EInGameAction.MOVE);
