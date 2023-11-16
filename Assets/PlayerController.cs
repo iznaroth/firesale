@@ -2,15 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
-<<<<<<< Updated upstream
     public static PlayerController player;
-        // assign the actions asset to this field in the inspector:
-=======
     // assign the actions asset to this field in the inspector:
->>>>>>> Stashed changes
     // public InputActionAsset actions;
 
     // private field to store move action reference
@@ -26,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask itemLayerMask;
     public float itemPickupX = 1.5f;
     public float itemPickupY = 2.5f;
+    public float maxZoomOut = 2.5f;
 
     [Header("Physics Variables")]
     [Range(0f, 1f)] public float bouncinessEnableThreshhold = 0.4f; // what percentage of max speed do we need to reach start to increase bounciness
@@ -49,12 +47,12 @@ public class PlayerController : MonoBehaviour
     public static event InteractEvent interactEvent;
 
     public Transform holdAnchor;
+    public CinemachineVirtualCamera camera;
 
-<<<<<<< Updated upstream
+    public static bool inShop = false;
+
     bool frozen = false;
-=======
 /*    bool m_Started = false;*/
->>>>>>> Stashed changes
 
 	private void Awake()
 	{
@@ -145,6 +143,8 @@ public class PlayerController : MonoBehaviour
             {
                 audioSource.volume = thudSoundBaseVolume;
             }
+
+            if (!inShop) { }// add camera zoom out here 
         }
         /*
         if(moveVector.x == 0){
