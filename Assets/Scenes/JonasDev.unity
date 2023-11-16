@@ -4607,6 +4607,14 @@ PrefabInstance:
       propertyPath: speedLimit
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 2674160242445267128, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
+      propertyPath: turnAssist
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674160242445267128, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
+      propertyPath: turnThreshold
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6229804925814251620, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.75

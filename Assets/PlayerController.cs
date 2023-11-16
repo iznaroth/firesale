@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public float accelRate;
     public float decelRate;
+    public float turnAssist;
+    public int turnThreshold;
     public Rigidbody2D body;
     private Vector2 moveVector = Vector2.zero;
     public float speedLimit;
@@ -51,6 +53,11 @@ public class PlayerController : MonoBehaviour
         // float velY = Mathf.Clamp(body.velocity.y + (moveVector.y * accelRate), -speedLimit, speedLimit);
 
         Vector2 vel = body.velocity;
+        float applyTurnaround = 0f;
+
+        if(Mathf.Abs(Vector2.Angle(moveVector, vel)) > turnThreshold){
+            applyTurnaround = turnAssist;
+        }
 
         if (moveVector.sqrMagnitude < 0.1f)
 		{
@@ -64,7 +71,7 @@ public class PlayerController : MonoBehaviour
             Vector2 accelDir = moveVector * speedLimit - vel;
             float accelAmt = accelRate * Time.fixedDeltaTime;
             
-            vel += accelAmt * accelDir.normalized;
+            vel += ((accelAmt + applyTurnaround) * accelDir.normalized) ;
 		}
 
         body.velocity = Vector2.ClampMagnitude(vel, speedLimit);
