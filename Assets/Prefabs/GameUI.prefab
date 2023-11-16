@@ -649,6 +649,7 @@ MonoBehaviour:
   - ... Well? Get on with it!
   customerSoldBarks:
   - oh my god this {item} will change my life forever!
+  - YIPPIE!!!
   customerRefusedBarks:
   - get away from me psycho!
   customerPositiveBarks:

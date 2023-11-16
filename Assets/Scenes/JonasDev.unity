@@ -339,9 +339,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 151b3e0425375434188ca78e278f8a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
+  curioName: 
   value: 0
   sprite: {fileID: 0}
+  spriteHoldRotation: 0
 --- !u!1 &132249934
 GameObject:
   m_ObjectHideFlags: 0
@@ -4597,9 +4598,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 151b3e0425375434188ca78e278f8a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Cursed Sword
+  curioName: 
   value: 150
   sprite: {fileID: 0}
+  spriteHoldRotation: 0
 --- !u!1001 &5863910046498466434
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4642,7 +4644,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2674160242445267128, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
       propertyPath: turnAssist
-      value: 50
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2674160242445267128, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
       propertyPath: turnThreshold

@@ -11,31 +11,32 @@ public class ItemPedestal : MonoBehaviour
     private PlayerController pl;
 
     public float startDelay;
+    public bool isClosest = false;
     
     void Awake(){
         PlayerController.interactEvent += PickUp;
         StartCoroutine(animOffset());
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+   void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
-        if(col.gameObject.name == "Player"){
+        //Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
+        if(col.gameObject.tag == "Player"){ //using name here is bad, use tags
             pl = col.gameObject.GetComponent<PlayerController>();
             //interactIcon.SetActive(true);
         }
     }
 
-    void OnTriggerExit2D(Collider2D col)
+/*    void OnTriggerExit2D(Collider2D col)
     {
         Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
         if(col.gameObject.name == "Player"){
-            pl = null;
+            pl = null; //?!??!??? what is happening here why would we do this???????
             //interactIcon.SetActive(false);
         }
-    }
-    private void PickUp(GameObject toSwap){
-        if(pl != null){
+    }*/
+    public void PickUp(GameObject toSwap){
+        if (pl != null && isClosest){
             Vector3 hold = this.storedItem.transform.position;
             this.storedItem.transform.position = toSwap.transform.position;
             toSwap.transform.position = hold;
@@ -45,11 +46,8 @@ public class ItemPedestal : MonoBehaviour
 
             pl.setHolding(this.storedItem);
             this.storedItem = toSwap;
-
-            this.storedItem.GetComponent<Animation>().playAutomatically = true;
-            this.storedItem.GetComponent<Animation>().Play();
-            this.storedItem.transform.rotation = new Quaternion(0, 0, 0, 0);
-
+            this.storedItem.transform.eulerAngles = new Vector3(0, 0, this.storedItem.GetComponent<Item>().spritePedestalRotation);
+            isClosest = false;
             //disable animation clip
         }
     }
@@ -60,7 +58,7 @@ public class ItemPedestal : MonoBehaviour
 
     public IEnumerator animOffset(){
         yield return new WaitForSeconds(startDelay);
-        this.storedItem.GetComponent<Animation>().Play();
+        this.GetComponent<Animation>().Play();
     }
 
 }

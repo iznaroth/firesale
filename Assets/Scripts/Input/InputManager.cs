@@ -120,6 +120,8 @@ public class InputManager : MonoBehaviour
     Stack<EActionMap> actionMapStack = new Stack<EActionMap>(); // the stack saves the previous action maps used (does NOT include the current map)
     EActionMap currentMap;
 
+
+
     void Awake()
     {
         // make sure we're the only instance
