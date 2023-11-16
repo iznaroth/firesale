@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using DG.Tweening;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PedestrianAI : MonoBehaviour
@@ -14,6 +15,7 @@ public class PedestrianAI : MonoBehaviour
     public int maxmiddleNodes = 3;
     public float pedRadius = 1f;
     public LayerMask viewMask;
+    public GameObject actionBubble;
 
     [Header("Force Settings")]
     public float goalForceStrength = 5f;
@@ -33,6 +35,7 @@ public class PedestrianAI : MonoBehaviour
     Rigidbody2D rb;
     List<PathingNode> path = new List<PathingNode>();
     bool frozen = false;
+    bool actionBubbleShown = false;
 
     // Start is called before the first frame update
     void Start()
@@ -87,12 +90,18 @@ public class PedestrianAI : MonoBehaviour
         }
     }
 
-    public void Freeze()
+    public void Freeze(bool showActionBubble = true)
 	{
         frozen = true;
 
         rb.velocity = Vector2.zero;
         rb.simulated = false;
+
+        if (showActionBubble && !actionBubbleShown)
+		{
+            actionBubble.SetActive(true);
+            actionBubbleShown = true;
+		}
 	}
 
     public void UnFreeze()
@@ -101,6 +110,12 @@ public class PedestrianAI : MonoBehaviour
 
         frozen = false;
         rb.simulated = true;
+
+        if (actionBubbleShown)
+		{
+            actionBubble.SetActive(false);
+            actionBubbleShown = false;
+		}
     }
 
     // Update is called once per frame
