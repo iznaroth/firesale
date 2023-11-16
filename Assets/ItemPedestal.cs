@@ -6,11 +6,15 @@ public class ItemPedestal : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject storedItem;
-    public GameObject interactIcon;
+    //public GameObject interactIcon;
     bool actionable = false;
     private PlayerController pl;
+
+    public float startDelay;
+    
     void Awake(){
         PlayerController.interactEvent += PickUp;
+        StartCoroutine(animOffset());
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -18,7 +22,7 @@ public class ItemPedestal : MonoBehaviour
         Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
         if(col.gameObject.name == "Player"){
             pl = col.gameObject.GetComponent<PlayerController>();
-            interactIcon.SetActive(true);
+            //interactIcon.SetActive(true);
         }
     }
 
@@ -27,7 +31,7 @@ public class ItemPedestal : MonoBehaviour
         Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
         if(col.gameObject.name == "Player"){
             pl = null;
-            interactIcon.SetActive(false);
+            //interactIcon.SetActive(false);
         }
     }
     private void PickUp(GameObject toSwap){
@@ -42,12 +46,21 @@ public class ItemPedestal : MonoBehaviour
             pl.setHolding(this.storedItem);
             this.storedItem = toSwap;
 
+            this.storedItem.GetComponent<Animation>().playAutomatically = true;
+            this.storedItem.GetComponent<Animation>().Play();
+            this.storedItem.transform.rotation = new Quaternion(0, 0, 0, 0);
+
             //disable animation clip
         }
     }
 
     public void OnDisable(){
         PlayerController.interactEvent -= PickUp;
+    }
+
+    public IEnumerator animOffset(){
+        yield return new WaitForSeconds(startDelay);
+        this.storedItem.GetComponent<Animation>().Play();
     }
 
 }

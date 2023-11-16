@@ -103,6 +103,7 @@ public class PlayerController : MonoBehaviour
         to.GetComponent<Animation>().playAutomatically = false;
         to.GetComponent<Animation>().Stop();
         to.transform.position = holdAnchor.position;
-        //StartDialogueInteraction(to.GetComponent<Item>().name);
+        to.transform.rotation = new Quaternion(0, 0, 45, 0);
+        DialogueManager.currentCurio = this.holding.GetComponent<Item>().name;
     } 
 }

@@ -8,4 +8,6 @@ public class Item : MonoBehaviour
     public string name;
     public int value;
 
+    public Sprite sprite;
+
 }
