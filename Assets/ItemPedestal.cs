@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ItemPedestal : MonoBehaviour
 {
@@ -9,32 +10,52 @@ public class ItemPedestal : MonoBehaviour
     //public GameObject interactIcon;
     bool actionable = false;
     private PlayerController pl;
+    private GameObject nameplate;
 
     public float startDelay;
     public bool isClosest = false;
+    private bool playerInRange = false;
     
     void Awake(){
         PlayerController.interactEvent += PickUp;
         StartCoroutine(animOffset());
+        nameplate = GetComponentInChildren<Canvas>().gameObject;
+        nameplate.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "-" + storedItem.GetComponent<Item>().name + "-\n-" + storedItem.GetComponent<Item>().value + "-";
     }
 
-   void OnTriggerEnter2D(Collider2D col)
+    private void Update()
+    {
+        if(isClosest && playerInRange && storedItem != null)
+        {
+            nameplate.SetActive(true);
+        }
+        else
+        {
+
+            nameplate.SetActive(false);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
     {
         //Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
         if(col.gameObject.tag == "Player"){ //using name here is bad, use tags
             pl = col.gameObject.GetComponent<PlayerController>();
+            nameplate.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "-" + storedItem.GetComponent<Item>().name + "-\n-" + storedItem.GetComponent<Item>().value + "-";
+            playerInRange = true;
             //interactIcon.SetActive(true);
         }
     }
 
-/*    void OnTriggerExit2D(Collider2D col)
+    void OnTriggerExit2D(Collider2D col)
     {
-        Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
-        if(col.gameObject.name == "Player"){
-            pl = null; //?!??!??? what is happening here why would we do this???????
-            //interactIcon.SetActive(false);
+        //Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
+        if(col.gameObject.tag == "Player"){
+            //pl = null; //?!??!??? what is happening here why would we do this???????
+            isClosest = false;
+            playerInRange = false;
         }
-    }*/
+    }
     public void PickUp(GameObject toSwap){
         if (pl != null && isClosest){
             Vector3 hold = this.storedItem.transform.position;
@@ -47,7 +68,7 @@ public class ItemPedestal : MonoBehaviour
             pl.setHolding(this.storedItem);
             this.storedItem = toSwap;
             this.storedItem.transform.eulerAngles = new Vector3(0, 0, this.storedItem.GetComponent<Item>().spritePedestalRotation);
-            isClosest = false;
+            nameplate.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "-" + storedItem.GetComponent<Item>().name + "-\n-" + storedItem.GetComponent<Item>().value + "-";
             //disable animation clip
         }
     }

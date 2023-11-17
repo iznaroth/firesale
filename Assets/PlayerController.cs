@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     private GameObject holding;
     private bool cantMove = false;
     private PhysicsMaterial2D physMat;
+    private GameObject closestItem;
 
     private InputAction pickupAction;
 
@@ -56,6 +57,7 @@ public class PlayerController : MonoBehaviour
 	private void Awake()
 	{
         GameManager.Player = this.gameObject;
+        holding = this.GetComponentInChildren<Item>().gameObject;
 	}
 
 	void Start()
@@ -145,6 +147,10 @@ public class PlayerController : MonoBehaviour
 
             if (!inShop) { }// add camera zoom out here 
         }
+        if (inShop)
+        {
+            NearestItemCheck();
+        }
         /*
         if(moveVector.x == 0){
 
@@ -176,27 +182,38 @@ public class PlayerController : MonoBehaviour
 
 	}
 
-    private void PickUp(InputAction.CallbackContext context){
+    private void NearestItemCheck()
+    {
         Collider2D[] results = Physics2D.OverlapBoxAll(gameObject.transform.position, new Vector3(transform.localScale.x * itemPickupX, transform.localScale.y * itemPickupY, 0), 0, itemLayerMask, -Mathf.Infinity, Mathf.Infinity);
         //OnDrawGizmos();
         //m_Started = true;
-        Collider2D closestItem = null;
         float closestDistance = 1000000;
         float currentDistance = 0;
+        closestItem = null;
         foreach (Collider2D col in results)
         {
             currentDistance = Vector3.Distance(this.transform.position, col.transform.position);
-            if (currentDistance < closestDistance && col.gameObject.GetComponent<ItemPedestal>() != null)
-            {
-                closestDistance = currentDistance;
-                closestItem = col;
+            if (col.gameObject.GetComponent<ItemPedestal>() != null) {
+                col.gameObject.GetComponent<ItemPedestal>().isClosest = false;
+                if (currentDistance < closestDistance)
+                {
+                    closestDistance = currentDistance;
+                    closestItem = col.gameObject;
+                }
             }
         }
         if (closestItem != null)
         {
             closestItem.gameObject.GetComponent<ItemPedestal>().isClosest = true;
+        }
+    }
+
+    private void PickUp(InputAction.CallbackContext context)
+    {
+        NearestItemCheck();
+        if (closestItem != null)
+        {
             closestItem.gameObject.GetComponent<ItemPedestal>().PickUp(holding);
-            Debug.Log(closestItem.gameObject.GetComponent<ItemPedestal>());
         }
 
         //interactEvent?.Invoke(holding);
