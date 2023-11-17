@@ -18,6 +18,11 @@ public class TypewriterEffect : MonoBehaviour
 	[SerializeField] float forceNewlineWidth = 1110;
 	[SerializeField] bool leadingCharBeforeDelay = false;
 	[SerializeField] bool skippable = true;
+	[Header("Speech Sounds")]
+	[SerializeField] AudioClip speechSound;
+	[SerializeField] float speechVolume = 1;
+	[SerializeField] float speechPitch = 1;
+	[SerializeField] float speechPitchRandomizationRange = 0.25f;
 
 	// Use this for initialization
 	void Start()
@@ -90,6 +95,7 @@ public class TypewriterEffect : MonoBehaviour
 				_tmpProText.text += leadingChar;
 				if(c != ' ')
                 {
+					GameManager.SpawnAudio(speechSound, speechVolume, speechPitch + Random.Range(-speechPitchRandomizationRange, speechPitchRandomizationRange), this.transform.position);
 					yield return new WaitForSeconds(timeBtwChars);
 				}
                 else

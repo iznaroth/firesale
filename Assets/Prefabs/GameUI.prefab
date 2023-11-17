@@ -579,14 +579,14 @@ MonoBehaviour:
   - JUST TRY IT OUT. SEE IF YOU LIKE IT!
   - I'VE GOT A FAMILY TO FEED, Y'KNOW?
   - YOU GOT A BRAIN , RIGHT? YOU WOULDN'T WANT TO MISS A DEAL LIKE THIS!
-  - "YOU\u2019RE EITHER A FART SMELLA OR A SMART FELLA, PICK THE RIGHT ONE AND BUY
-    THIS {item}"
+  - "YOU\u2019RE EITHER A FART SMELLA OR A SMART FELLA, CHOOSE WISELY! BUY THIS {item}"
   - "HOW OFTEN ARE YOU GONNA FIND {item} AT THIS PRICE-POINT? NO\u2026 SERIOUSLY\u2026
     PLEASE TELL ME."
   - THIS IS A ONCE IN A LIFETIME OPPORTUNITY!
   - I AM ON MY KNEES. I AM BEGGING YOU. PLEASE.
-  - 'LEGALLY SPEAKING? YEAH, SURE, WHATEVER MAKES YOU BUY. BUY PRODUCT! '
+  - LEGALLY SPEAKING? YEAH, SURE, WHATEVER MAKES YOU BUY.
   - <i>Cough</i>... <i>Cough</i>... <i>Cough</i>... PLEASE... BUY... UH....
+  - 'BUY MY PRODUCT! '
   playerYells:
   - HEY
   - YOU THERE
@@ -602,7 +602,7 @@ MonoBehaviour:
   - Please don't hurt me.
   - "...@#&$. Ow\u2026 Watch where you\u2019re skating creep!"
   - OH GODS NO NOT AGAIN!!
-  - Woah, what <i>is</i>that?
+  - Woah, what <i>is</i> that?
   - What is <i>that</i>?
   - "I\u2019ll give ye thirty seconds"
   - Is that supposed to look like that? Wait, are you OK?
@@ -665,6 +665,7 @@ MonoBehaviour:
   customerDifficultyRange: {x: 2, y: 2}
   currencyCounterAnimationFrameRate: 30
   currencyCounterAnimationMaxDuration: 2
+  startDialogueSound: {fileID: 8300000, guid: cb8e876c4478d27419139b410884eebb, type: 3}
   animationDone: 0
 --- !u!95 &4267382610965787070
 Animator:
@@ -927,10 +928,10 @@ RectTransform:
   - {fileID: 6615830261420697001}
   m_Father: {fileID: 4050251249273459948}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -215, y: -25}
-  m_SizeDelta: {x: 0, y: 125}
+  m_SizeDelta: {x: 0, y: -775}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &1035356840335446757
 CanvasRenderer:
@@ -1463,7 +1464,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: -600}
-  m_SizeDelta: {x: 1600, y: 900}
+  m_SizeDelta: {x: 1355, y: 900}
   m_Pivot: {x: 1, y: 0}
 --- !u!1 &4130788146904766713
 GameObject:
@@ -2594,7 +2595,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 615.26, y: 0}
+  m_AnchoredPosition: {x: 1430.31, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &634347142987339589
@@ -2625,7 +2626,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Put chaotic action comic bubble outline '
+  m_text: Put chaotic action comic buask Put chaotic action comic buasd as asds sd
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d95a714e4d7c0724f86c17199a8d75f4, type: 2}
   m_sharedMaterial: {fileID: -3699999892129844361, guid: d95a714e4d7c0724f86c17199a8d75f4, type: 2}
@@ -2652,15 +2653,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontSizeMax: 48
+  m_fontStyle: 1
   m_HorizontalAlignment: 4
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 1024
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2688,7 +2689,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 32, w: 0}
+  m_margin: {x: 0, y: 34, z: 32, w: 34}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2711,9 +2712,13 @@ MonoBehaviour:
   timeBtwChars: 0.025
   timeBtwWords: 0.075
   leadingChar: 
-  forceNewlineWidth: 1110
+  forceNewlineWidth: 1100
   leadingCharBeforeDelay: 1
   skippable: 1
+  speechSound: {fileID: 8300000, guid: 5002eb8e926bb2b4c8e075445aa0ac02, type: 3}
+  speechVolume: 0.5
+  speechPitch: 0.25
+  speechPitchRandomizationRange: 0.25
 --- !u!114 &743771895367158589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2727,7 +2732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
-  m_VerticalFit: 0
+  m_VerticalFit: 2
 --- !u!1 &6518764695492160910
 GameObject:
   m_ObjectHideFlags: 0
@@ -3302,6 +3307,10 @@ MonoBehaviour:
   forceNewlineWidth: 1110
   leadingCharBeforeDelay: 0
   skippable: 0
+  speechSound: {fileID: 0}
+  speechVolume: 0
+  speechPitch: 0
+  speechPitchRandomizationRange: 0
 --- !u!1 &7316856853845456174
 GameObject:
   m_ObjectHideFlags: 0
@@ -3990,7 +3999,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Put kinda calm outline effect here
+  m_text: Put kinda calm outline effect herePut kinda calm outline effect here
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d95a714e4d7c0724f86c17199a8d75f4, type: 2}
   m_sharedMaterial: {fileID: -3699999892129844361, guid: d95a714e4d7c0724f86c17199a8d75f4, type: 2}
@@ -4025,7 +4034,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -4053,7 +4062,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 32, w: 0}
+  m_margin: {x: 0, y: 34, z: 32, w: 34}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4076,9 +4085,13 @@ MonoBehaviour:
   timeBtwChars: 0.035
   timeBtwWords: 0.035
   leadingChar: 
-  forceNewlineWidth: 1110
+  forceNewlineWidth: 1000
   leadingCharBeforeDelay: 0
   skippable: 1
+  speechSound: {fileID: 8300000, guid: ff9a94463dba7c34c8a873b571f00ce7, type: 3}
+  speechVolume: 1
+  speechPitch: 0.5
+  speechPitchRandomizationRange: 0.9
 --- !u!114 &3443799798470915737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4092,7 +4105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
-  m_VerticalFit: 0
+  m_VerticalFit: 2
 --- !u!1 &8842695248899190898
 GameObject:
   m_ObjectHideFlags: 0
