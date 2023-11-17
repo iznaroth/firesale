@@ -39,6 +39,8 @@ public class DialogueManager : MonoBehaviour
     public string[] customerRefusedBarks;
     public string[] customerPositiveBarks;
     public string[] customerNegativeBarks;
+    public string[] customerGrappleStartBarks;
+    public string[] customerRocketStartBarks;
 
     [Space(10)]
     [Header("Other Settings")]
@@ -52,6 +54,7 @@ public class DialogueManager : MonoBehaviour
 
 
     private NPC_Types npcType = NPC_Types.AnimeFan;
+    public Start_Conditions startCondition = Start_Conditions.Normal;
     [HideInInspector] public bool animationDone = false;
     private bool isThisEvenActive = false;
 
@@ -174,7 +177,10 @@ public class DialogueManager : MonoBehaviour
                 if (newDialogue)
                 {
                     newDialogue = false;
-                    currentDialogue = customerStartBarks[Random.Range(0, customerStartBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>");
+                    if(startCondition == Start_Conditions.Grappled) { currentDialogue = customerGrappleStartBarks[Random.Range(0, customerGrappleStartBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"); }
+                    else if (startCondition == Start_Conditions.Rocketed) { currentDialogue = customerRocketStartBarks[Random.Range(0, customerRocketStartBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"); }
+                    else { currentDialogue = customerStartBarks[Random.Range(0, customerStartBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"); }
+                   
                     customerTextbox.GetComponent<TypewriterEffect>().NewText(currentDialogue);
                 }
                 else if(wonLastMicrogame && customerWinAmount > 0)
@@ -246,6 +252,7 @@ public class DialogueManager : MonoBehaviour
         isThisEvenActive = false;
         microgameActive = false;
         microgameManager.transform.GetChild(0).gameObject.SetActive(false);
+        startCondition = Start_Conditions.Normal;
         anime.SetTrigger("CutOut");
         anime.ResetTrigger("CutIn");
         if (wonLastMicrogame)
@@ -263,11 +270,43 @@ public class DialogueManager : MonoBehaviour
         DialogueInteractionEnded?.Invoke();
     }
 
-    public void StartDialogueInteraction(GameObject newNPC)
+    public void StartDialogueInteraction(GameObject newNPC, Start_Conditions wasStartedHow = Start_Conditions.Normal)
     {
         if (!isThisEvenActive) 
-        { 
+        {
+            startCondition = wasStartedHow;
             GameManager.SpawnAudio(startDialogueSound, 1, 1, this.transform.position);
+            PedestrianAI newPed = newNPC.GetComponent<PedestrianAI>();
+            if(newPed != null)
+            {
+                customerTextbox.GetComponent<TypewriterEffect>().ChangeSoundSettings(newPed.speechSound, newPed.speechVolume, newPed.speechPitch, newPed.speechPitchRandomizationRange);
+            }
+            animationDone = false;
+            wonLastMicrogame = false;
+            microgameActive = false;
+            newDialogue = true;
+            customerTextbox.GetComponent<TextMeshProUGUI>().text = "";
+            playerTextbox.GetComponent<TextMeshProUGUI>().text = "";
+            customerChances = (int)Random.Range(customerChancesRange.x, customerChancesRange.y);
+            customerWinAmount = (int)Random.Range(customerDifficultyRange.x, customerDifficultyRange.y);
+            npcType = GetRandomEnum<NPC_Types>();
+            PickRandomCustomerName();
+            PickRandomCustomerPortrait();
+            currentNPC = newNPC;
+            CutIn();
+            InputManager.PushActionMap(EActionMap.MINIGAME);
+        }
+    }
+    public void StartDialogueInteraction(GameObject newNPC)
+    {
+        if (!isThisEvenActive)
+        {
+            GameManager.SpawnAudio(startDialogueSound, 1, 1, this.transform.position);
+            PedestrianAI newPed = newNPC.GetComponent<PedestrianAI>();
+            if (newPed != null)
+            {
+                customerTextbox.GetComponent<TypewriterEffect>().ChangeSoundSettings(newPed.speechSound, newPed.speechVolume, newPed.speechPitch, newPed.speechPitchRandomizationRange);
+            }
             animationDone = false;
             wonLastMicrogame = false;
             microgameActive = false;

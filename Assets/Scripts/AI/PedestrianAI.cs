@@ -28,6 +28,13 @@ public class PedestrianAI : MonoBehaviour
     [Range(0f, 1f)]
     public float obstacleForceCurlAmt = 0.5f;
 
+    [Header("Dialogue Sound Settings")]
+    public AudioClip[] speechSounds;
+    [HideInInspector] public AudioClip speechSound;
+    public float speechVolume = 1;
+    public float speechPitch = 1;
+    public float speechPitchRandomizationRange = 0.25f;
+
     public UnityAction OnRemove;
 
 
@@ -52,6 +59,7 @@ public class PedestrianAI : MonoBehaviour
         GeneratePath();
 
         currentMaxSpeed = maxSpeed;
+        speechSound = speechSounds[Random.Range(0, speechSounds.Length - 1)];
     }
 
     void GeneratePath()

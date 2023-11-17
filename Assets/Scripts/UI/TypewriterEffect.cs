@@ -50,6 +50,14 @@ public class TypewriterEffect : MonoBehaviour
 		StartCoroutine("TypeWriterTMP");
 	}
 
+	public void ChangeSoundSettings(AudioClip newSpeechSound, float newSpeechVolume, float newSpeechPitch, float newSpeechPitchRandomizationRange)
+    {
+		speechSound = newSpeechSound;
+		speechVolume = newSpeechVolume;
+		speechPitch = newSpeechPitch;
+		speechPitchRandomizationRange = newSpeechPitchRandomizationRange;
+	}
+
 	public void SkipText(char ch)
     {
 		if (skippable)

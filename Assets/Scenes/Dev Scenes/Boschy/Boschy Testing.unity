@@ -135,14 +135,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 743771895367158589, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_VerticalFit
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 743771895367158589, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_HorizontalFit
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1170344315367784561, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -171,183 +163,77 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameUI
       objectReference: {fileID: 0}
-    - target: {fileID: 1365638399832158306, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_ChildControlWidth
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1365638399832158306, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_ChildForceExpandWidth
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1365638399832158306, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_ChildForceExpandHeight
+    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: startCondition
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: startDialogueSound
-      value: 
-      objectReference: {fileID: 8300000, guid: cb8e876c4478d27419139b410884eebb, type: 3}
-    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: playerBarks.Array.size
-      value: 33
+      propertyPath: customerStartBarks.Array.data[6]
+      value: Double it and give it to the next person.
       objectReference: {fileID: 0}
     - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: playerBarks.Array.data[26]
-      value: "YOU\u2019RE EITHER A FART SMELLA OR A SMART FELLA, CHOOSE WISELY! BUY
-        THIS {item}"
+      propertyPath: customerStartBarks.Array.data[7]
+      value: "HEY! Watch where you\u2019re skating!"
       objectReference: {fileID: 0}
     - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: playerBarks.Array.data[30]
-      value: LEGALLY SPEAKING? YEAH, SURE, WHATEVER MAKES YOU BUY.
+      propertyPath: customerRocketStartBarks.Array.size
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: playerBarks.Array.data[32]
-      value: 'BUY MY PRODUCT! '
+      propertyPath: customerGrappleStartBarks.Array.size
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: customerStartBarks.Array.data[9]
-      value: Woah, what <i>is</i> that?
+      propertyPath: customerRocketStartBarks.Array.data[0]
+      value: Oh gods... <i>how did that not kill me?...</i>
       objectReference: {fileID: 0}
-    - target: {fileID: 2472243766329538280, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: speechPitch
-      value: 0.25
+    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: customerRocketStartBarks.Array.data[1]
+      value: AAAHGAHHAGHHH
       objectReference: {fileID: 0}
-    - target: {fileID: 2472243766329538280, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: speechSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 5002eb8e926bb2b4c8e075445aa0ac02, type: 3}
-    - target: {fileID: 2472243766329538280, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: speechVolume
-      value: 0.5
+    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: customerRocketStartBarks.Array.data[2]
+      value: AAAHGAHHAGHHH
       objectReference: {fileID: 0}
-    - target: {fileID: 2472243766329538280, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: forceNewlineWidth
-      value: 1100
+    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: customerRocketStartBarks.Array.data[3]
+      value: "...@#&$. Ow\u2026 Watch where you\u2019re skating creep!"
       objectReference: {fileID: 0}
-    - target: {fileID: 2472243766329538280, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: speechPitchRandomizationRange
-      value: 0.25
+    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: customerRocketStartBarks.Array.data[4]
+      value: AEKGASGHH... <b>I CAN'T FEEL MY LEGS</b>
       objectReference: {fileID: 0}
-    - target: {fileID: 2551194966746024034, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
+    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: customerRocketStartBarks.Array.data[5]
+      value: Please don't hurt me.
       objectReference: {fileID: 0}
-    - target: {fileID: 2551194966746024034, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
+    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: customerGrappleStartBarks.Array.data[0]
+      value: HELP! SOMEBODY HELP ME!
       objectReference: {fileID: 0}
-    - target: {fileID: 2551194966746024034, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
+    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: customerGrappleStartBarks.Array.data[1]
+      value: SON OF A %@$%$ING !*#&% @#&$!!  WHAT IS WRONG WITH YOU?!?!
       objectReference: {fileID: 0}
-    - target: {fileID: 2551194966746024034, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
+    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: customerGrappleStartBarks.Array.data[2]
+      value: 'AAAaAAaaaAAAAAaH! '
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: customerGrappleStartBarks.Array.data[3]
+      value: .......... <i>(Are they supposed to be that dazed?)</i>
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: customerGrappleStartBarks.Array.data[4]
+      value: WHAT THE $@&#?!?
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: customerGrappleStartBarks.Array.data[5]
+      value: I don't got any valuables! Don't hurt me!!
       objectReference: {fileID: 0}
     - target: {fileID: 2551194966746024034, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2551194966746024034, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -775
-      objectReference: {fileID: 0}
-    - target: {fileID: 2551194966746024034, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -215
-      objectReference: {fileID: 0}
-    - target: {fileID: 2551194966746024034, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -25
-      objectReference: {fileID: 0}
-    - target: {fileID: 3443799798470915737, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_VerticalFit
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3893116942864079106, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_text
-      value: Put kinda calm outline effect herePut kinda calm outline effect here
-      objectReference: {fileID: 0}
-    - target: {fileID: 3893116942864079106, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_margin.w
-      value: 34
-      objectReference: {fileID: 0}
-    - target: {fileID: 3893116942864079106, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_margin.y
-      value: 34
-      objectReference: {fileID: 0}
-    - target: {fileID: 3893116942864079106, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_VerticalAlignment
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 4050251249273459948, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1355
-      objectReference: {fileID: 0}
-    - target: {fileID: 4235197603937724000, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: speechPitch
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4235197603937724000, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: speechSound
-      value: 
-      objectReference: {fileID: 8300000, guid: ff9a94463dba7c34c8a873b571f00ce7, type: 3}
-    - target: {fileID: 4235197603937724000, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: speechVolume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4235197603937724000, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: forceNewlineWidth
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 4235197603937724000, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: speechPitchRandomizationRange
-      value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4626628520085134434, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_text
-      value: Put chaotic action comic buask Put chaotic action comic buasd as asds
-        sd
-      objectReference: {fileID: 0}
-    - target: {fileID: 4626628520085134434, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_fontSize
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 4626628520085134434, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_margin.w
-      value: 34
-      objectReference: {fileID: 0}
-    - target: {fileID: 4626628520085134434, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_margin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4626628520085134434, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_margin.y
-      value: 34
-      objectReference: {fileID: 0}
-    - target: {fileID: 4626628520085134434, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_fontStyle
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4626628520085134434, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_fontSizeMax
-      value: 48
-      objectReference: {fileID: 0}
-    - target: {fileID: 4626628520085134434, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 4626628520085134434, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_enableAutoSizing
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4626628520085134434, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_VerticalAlignment
-      value: 1024
-      objectReference: {fileID: 0}
-    - target: {fileID: 6011967734899000082, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_HorizontalFit
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6264412573982543349, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
       propertyPath: m_AnchorMax.x

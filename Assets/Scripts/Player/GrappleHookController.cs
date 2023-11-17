@@ -195,7 +195,7 @@ public class GrappleHookController : MonoBehaviour
             if (GameManager.Player.GetComponent<PlayerController>().IsHolding())
 			{
                 pedHit.Freeze();
-                DialogueManager.instance.StartDialogueInteraction(pedHit.gameObject);
+                DialogueManager.instance.StartDialogueInteraction(pedHit.gameObject, Start_Conditions.Grappled);
                 DialogueManager.DialogueInteractionEnded += HandleDialogueEnded;
                 state = EGrappleState.FROZEN;
             }
