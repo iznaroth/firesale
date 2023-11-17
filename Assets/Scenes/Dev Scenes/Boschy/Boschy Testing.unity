@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 743771895367158589, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: m_HorizontalFit
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1170344315367784561, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -163,9 +167,119 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameUI
       objectReference: {fileID: 0}
+    - target: {fileID: 1365638399832158306, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: m_ChildControlWidth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365638399832158306, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: m_ChildForceExpandWidth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365638399832158306, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: m_ChildForceExpandHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: playerBarks.Array.size
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: playerBarks.Array.data[26]
+      value: "YOU\u2019RE EITHER A FART SMELLA OR A SMART FELLA, CHOOSE WISELY! BUY
+        THIS {item}"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: playerBarks.Array.data[30]
+      value: LEGALLY SPEAKING? YEAH, SURE, WHATEVER MAKES YOU BUY.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: playerBarks.Array.data[32]
+      value: 'BUY MY PRODUCT! '
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: customerStartBarks.Array.data[9]
+      value: Woah, what <i>is</i> that?
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472243766329538280, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: forceNewlineWidth
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551194966746024034, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551194966746024034, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551194966746024034, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551194966746024034, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2551194966746024034, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551194966746024034, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -775
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551194966746024034, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -215
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551194966746024034, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893116942864079106, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: m_text
+      value: Put kinda calm outline effect herePut kinda calm outline effect here
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893116942864079106, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: m_margin.y
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893116942864079106, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050251249273459948, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1355
+      objectReference: {fileID: 0}
+    - target: {fileID: 4235197603937724000, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: forceNewlineWidth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4626628520085134434, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: m_text
+      value: Put chaotic action comic buask Put chaotic action comic buasd as asds
+        sd
+      objectReference: {fileID: 0}
+    - target: {fileID: 4626628520085134434, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: m_margin.w
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 4626628520085134434, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: m_margin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4626628520085134434, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: m_margin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4626628520085134434, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011967734899000082, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: m_HorizontalFit
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6264412573982543349, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
       propertyPath: m_AnchorMax.x
@@ -193,7 +307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6615830261420697001, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 615.26
+      value: 1114.76
       objectReference: {fileID: 0}
     - target: {fileID: 6615830261420697001, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -292,6 +406,84 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+--- !u!1001 &308696802
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3400345497272143387, guid: 096e824421ba5c846a7c5ff3458d0b80, type: 3}
+      propertyPath: m_Name
+      value: InputManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4777964481652478765, guid: 096e824421ba5c846a7c5ff3458d0b80, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.5500842
+      objectReference: {fileID: 0}
+    - target: {fileID: 4777964481652478765, guid: 096e824421ba5c846a7c5ff3458d0b80, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.121588
+      objectReference: {fileID: 0}
+    - target: {fileID: 4777964481652478765, guid: 096e824421ba5c846a7c5ff3458d0b80, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.36563
+      objectReference: {fileID: 0}
+    - target: {fileID: 4777964481652478765, guid: 096e824421ba5c846a7c5ff3458d0b80, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4777964481652478765, guid: 096e824421ba5c846a7c5ff3458d0b80, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4777964481652478765, guid: 096e824421ba5c846a7c5ff3458d0b80, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4777964481652478765, guid: 096e824421ba5c846a7c5ff3458d0b80, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4777964481652478765, guid: 096e824421ba5c846a7c5ff3458d0b80, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4777964481652478765, guid: 096e824421ba5c846a7c5ff3458d0b80, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4777964481652478765, guid: 096e824421ba5c846a7c5ff3458d0b80, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3400345497272143387, guid: 096e824421ba5c846a7c5ff3458d0b80, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 308696804}
+  m_SourcePrefab: {fileID: 100100000, guid: 096e824421ba5c846a7c5ff3458d0b80, type: 3}
+--- !u!1 &308696803 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3400345497272143387, guid: 096e824421ba5c846a7c5ff3458d0b80, type: 3}
+  m_PrefabInstance: {fileID: 308696802}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &308696804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308696803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce1d4d8abcd8d5499f36e9edff76ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalGameTime: 900
 --- !u!1 &541654965
 GameObject:
   m_ObjectHideFlags: 0
@@ -1349,3 +1541,4 @@ SceneRoots:
   - {fileID: 748356263}
   - {fileID: 2035205426039390122}
   - {fileID: 1440742268}
+  - {fileID: 308696802}

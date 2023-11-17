@@ -8,12 +8,14 @@ public class TypewriterEffect : MonoBehaviour
 {
 	TMP_Text _tmpProText;
 	string writer;
+	string currentText;
 
 	[SerializeField] float delayBeforeStart = 0f;
 	[SerializeField] float delayAfterEnd = 0f;
 	[SerializeField] float timeBtwChars = 0.1f;
 	[SerializeField] float timeBtwWords = 0.1f;
 	[SerializeField] string leadingChar = "";
+	[SerializeField] float forceNewlineWidth = 1110;
 	[SerializeField] bool leadingCharBeforeDelay = false;
 	[SerializeField] bool skippable = true;
 
@@ -35,7 +37,8 @@ public class TypewriterEffect : MonoBehaviour
     public void NewText(string newText)
     {
 		_tmpProText = GetComponent<TMP_Text>()!;
-		writer = newText;
+		currentText = ManualTextWrapping(newText, _tmpProText.font, _tmpProText.fontSize, _tmpProText.fontStyle);
+		writer = currentText;
 		_tmpProText.text = "";
 		DialogueManager.newDialogueStarted = true;
 		Keyboard.current.onTextInput += SkipText;
@@ -48,7 +51,7 @@ public class TypewriterEffect : MonoBehaviour
 		{
 			StopCoroutine("TypeWriterTMP");
 			Keyboard.current.onTextInput -= SkipText;
-			_tmpProText.text = writer;
+			_tmpProText.text = currentText;
 			DialogueManager.newDialogueStarted = false;
 		}
 	}
@@ -109,5 +112,63 @@ public class TypewriterEffect : MonoBehaviour
 		yield return new WaitForSeconds(delayAfterEnd);
 		DialogueManager.newDialogueStarted = false;
 		Keyboard.current.onTextInput -= SkipText;
+	}
+	public string ManualTextWrapping(string text, TMP_FontAsset fontAsset, float fontSize, FontStyles style)
+	{
+		// Compute scale of the target point size relative to the sampling point size of the font asset.
+		float pointSizeScale = fontSize / (fontAsset.faceInfo.pointSize * fontAsset.faceInfo.scale);
+		float emScale = fontSize * 0.01f;
+
+		float styleSpacingAdjustment = (style & FontStyles.Bold) == FontStyles.Bold ? fontAsset.boldSpacing : 0;
+		float normalSpacingAdjustment = fontAsset.normalSpacingOffset;
+		float tempNewlineWidthLimit = forceNewlineWidth;
+		float width = _tmpProText.margin.x + _tmpProText.margin.z;
+		bool skipCharacters = false;
+		string currentVal = "";
+
+		for (int i = 0; i < text.Length; i++)
+		{
+			char unicode = text[i];
+			TMP_Character character;
+			// Make sure the given unicode exists in the font asset.
+			currentVal += unicode;
+			if (fontAsset.characterLookupTable.TryGetValue(unicode, out character))
+			{
+				if (unicode == '<')
+				{
+					skipCharacters = true;
+				}
+				else if (unicode == '>')
+				{
+					skipCharacters = false;
+				}
+				if (!skipCharacters) { width += character.glyph.metrics.horizontalAdvance * pointSizeScale + (styleSpacingAdjustment + normalSpacingAdjustment) * emScale; }
+			}
+
+			if (width >= tempNewlineWidthLimit)
+            {
+				width = _tmpProText.margin.x + _tmpProText.margin.z;
+				string newBreakText = currentVal.LastIndexOf(' ') + 1 > currentVal.Length ? "" : currentVal.Substring(currentVal.LastIndexOf(' ') + 1);
+				for (int j = 0; i < newBreakText.Length; i++)
+				{
+					unicode = newBreakText[j];
+					// Make sure the given unicode exists in the font asset.
+					if (fontAsset.characterLookupTable.TryGetValue(unicode, out character))
+					{
+						if (unicode == '<')
+						{
+							skipCharacters = true;
+						}
+						else if (unicode == '>')
+						{
+							skipCharacters = false;
+						}
+						if (!skipCharacters) { width += character.glyph.metrics.horizontalAdvance * pointSizeScale + (styleSpacingAdjustment + normalSpacingAdjustment) * emScale; }
+					}
+				}
+				currentVal = currentVal.Substring(0, currentVal.LastIndexOf(' ')) + "\n" + newBreakText;
+			}
+		}
+		return currentVal;
 	}
 }

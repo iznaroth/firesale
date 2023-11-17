@@ -2711,6 +2711,7 @@ MonoBehaviour:
   timeBtwChars: 0.025
   timeBtwWords: 0.075
   leadingChar: 
+  forceNewlineWidth: 1110
   leadingCharBeforeDelay: 1
   skippable: 1
 --- !u!114 &743771895367158589
@@ -3298,6 +3299,7 @@ MonoBehaviour:
   timeBtwChars: 0.05
   timeBtwWords: 0.05
   leadingChar: 
+  forceNewlineWidth: 1110
   leadingCharBeforeDelay: 0
   skippable: 0
 --- !u!1 &7316856853845456174
@@ -4074,6 +4076,7 @@ MonoBehaviour:
   timeBtwChars: 0.035
   timeBtwWords: 0.035
   leadingChar: 
+  forceNewlineWidth: 1110
   leadingCharBeforeDelay: 0
   skippable: 1
 --- !u!114 &3443799798470915737
