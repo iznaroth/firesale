@@ -177,7 +177,7 @@ public class DialogueManager : MonoBehaviour
                 if (newDialogue)
                 {
                     newDialogue = false;
-                    if (startCondition == Start_Conditions.Grappled) { currentDialogue = "HOW OFTEN ARE YOU GONNA FIND {item} AT THIS PRICE-POINT? NO… SERIOUSLY… PLEASE TELL ME."; } //customerGrappleStartBarks[Random.Range(0, customerGrappleStartBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"); }
+                    if (startCondition == Start_Conditions.Grappled) { currentDialogue = customerGrappleStartBarks[Random.Range(0, customerGrappleStartBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"); }
                     else if (startCondition == Start_Conditions.Rocketed) { currentDialogue = customerRocketStartBarks[Random.Range(0, customerRocketStartBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"); }
                     else { currentDialogue = customerStartBarks[Random.Range(0, customerStartBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"); }
                    
@@ -196,7 +196,7 @@ public class DialogueManager : MonoBehaviour
                 dialogueState++;
                 break;
             case 1:
-                currentDialogue = "HOW OFTEN ARE YOU GONNA FIND {item} AT THIS PRICE-POINT? NO… SERIOUSLY… PLEASE TELL ME.";//playerBarks[Random.Range(0, playerBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>").ToUpper();
+                currentDialogue = playerBarks[Random.Range(0, playerBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>").ToUpper();
                 playerTextbox.GetComponent<TypewriterEffect>().NewText(currentDialogue);
                 dialogueState++;
                 break;

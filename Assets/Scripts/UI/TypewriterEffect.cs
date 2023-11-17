@@ -65,7 +65,10 @@ public class TypewriterEffect : MonoBehaviour
 			StopCoroutine("TypeWriterTMP");
 			Keyboard.current.onTextInput -= SkipText;
 			_tmpProText.text = currentText;
-			DialogueManager.newDialogueStarted = false;
+			if(delayAfterEnd != 0)
+            {
+				StartCoroutine("TimeWaster");
+            }
 		}
 	}
 
@@ -127,8 +130,15 @@ public class TypewriterEffect : MonoBehaviour
 		DialogueManager.newDialogueStarted = false;
 		Keyboard.current.onTextInput -= SkipText;
 	}
-	public string ManualTextWrapping(string text, TMP_FontAsset fontAsset, float fontSize, FontStyles style)
+	IEnumerator TimeWaster()
 	{
+		yield return new WaitForSeconds(delayAfterEnd);
+		DialogueManager.newDialogueStarted = false;
+	}
+
+
+	public string ManualTextWrapping(string text, TMP_FontAsset fontAsset, float fontSize, FontStyles style)
+		{
 		// Compute scale of the target point size relative to the sampling point size of the font asset.
 		float pointSizeScale = fontSize / (fontAsset.faceInfo.pointSize * fontAsset.faceInfo.scale);
 		float emScale = fontSize * 0.01f;

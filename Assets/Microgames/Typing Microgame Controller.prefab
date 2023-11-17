@@ -164,6 +164,7 @@ MonoBehaviour:
   microgameStartDelay: 1.5
   microgameTimeLimit: 1
   microgameDifficulty: 1
+  microgameDamage: 10
   wordMicrogamePrefab: {fileID: 6007858649203126873, guid: 9006debd0749fc54681f5b60fbfc51b0, type: 3}
   wordAmount: 3
   timeBonusPerCharacter: 0.5
@@ -216,5 +217,5 @@ MonoBehaviour:
   - I Say
   - That's wonderful!
   - Truly inspiring
-  currentBoxScale: 1.5
+  currentBoxScale: 2
   unselectedBoxScale: 0.85
