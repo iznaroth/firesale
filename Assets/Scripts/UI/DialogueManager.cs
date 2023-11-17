@@ -48,6 +48,9 @@ public class DialogueManager : MonoBehaviour
     private int customerWinAmount = 2; //How many times the player needs to win to convince the customer to buy
     public int currencyCounterAnimationFrameRate = 30;
     public int currencyCounterAnimationMaxDuration = 2;
+    public AudioClip startDialogueSound;
+
+
     private NPC_Types npcType = NPC_Types.AnimeFan;
     [HideInInspector] public bool animationDone = false;
     private bool isThisEvenActive = false;
@@ -264,6 +267,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (!isThisEvenActive) 
         { 
+            GameManager.SpawnAudio(startDialogueSound, 1, this.transform.position);
             animationDone = false;
             wonLastMicrogame = false;
             microgameActive = false;

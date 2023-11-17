@@ -157,7 +157,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1170344315367784561, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 32
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1170344315367784561, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: m_ChildForceExpandHeight
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: startDialogueSound
+      value: 
+      objectReference: {fileID: 8300000, guid: cb8e876c4478d27419139b410884eebb, type: 3}
     - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
       propertyPath: playerBarks.Array.size
       value: 33
@@ -254,7 +258,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4235197603937724000, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
       propertyPath: forceNewlineWidth
-      value: 100
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 4626628520085134434, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
       propertyPath: m_text
@@ -307,7 +311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6615830261420697001, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1114.76
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6615830261420697001, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -461,29 +465,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3400345497272143387, guid: 096e824421ba5c846a7c5ff3458d0b80, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 308696804}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 096e824421ba5c846a7c5ff3458d0b80, type: 3}
---- !u!1 &308696803 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3400345497272143387, guid: 096e824421ba5c846a7c5ff3458d0b80, type: 3}
-  m_PrefabInstance: {fileID: 308696802}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &308696804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 308696803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ce1d4d8abcd8d5499f36e9edff76ee9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  totalGameTime: 900
 --- !u!1 &541654965
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,7 +646,6 @@ GameObject:
   - component: {fileID: 748356263}
   - component: {fileID: 748356262}
   - component: {fileID: 748356264}
-  - component: {fileID: 748356265}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -731,19 +713,6 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
---- !u!114 &748356265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 748356260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ce1d4d8abcd8d5499f36e9edff76ee9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  totalGameTime: 900
 --- !u!1 &856969443
 GameObject:
   m_ObjectHideFlags: 0

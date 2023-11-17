@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
 
     public static float totalTime = 900;
     public float totalGameTime = 900;
+    public GameObject AudioPrefab;
+
+    public delegate void NewAudioSource(AudioClip newClip, float volumeScaler, Vector3 position);
+    public static event NewAudioSource newAudioEvent;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +26,15 @@ public class GameManager : MonoBehaviour
         hpRemaining = 100;
         currentIncome = 666;
         //Player = FindAnyObjectByType<PlayerController>().gameObject;
+    }
+    private void OnEnable()
+    {
+        newAudioEvent += SpawnAudioSource;
+    }
+
+    private void OnDisable()
+    {
+        newAudioEvent -= SpawnAudioSource;
     }
 
     // Update is called once per frame
@@ -58,5 +71,16 @@ public class GameManager : MonoBehaviour
     public static void DecreaseMoney(int itemCost)
     {
         currentIncome -= itemCost;
+    }
+
+    public static void SpawnAudio(AudioClip newClip, float volumeScaler, Vector3 position)
+    {
+        newAudioEvent?.Invoke(newClip,volumeScaler, position);
+    }
+
+    public void SpawnAudioSource(AudioClip newClip, float volumeScaler, Vector3 position)
+    {
+       GameObject newAudioObject = Instantiate(AudioPrefab);
+       newAudioObject.GetComponent<SoundScript>().PlayAudio(newClip, volumeScaler);
     }
 }

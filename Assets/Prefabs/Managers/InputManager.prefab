@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4777964481652478765}
   - component: {fileID: 3668486553536324805}
   - component: {fileID: 5280043726922024181}
+  - component: {fileID: 1074071791399643036}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -88,3 +89,17 @@ MonoBehaviour:
   m_DefaultActionMap: InGame
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1074071791399643036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3400345497272143387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce1d4d8abcd8d5499f36e9edff76ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalGameTime: 900
+  AudioPrefab: {fileID: 1493796460784284489, guid: b94d3a0ad51d47c43abd51972fbd7b8e, type: 3}

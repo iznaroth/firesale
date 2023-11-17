@@ -148,25 +148,35 @@ public class TypewriterEffect : MonoBehaviour
 			if (width >= tempNewlineWidthLimit)
             {
 				width = _tmpProText.margin.x + _tmpProText.margin.z;
-				string newBreakText = currentVal.LastIndexOf(' ') + 1 > currentVal.Length ? "" : currentVal.Substring(currentVal.LastIndexOf(' ') + 1);
-				for (int j = 0; i < newBreakText.Length; i++)
-				{
-					unicode = newBreakText[j];
-					// Make sure the given unicode exists in the font asset.
-					if (fontAsset.characterLookupTable.TryGetValue(unicode, out character))
+				if(unicode == ' ')
+                {
+					currentVal = currentVal.Substring(0, currentVal.Length - 2) + "\n";
+                }
+                else 
+				{ 
+					string newBreakText = currentVal.LastIndexOf(' ') > 0 && currentVal.LastIndexOf(' ') + 1  < currentVal.Length ? currentVal.Substring(currentVal.LastIndexOf(' ') + 1) : "";
+					for (int j = 0; i < newBreakText.Length; i++)
 					{
-						if (unicode == '<')
+						unicode = newBreakText[j];
+						// Make sure the given unicode exists in the font asset.
+						if (fontAsset.characterLookupTable.TryGetValue(unicode, out character))
 						{
-							skipCharacters = true;
+							if (unicode == '<')
+							{
+								skipCharacters = true;
+							}
+							else if (unicode == '>')
+							{
+								skipCharacters = false;
+							}
+							if (!skipCharacters) { width += character.glyph.metrics.horizontalAdvance * pointSizeScale + (styleSpacingAdjustment + normalSpacingAdjustment) * emScale; }
 						}
-						else if (unicode == '>')
-						{
-							skipCharacters = false;
-						}
-						if (!skipCharacters) { width += character.glyph.metrics.horizontalAdvance * pointSizeScale + (styleSpacingAdjustment + normalSpacingAdjustment) * emScale; }
+					}
+					if(currentVal.LastIndexOf(' ') > 0)
+					{
+						currentVal = currentVal.Substring(0, currentVal.LastIndexOf(' ') + 1) + "\n" + newBreakText;
 					}
 				}
-				currentVal = currentVal.Substring(0, currentVal.LastIndexOf(' ')) + "\n" + newBreakText;
 			}
 		}
 		return currentVal;
