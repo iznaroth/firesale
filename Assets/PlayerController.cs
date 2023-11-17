@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
     public float itemPickupX = 1.5f;
     public float itemPickupY = 2.5f;
     public float maxZoomOut = 2.5f;
+    public float shopSpeedLimit;
+    public float shopAccelRate;
+    public float shopDecelRate;
 
     [Header("Physics Variables")]
     [Range(0f, 1f)] public float bouncinessEnableThreshhold = 0.4f; // what percentage of max speed do we need to reach start to increase bounciness
@@ -104,6 +107,11 @@ public class PlayerController : MonoBehaviour
         //
         // float velX = Mathf.Clamp(body.velocity.x + (moveVector.x * accelRate), -speedLimit, speedLimit);
         // float velY = Mathf.Clamp(body.velocity.y + (moveVector.y * accelRate), -speedLimit, speedLimit);
+        if (inShop)
+        {
+            NearestItemCheck();
+        }
+
         if (!cantMove)
         {
             Vector2 vel = body.velocity;
@@ -116,20 +124,20 @@ public class PlayerController : MonoBehaviour
 
             if (moveVector.sqrMagnitude < 0.1f)
             {
-                float slowdownAmt = decelRate * Time.deltaTime; // fixed wrong delta time, shouldn't have used fixedDeltaTime like that
+                float slowdownAmt = (inShop? shopDecelRate : decelRate) * Time.deltaTime; // fixed wrong delta time, shouldn't have used fixedDeltaTime like that
                 slowdownAmt = Mathf.Min(slowdownAmt, vel.magnitude);
 
                 vel -= slowdownAmt * vel.normalized;
             }
             else
             {
-                Vector2 accelDir = moveVector * speedLimit - vel;
-                float accelAmt = accelRate * Time.deltaTime;
+                Vector2 accelDir = moveVector * (inShop ? shopSpeedLimit : speedLimit) - vel;
+                float accelAmt = (inShop ? shopAccelRate : accelRate) * Time.deltaTime;
 
                 vel += ((accelAmt + applyTurnaround) * accelDir.normalized);
             }
 
-            body.velocity = Vector2.ClampMagnitude(vel, speedLimit);
+            body.velocity = Vector2.ClampMagnitude(vel, (inShop ? shopSpeedLimit : speedLimit));
 
             if ((vel.magnitude / speedLimit) >= bouncinessEnableThreshhold)
             {
@@ -147,10 +155,7 @@ public class PlayerController : MonoBehaviour
 
             if (!inShop) { }// add camera zoom out here 
         }
-        if (inShop)
-        {
-            NearestItemCheck();
-        }
+
         /*
         if(moveVector.x == 0){
 
@@ -166,7 +171,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if((body.velocity.magnitude / speedLimit) >= thudSoundThreshhold) // player crashed at a high speed, disable controls to make them bounce
+        if((body.velocity.magnitude / speedLimit) >= thudSoundThreshhold && !inShop) // player crashed at a high speed, disable controls to make them bounce
         {
             cantMove = true;
             StartCoroutine("MoveDelay");

@@ -391,10 +391,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c8c04e6b625b9344aa2a26285d3c6d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedLimit: 25
+  speedLimit: 30
   accelRate: 15
-  decelRate: 22
-  turnAssist: 2
+  decelRate: 20
+  turnAssist: 5
   turnThreshold: 100
   crashDisableTime: 0.5
   itemLayerMask:
@@ -402,6 +402,10 @@ MonoBehaviour:
     m_Bits: 2048
   itemPickupX: 1.5
   itemPickupY: 2.5
+  maxZoomOut: 2.5
+  shopSpeedLimit: 15
+  shopAccelRate: 20
+  shopDecelRate: 10
   bouncinessEnableThreshhold: 0.4
   baseBounciness: 0.2
   maxBounciness: 0.63
@@ -410,6 +414,7 @@ MonoBehaviour:
   thudSoundMaxVolume: 1
   thudSoundPitchRandomRange: 0.65
   holdAnchor: {fileID: 7314323440014131407}
+  camera: {fileID: 0}
 --- !u!114 &1087557437383896256
 MonoBehaviour:
   m_ObjectHideFlags: 0
