@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 110.005, y: 0}
+  m_AnchoredPosition: {x: 109.785, y: 0}
   m_SizeDelta: {x: 0, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2496529595166234663
@@ -190,8 +190,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Temp Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d95a714e4d7c0724f86c17199a8d75f4, type: 2}
-  m_sharedMaterial: {fileID: -3699999892129844361, guid: d95a714e4d7c0724f86c17199a8d75f4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5cd0a225d2e1ea84f9c1d8851e412b3b, type: 2}
+  m_sharedMaterial: {fileID: 2219516352888769698, guid: 5cd0a225d2e1ea84f9c1d8851e412b3b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -215,8 +215,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
-  m_fontSizeBase: 48
+  m_fontSize: 34
+  m_fontSizeBase: 34
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -339,8 +339,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Temp Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d95a714e4d7c0724f86c17199a8d75f4, type: 2}
-  m_sharedMaterial: {fileID: -3699999892129844361, guid: d95a714e4d7c0724f86c17199a8d75f4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5cd0a225d2e1ea84f9c1d8851e412b3b, type: 2}
+  m_sharedMaterial: {fileID: 2219516352888769698, guid: 5cd0a225d2e1ea84f9c1d8851e412b3b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -364,13 +364,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
-  m_fontSizeBase: 48
+  m_fontSize: 34
+  m_fontSizeBase: 34
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 4
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -469,9 +469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e16c4886b925954d90d60cde395a1d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  microgameTitle: ENTER THE WORD
-  microgameTimeLimit: 10
-  microgameDifficulty: 1
+  owner: {fileID: 0}
   goalTextBox: {fileID: 3794326425544532358}
   playerTextBox: {fileID: 2758614649332541152}
   comboValue: Photosynthesis

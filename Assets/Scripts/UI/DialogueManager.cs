@@ -108,7 +108,7 @@ public class DialogueManager : MonoBehaviour
         anime = this.GetComponent<Animator>();
         microgameActive = false;
         microgameManager.transform.GetChild(0).transform.localScale = Vector3.zero;
-        gameTimerText.fontSize = 56;
+        gameTimerText.fontSize = 40;
         gameTimerText.text = "";
     }
 
@@ -177,7 +177,7 @@ public class DialogueManager : MonoBehaviour
                 if (newDialogue)
                 {
                     newDialogue = false;
-                    if(startCondition == Start_Conditions.Grappled) { currentDialogue = customerGrappleStartBarks[Random.Range(0, customerGrappleStartBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"); }
+                    if (startCondition == Start_Conditions.Grappled) { currentDialogue = "HOW OFTEN ARE YOU GONNA FIND {item} AT THIS PRICE-POINT? NO… SERIOUSLY… PLEASE TELL ME."; } //customerGrappleStartBarks[Random.Range(0, customerGrappleStartBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"); }
                     else if (startCondition == Start_Conditions.Rocketed) { currentDialogue = customerRocketStartBarks[Random.Range(0, customerRocketStartBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"); }
                     else { currentDialogue = customerStartBarks[Random.Range(0, customerStartBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"); }
                    
@@ -196,7 +196,7 @@ public class DialogueManager : MonoBehaviour
                 dialogueState++;
                 break;
             case 1:
-                currentDialogue = playerBarks[Random.Range(0, playerBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>").ToUpper();
+                currentDialogue = "HOW OFTEN ARE YOU GONNA FIND {item} AT THIS PRICE-POINT? NO… SERIOUSLY… PLEASE TELL ME.";//playerBarks[Random.Range(0, playerBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>").ToUpper();
                 playerTextbox.GetComponent<TypewriterEffect>().NewText(currentDialogue);
                 dialogueState++;
                 break;
@@ -214,22 +214,27 @@ public class DialogueManager : MonoBehaviour
             if (roundedTime <= 30 && roundedTime > 15)
             {
                 gameTimerText.text += "";
-                gameTimerText.fontSize = 64;
+                gameTimerText.fontSize = 48;
             }
             else if (roundedTime <= 15 && roundedTime > 9)
             {
                 gameTimerText.text += "!";
-                gameTimerText.fontSize = 72;
+                gameTimerText.fontSize = 56;
             }
             else if (roundedTime <= 9 && roundedTime > 5)
             {
                 gameTimerText.text = " " + roundedTime.ToString() + "!";
-                gameTimerText.fontSize = 72 + ((10 - roundedTime) * 4);
+                gameTimerText.fontSize = 56 + ((10 - roundedTime) * 2);
             }
-            else if (roundedTime <= 5)
+            else if (roundedTime <= 5 && roundedTime > 1)
+            {
+                gameTimerText.text = "" + roundedTime.ToString() + "!!";
+                gameTimerText.fontSize = 56 + ((10 - roundedTime) * 4);
+            }
+            else if (roundedTime <= 1)
             {
                 gameTimerText.text = " " + roundedTime.ToString() + "!!";
-                gameTimerText.fontSize = 72 + ((9 - roundedTime) * 6);
+                gameTimerText.fontSize = 56 + ((9 - roundedTime) * 4);
             }
         }
     }

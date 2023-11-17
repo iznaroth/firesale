@@ -141,7 +141,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 36}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6809862903703163427
 CanvasRenderer:
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
-  m_VerticalFit: 0
+  m_VerticalFit: 2
 --- !u!114 &6471418187542485804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
-  m_EffectDistance: {x: 1, y: -1}
+  m_EffectDistance: {x: 3, y: 2}
   m_UseGraphicAlpha: 1
 --- !u!1 &5948361088585782748
 GameObject:
@@ -272,7 +272,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 124.005, y: 0}
+  m_AnchoredPosition: {x: 210.87, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2204869149034063221
@@ -303,10 +303,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GOD I LOVE VTUBERS
+  m_text: "GOD I LOVE VTUBERS GOD I LOVE \nVTUBERS GOD I LOVE VTUBERS"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d95a714e4d7c0724f86c17199a8d75f4, type: 2}
-  m_sharedMaterial: {fileID: -3699999892129844361, guid: d95a714e4d7c0724f86c17199a8d75f4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 99514c0e4e3bd9f469eb9d9728df9159, type: 2}
+  m_sharedMaterial: {fileID: 7295620250318039537, guid: 99514c0e4e3bd9f469eb9d9728df9159, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -366,7 +366,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 12, y: 0, z: 12, w: 0}
+  m_margin: {x: 12, y: 6, z: 12, w: 6}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -389,8 +389,13 @@ MonoBehaviour:
   timeBtwChars: 0.035
   timeBtwWords: 0.035
   leadingChar: 
+  forceNewlineWidth: 400
   leadingCharBeforeDelay: 0
   skippable: 0
+  speechSound: {fileID: 0}
+  speechVolume: 0
+  speechPitch: 0
+  speechPitchRandomizationRange: 0
 --- !u!114 &2580983056392740087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,4 +409,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
-  m_VerticalFit: 0
+  m_VerticalFit: 2
