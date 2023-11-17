@@ -70,7 +70,7 @@ public class StartInteraction : MonoBehaviour
 		}
 
 		ped.Freeze();
-		PlayerController.player?.Freeze(); // freeze if we're the player
+		GameManager.Player.GetComponent<PlayerController>()?.Freeze(); // freeze if we're the player
 		DialogueManager.instance.StartDialogueInteraction(collision.gameObject);
 
 		interactedWith.Add(collision.gameObject);

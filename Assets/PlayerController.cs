@@ -6,7 +6,6 @@ using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
-    public static PlayerController player;
     // assign the actions asset to this field in the inspector:
     // public InputActionAsset actions;
 
@@ -56,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
 	private void Awake()
 	{
-        player = this;
+        GameManager.Player = this.gameObject;
 	}
 
 	void Start()

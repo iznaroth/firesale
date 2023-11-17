@@ -21,6 +21,9 @@ public class DialogueManager : MonoBehaviour
     public MicrogameManager microgameManager;
     public Slider healthbar;
     public TextMeshProUGUI moneyText;
+    public Image gameTimer;
+    public TextMeshProUGUI gameTimerText;
+    public TextMeshProUGUI CurioText;
     public TextMeshProUGUI NPC_Name;
     private Animator anime;
     private Microgame_Base currentMicrogame;
@@ -37,23 +40,26 @@ public class DialogueManager : MonoBehaviour
     public string[] customerNegativeBarks;
 
     [Space(10)]
-    [Header("Gameplay Settings")]
+    [Header("Other Settings")]
     public Vector2 customerChancesRange = new Vector2(1, 2); //How many times the player can fail before taking damage
     public Vector2 customerDifficultyRange = new Vector2(1, 2);
     private int customerChances = 2; //How many times the player can fail before taking damage
     private int customerWinAmount = 2; //How many times the player needs to win to convince the customer to buy
+    public int currencyCounterAnimationFrameRate = 30;
+    public int currencyCounterAnimationMaxDuration = 2;
     private NPC_Types npcType = NPC_Types.AnimeFan;
     [HideInInspector] public bool animationDone = false;
     private bool isThisEvenActive = false;
 
     //weird emergency cache stuff to avoid errors
     private int currentGameDifficulty = 0;
+    private int currentGameDamage = 0;
     private bool newDialogue = true;
+    private bool changingIncomeValue = false;
+    private int currentTrackedIncome = 0;
 
     public static DialogueManager instance;
 
-    public static float PlayerHealth = 100;
-    public static float PlayerIncome = 666;
     public static bool microgameActive = false;
     public static bool wonLastMicrogame = false;
     public static bool newDialogueStarted = false;
@@ -94,6 +100,8 @@ public class DialogueManager : MonoBehaviour
         anime = this.GetComponent<Animator>();
         microgameActive = false;
         microgameManager.transform.GetChild(0).transform.localScale = Vector3.zero;
+        gameTimerText.fontSize = 56;
+        gameTimerText.text = "";
     }
 
     // Update is called once per frame
@@ -116,8 +124,15 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        healthbar.value = PlayerHealth;
-        moneyText.text = PlayerIncome.ToString("#,##0");
+        healthbar.value = GameManager.hpRemaining;
+        if(!changingIncomeValue && currentTrackedIncome != GameManager.currentIncome)
+        {
+            changingIncomeValue = true;
+            StartCoroutine("IncomeValueChanger");
+        }
+        gameTimer.fillAmount = GameManager.timeRemaining / GameManager.totalTime;
+        CurioText.text = GameManager.curiosRemaining.ToString();
+        WarningTimer();
     }
 
     private void SummonMicrogame()
@@ -139,6 +154,7 @@ public class DialogueManager : MonoBehaviour
         else
         {
             customerChances -= currentGameDifficulty;
+
         }
         if (currentMicrogame != null) { Destroy(currentMicrogame.gameObject); }
     }
@@ -178,6 +194,35 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    private void WarningTimer()
+    {
+        float roundedTime = Mathf.Round(GameManager.timeRemaining) + 1;
+        if (roundedTime <= 60)
+        {
+            gameTimerText.text = roundedTime.ToString();
+            if (roundedTime <= 30 && roundedTime > 15)
+            {
+                gameTimerText.text += "";
+                gameTimerText.fontSize = 64;
+            }
+            else if (roundedTime <= 15 && roundedTime > 9)
+            {
+                gameTimerText.text += "!";
+                gameTimerText.fontSize = 72;
+            }
+            else if (roundedTime <= 9 && roundedTime > 5)
+            {
+                gameTimerText.text = " " + roundedTime.ToString() + "!";
+                gameTimerText.fontSize = 72 + ((10 - roundedTime) * 4);
+            }
+            else if (roundedTime <= 5)
+            {
+                gameTimerText.text = " " + roundedTime.ToString() + "!!";
+                gameTimerText.fontSize = 72 + ((9 - roundedTime) * 6);
+            }
+        }
+    }
+
 
     //play cut in stuff
     private void CutIn()
@@ -200,6 +245,7 @@ public class DialogueManager : MonoBehaviour
         anime.ResetTrigger("CutIn");
         if (wonLastMicrogame)
         {
+            
             currentNPC.GetComponent<SpeechBubble>().OpenSpeechBubble(customerSoldBarks[Random.Range(0, customerSoldBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"), 5);
         }
         else
@@ -207,7 +253,7 @@ public class DialogueManager : MonoBehaviour
             currentNPC.GetComponent<SpeechBubble>().OpenSpeechBubble(customerRefusedBarks[Random.Range(0, customerRefusedBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"), 5);
         }
         currentNPC.GetComponent<PedestrianAI>()?.UnFreeze();
-        PlayerController.player?.UnFreeze();
+        GameManager.Player.GetComponent<PlayerController>()?.UnFreeze();
         InputManager.PopActionMap();
     }
 
@@ -305,6 +351,51 @@ public class DialogueManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    private IEnumerator IncomeValueChanger()
+    {
+        WaitForSeconds Wait = new WaitForSeconds(1/currencyCounterAnimationFrameRate);
+        int currentVal = GameManager.currentIncome;
+        int stepAmount;
+
+        if (currentVal - currentTrackedIncome < 0)
+        {
+            stepAmount = Mathf.FloorToInt((currentVal - currentTrackedIncome) / (currencyCounterAnimationFrameRate * currencyCounterAnimationMaxDuration));
+        }
+        else
+        {
+            stepAmount = Mathf.CeilToInt((currentVal - currentTrackedIncome) / (currencyCounterAnimationFrameRate * currencyCounterAnimationMaxDuration));
+        }
+
+        if(currentTrackedIncome < currentVal)
+        {
+            while(currentTrackedIncome < currentVal)
+            {
+                currentTrackedIncome += stepAmount;
+                if(currentTrackedIncome > currentVal)
+                {
+                    currentTrackedIncome = currentVal;
+                }
+                moneyText.text = currentTrackedIncome.ToString("#,##0");
+                yield return Wait;
+            }
+        }
+        else
+        {
+            while (currentTrackedIncome > currentVal)
+            {
+                currentTrackedIncome -= stepAmount;
+                if (currentTrackedIncome < currentVal)
+                {
+                    currentTrackedIncome = currentVal;
+                }
+                moneyText.text = currentTrackedIncome.ToString("#,##0");
+                yield return Wait;
+            }
+        }
+        currentTrackedIncome = currentVal;
+        changingIncomeValue = false;
     }
 
     public static T GetRandomEnum<T>()
