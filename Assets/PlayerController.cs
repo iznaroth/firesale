@@ -178,6 +178,10 @@ public class PlayerController : MonoBehaviour
         }
         body.sharedMaterial = physMat;
         audioSource.pitch = 1 + Random.Range(-thudSoundPitchRandomRange, thudSoundPitchRandomRange);
+        if(collision.gameObject.GetComponent<Rigidbody2D>() != null)
+        {
+            collision.gameObject.GetComponent<Rigidbody2D>().velocity = body.velocity / 0.25f;
+        }
     }
 
 
