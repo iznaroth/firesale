@@ -192,6 +192,7 @@ public class PlayerController : MonoBehaviour
         {
             cantMove = true;
             StartCoroutine("MoveDelay");
+            moveVector = Vector2.zero;
         }
         body.sharedMaterial = physMat;
         audioSource.pitch = 1 + Random.Range(-thudSoundPitchRandomRange, thudSoundPitchRandomRange);
