@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public float totalGameTime = 900;
     public GameObject AudioPrefab;
 
-    public delegate void NewAudioSource(AudioClip newClip, float volumeScaler, Vector3 position);
+    public delegate void NewAudioSource(AudioClip newClip, float volumeScaler, float newPitch, Vector3 position);
     public static event NewAudioSource newAudioEvent;
     // Start is called before the first frame update
     void Start()
@@ -73,14 +73,14 @@ public class GameManager : MonoBehaviour
         currentIncome -= itemCost;
     }
 
-    public static void SpawnAudio(AudioClip newClip, float volumeScaler, Vector3 position)
+    public static void SpawnAudio(AudioClip newClip, float volumeScaler, float pitch, Vector3 position)
     {
-        newAudioEvent?.Invoke(newClip,volumeScaler, position);
+        newAudioEvent?.Invoke(newClip, volumeScaler, pitch, position);
     }
 
-    public void SpawnAudioSource(AudioClip newClip, float volumeScaler, Vector3 position)
+    public void SpawnAudioSource(AudioClip newClip, float volumeScaler, float newPitch, Vector3 position)
     {
-       GameObject newAudioObject = Instantiate(AudioPrefab);
-       newAudioObject.GetComponent<SoundScript>().PlayAudio(newClip, volumeScaler);
+       GameObject newAudioObject = Instantiate(AudioPrefab, position, Quaternion.identity);
+       newAudioObject.GetComponent<SoundScript>().PlayAudio(newClip, volumeScaler, newPitch);
     }
 }

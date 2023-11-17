@@ -22,8 +22,9 @@ public class SoundScript : MonoBehaviour
         }
     }
 
-    public void PlayAudio(AudioClip newClip, float volumeScaler)
+    public void PlayAudio(AudioClip newClip, float volumeScaler, float newPitch)
     {
+        audioSource.pitch = newPitch;
         audioSource.PlayOneShot(newClip,volumeScaler);
         hasStarted = true;
     }

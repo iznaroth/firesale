@@ -267,7 +267,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (!isThisEvenActive) 
         { 
-            GameManager.SpawnAudio(startDialogueSound, 1, this.transform.position);
+            GameManager.SpawnAudio(startDialogueSound, 1, 1, this.transform.position);
             animationDone = false;
             wonLastMicrogame = false;
             microgameActive = false;
