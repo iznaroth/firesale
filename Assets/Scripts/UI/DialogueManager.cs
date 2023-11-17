@@ -65,6 +65,7 @@ public class DialogueManager : MonoBehaviour
     public static bool newDialogueStarted = false;
     public static string currentCurio = "Poggers";
     public static int dialogueState = 0;
+    public static UnityAction DialogueInteractionEnded;
 
 	private void Awake()
 	{
@@ -255,6 +256,7 @@ public class DialogueManager : MonoBehaviour
         currentNPC.GetComponent<PedestrianAI>()?.UnFreeze();
         GameManager.Player.GetComponent<PlayerController>()?.UnFreeze();
         InputManager.PopActionMap();
+        DialogueInteractionEnded?.Invoke();
     }
 
     public void StartDialogueInteraction(GameObject newNPC)
