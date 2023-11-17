@@ -159,6 +159,11 @@ public class SpeechBubble : MonoBehaviour
         scaleTween = DOTween.To(() => speechBubbleObject.transform.localScale, x => speechBubbleObject.transform.localScale = x, (Vector3)speechBubbleStartScale, openAnimDuration);
     }
 
+    public bool IsBubbleOpen()
+	{
+        return opened;
+	}
+
     IEnumerator DeleteBubble(float delay)
 	{
         yield return new WaitForSeconds(delay);

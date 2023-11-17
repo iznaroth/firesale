@@ -3105,7 +3105,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1243463427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3236,6 +3236,22 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2674160242445267128, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
+      propertyPath: defaultAbility
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2760952917869357767, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
+      propertyPath: grappleCooldown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5767073167215298427, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 5767073167215298427, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5818476852357469072, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -3279,6 +3295,10 @@ PrefabInstance:
     - target: {fileID: 6229804925814251620, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8085094291932622826, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
+      propertyPath: curioName
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8118839963843011988, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
       propertyPath: m_Name

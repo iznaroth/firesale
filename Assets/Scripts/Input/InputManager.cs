@@ -14,6 +14,7 @@ public enum EInGameAction
 {
     MOVE,
     PICK_UP,
+    ABILITY,
 
 }
 
@@ -59,6 +60,7 @@ public class InputManager : MonoBehaviour
 	{
         { EInGameAction.MOVE, "Move" },
         { EInGameAction.PICK_UP, "Pick Up" },
+        { EInGameAction.ABILITY, "Ability" },
     };
 
     static Dictionary<EMinigameAction, string> minigameActionNames = new Dictionary<EMinigameAction, string>

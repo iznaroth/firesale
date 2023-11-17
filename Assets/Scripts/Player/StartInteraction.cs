@@ -37,6 +37,13 @@ public class StartInteraction : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
+
+		// don't start interaction unless we're holding an item
+		if (!GameManager.Player.GetComponent<PlayerController>().IsHolding())
+		{
+			return;
+		}
+
 		if (targetSpecificPed)
 		{
 			// if we've hit the ped we're targeting, we can forget about it

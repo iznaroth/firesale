@@ -4,6 +4,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 
+public enum PlayerAbility
+{
+    YELL,
+    GRAPPLE_HOOK,
+    ROCKET_BOOST,
+}
+
 public class PlayerController : MonoBehaviour
 {
     // assign the actions asset to this field in the inspector:
@@ -34,7 +41,9 @@ public class PlayerController : MonoBehaviour
     [Range(0f, 1f)] public float thudSoundThreshhold = 0.3f; // what percentage of max speed do we need to reach to play the thud sound
     [Range(0f, 1f)] public float thudSoundBaseVolume = 0.1f;
     [Range(0f, 1f)] public float thudSoundMaxVolume = 1; 
-    public float thudSoundPitchRandomRange = 0.65f; 
+    public float thudSoundPitchRandomRange = 0.65f;
+
+    public PlayerAbility defaultAbility = PlayerAbility.YELL;
 
     private Rigidbody2D body;
     private AudioSource audioSource;
@@ -43,6 +52,7 @@ public class PlayerController : MonoBehaviour
     private bool cantMove = false;
     private PhysicsMaterial2D physMat;
     private GameObject closestItem;
+    private PlayerAbility currentAbility = PlayerAbility.YELL;
 
     private InputAction pickupAction;
 
@@ -75,6 +85,9 @@ public class PlayerController : MonoBehaviour
         moveAction.performed += OnMove;
         moveAction.canceled += OnMove;
         pickupAction.performed += PickUp;
+        InputManager.GetInputAction(EInGameAction.ABILITY).started += OnAbility;
+
+        currentAbility = defaultAbility;
 
         //m_Started = true;
     }
@@ -90,6 +103,7 @@ public class PlayerController : MonoBehaviour
 
         body.velocity = Vector2.zero;
         body.simulated = false;
+        moveVector = Vector2.zero;
 
         frozen = true;
 	}
@@ -191,6 +205,23 @@ public class PlayerController : MonoBehaviour
 
 	}
 
+    private void OnAbility(InputAction.CallbackContext context)
+	{
+		switch (currentAbility)
+		{
+			case PlayerAbility.YELL:
+                print("AOIJSDLgfJSDLJ");
+                // implement me!!
+                break;
+            case PlayerAbility.GRAPPLE_HOOK:
+                GrappleHookController.instance?.DeployHook();
+                break;
+			case PlayerAbility.ROCKET_BOOST:
+                print("ROCKET TIME");
+                break;
+        }
+	}
+
     private void NearestItemCheck()
     {
         Collider2D[] results = Physics2D.OverlapBoxAll(gameObject.transform.position, new Vector3(transform.localScale.x * itemPickupX, transform.localScale.y * itemPickupY, 0), 0, itemLayerMask, -Mathf.Infinity, Mathf.Infinity);
@@ -265,4 +296,14 @@ public class PlayerController : MonoBehaviour
                 //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
                 Gizmos.DrawWireCube(transform.position, new Vector3(transform.localScale.x * itemPickupX, transform.localScale.y * itemPickupY, 0));
         }*/
+
+    public bool IsHolding()
+	{
+        if (holding == null)
+		{
+            return false;
+		}
+
+        return holding.GetComponent<Item>()?.curioName.Length > 0;
+	}
 }

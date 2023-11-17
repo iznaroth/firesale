@@ -7,6 +7,7 @@ public class MakeThemScream : MonoBehaviour
 	public int minimumLength = 5;
 	public int maximumLength = 50;
 	public string availableChars = "AAAAAAGH ";
+	public SpeechBubble bubble;
 
 	public float minDuration = 3f;
 	public float maxDuration = 8f;
@@ -24,12 +25,20 @@ public class MakeThemScream : MonoBehaviour
 		return result;
 	}
 
-	private void OnCollisionEnter2D(Collision2D collision)
+	public void Scream()
+	{
+		if (!bubble.IsBubbleOpen())
+		{
+			bubble.OpenSpeechBubble(ConstructScream(), Random.Range(minDuration, maxDuration));
+		}
+	}	
+
+	/*private void OnCollisionEnter2D(Collision2D collision)
 	{
 		SpeechBubble speech = collision.collider.gameObject.GetComponent<SpeechBubble>();
 		if (speech != null)
 		{
 			speech.OpenSpeechBubble(ConstructScream(), Random.Range(minDuration, maxDuration));
 		}
-	}
+	}*/
 }

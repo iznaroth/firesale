@@ -9,6 +9,7 @@ public enum EGrappleState
     SHOOTING,
     RETRACTING_EMPTY,
     RETRACTING_HIT,
+    FROZEN,
 }
 
 [RequireComponent(typeof(LineRenderer))]
@@ -68,7 +69,7 @@ public class GrappleHookController : MonoBehaviour
 
     public void DeployHook()
 	{
-        if (state == EGrappleState.RETRACTED && Time.time < timeToNextGrapple)
+        if (state != EGrappleState.RETRACTED || Time.time < timeToNextGrapple)
 		{
             return;
 		}
@@ -83,6 +84,8 @@ public class GrappleHookController : MonoBehaviour
         grappleHead.gameObject.SetActive(true);
         grappleHead.transform.position = startPos;
         grappleHead.transform.up = shotDir;
+
+        lineRenderer.positionCount = 2;
 
         UpdateView();
     }
@@ -101,8 +104,8 @@ public class GrappleHookController : MonoBehaviour
     // start retracting the hook
     public void RetractHookEmpty(bool setIgnorePeds = false)
 	{
-        // only start retracting if we were shooting or if we previously were holding something
-        if (!(state == EGrappleState.SHOOTING || state == EGrappleState.RETRACTING_HIT))
+        // ignore if we're already retracted
+        if (state == EGrappleState.RETRACTED)
 		{
             return;
 		}
@@ -121,8 +124,15 @@ public class GrappleHookController : MonoBehaviour
         state = EGrappleState.RETRACTING_HIT;
         pedHit = ped;
 
-        ped.Freeze();
+        ped.Freeze(false);
         GameManager.Player.GetComponent<PlayerController>().Freeze();
+        GameManager.Player.GetComponent<StartInteraction>().TargetSpecificPed(ped.gameObject);
+
+        MakeThemScream scream = ped.GetComponent<MakeThemScream>();
+        if (scream != null)
+		{
+            scream.Scream();
+		}
 	}
 
     void UpdateView()
@@ -172,7 +182,7 @@ public class GrappleHookController : MonoBehaviour
 
     void UpdateRetractingHit()
 	{
-        float retractDist = shotSpeed * Time.deltaTime;
+        float retractDist = retractSpeed * Time.deltaTime;
         float length = Vector2.Distance(grappleHead.transform.position, grappleRoot.position);
 
         Vector3 retractDir = grappleHead.transform.position - grappleRoot.position;
@@ -182,8 +192,20 @@ public class GrappleHookController : MonoBehaviour
 
         if (length - retractDist < retractInteractDist)
 		{
-            DialogueManager.instance.StartDialogueInteraction(pedHit.gameObject);
-            DialogueManager.DialogueInteractionEnded += HandleDialogueEnded;
+            if (GameManager.Player.GetComponent<PlayerController>().IsHolding())
+			{
+                pedHit.Freeze();
+                DialogueManager.instance.StartDialogueInteraction(pedHit.gameObject);
+                DialogueManager.DialogueInteractionEnded += HandleDialogueEnded;
+                state = EGrappleState.FROZEN;
+            }
+            else
+			{
+                pedHit.UnFreeze();
+                GameManager.Player.GetComponent<PlayerController>().UnFreeze();
+                GameManager.Player.GetComponent<Rigidbody2D>().velocity = retractDir * retractSpeed;
+                RetractHookEmpty(true);
+            }
 		}
     }
 

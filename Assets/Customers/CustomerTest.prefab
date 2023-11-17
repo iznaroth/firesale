@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 2253338166636165302}
   - component: {fileID: 3885547824282188523}
   - component: {fileID: 5358431438193188435}
+  - component: {fileID: 188186557489570552}
   m_Layer: 6
   m_Name: CustomerTest
   m_TagString: Untagged
@@ -320,6 +321,24 @@ MonoBehaviour:
   openAnimDuration: 0.5
   closeAnimDuration: 0.5
   startTypewriterDelay: 0.2
+--- !u!114 &188186557489570552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3943409440973491086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86298eefb72e0f84c88d2751b1025c35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minimumLength: 5
+  maximumLength: 35
+  availableChars: 'AAAAAAGH '
+  bubble: {fileID: 5358431438193188435}
+  minDuration: 4
+  maxDuration: 6
 --- !u!1 &6118373735924248156
 GameObject:
   m_ObjectHideFlags: 0
