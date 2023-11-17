@@ -8,6 +8,8 @@ public class AvoidPoint : MonoBehaviour
     public float pedSpeedMultiplier = 2f;
     public float pedSpeedInfluenceDistance = 10f;
 
+    Coroutine disableCoroutine;
+
     private void OnEnable()
     {
         PedestrianManager.AddAvoidancePoint(this);
@@ -17,4 +19,21 @@ public class AvoidPoint : MonoBehaviour
     {
         PedestrianManager.RemoveAvoidancePoint(this);
     }
+
+    public void RemoveAfterSec(float sec)
+	{
+        if (disableCoroutine != null)
+		{
+            StopCoroutine(disableCoroutine);
+		}
+
+        disableCoroutine = StartCoroutine(Disable(sec));
+	}
+
+    IEnumerator Disable(float delay)
+	{
+        yield return new WaitForSeconds(delay);
+
+        this.enabled = false;
+	}
 }

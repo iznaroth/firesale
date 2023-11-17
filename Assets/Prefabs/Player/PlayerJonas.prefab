@@ -621,6 +621,8 @@ GameObject:
   - component: {fileID: 265872915932966162}
   - component: {fileID: 5818476852357469072}
   - component: {fileID: 3248619308902045473}
+  - component: {fileID: 3101825667903874092}
+  - component: {fileID: 1115688522819505287}
   m_Layer: 10
   m_Name: PlayerJonas
   m_TagString: Player
@@ -735,6 +737,7 @@ MonoBehaviour:
   thudSoundMaxVolume: 1
   thudSoundPitchRandomRange: 0.65
   defaultAbility: 0
+  playerYellDuration: 2
   holdAnchor: {fileID: 7314323440014131407}
   camera: {fileID: 0}
 --- !u!114 &1087557437383896256
@@ -917,3 +920,38 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3101825667903874092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8118839963843011988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d40ac784139835438eafb4af9e682e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speechBubbleUIPrefab: {fileID: 2936742986879914478, guid: deb46f0d283740047bc55ecca2f9cb67, type: 3}
+  speechBubbleStartOffset: {x: 0, y: 0}
+  speechBubbleEndOffset: {x: 0, y: 1}
+  speechBubbleStartScale: {x: 0, y: 0}
+  speechBubbleEndScale: {x: 1, y: 1}
+  openAnimDuration: 0.5
+  closeAnimDuration: 0.5
+  startTypewriterDelay: 0.2
+--- !u!114 &1115688522819505287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8118839963843011988}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2af3accde2e6c5247bf6f30a2d7e7ad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  avoidStrength: 20
+  pedSpeedMultiplier: 4
+  pedSpeedInfluenceDistance: 10

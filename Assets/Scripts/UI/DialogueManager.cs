@@ -33,6 +33,7 @@ public class DialogueManager : MonoBehaviour
     [Space(10)]
     [Header("Dialogue and Barks")]
     public string[] playerBarks;
+    public string[] playerYells;
     public string[] customerStartBarks;
     public string[] customerSoldBarks;
     public string[] customerRefusedBarks;

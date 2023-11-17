@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     public float thudSoundPitchRandomRange = 0.65f;
 
     public PlayerAbility defaultAbility = PlayerAbility.YELL;
+    public float playerYellDuration = 5f;
 
     private Rigidbody2D body;
     private AudioSource audioSource;
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
     private PhysicsMaterial2D physMat;
     private GameObject closestItem;
     private PlayerAbility currentAbility = PlayerAbility.YELL;
+    private AvoidPoint pedRepulsor;
 
     private InputAction pickupAction;
 
@@ -88,6 +90,7 @@ public class PlayerController : MonoBehaviour
         InputManager.GetInputAction(EInGameAction.ABILITY).started += OnAbility;
 
         currentAbility = defaultAbility;
+        pedRepulsor = GetComponent<AvoidPoint>();
 
         //m_Started = true;
     }
@@ -210,8 +213,14 @@ public class PlayerController : MonoBehaviour
 		switch (currentAbility)
 		{
 			case PlayerAbility.YELL:
-                print("AOIJSDLgfJSDLJ");
-                // implement me!!
+                SpeechBubble bubble = GetComponent<SpeechBubble>();
+                if (bubble != null)
+				{
+                    string text = DialogueManager.instance.playerYells[Random.Range(0, DialogueManager.instance.playerYells.Length)];
+                    bubble.OpenSpeechBubble(text, playerYellDuration);
+                    pedRepulsor.enabled = true;
+                    pedRepulsor.RemoveAfterSec(playerYellDuration);
+				}
                 break;
             case PlayerAbility.GRAPPLE_HOOK:
                 GrappleHookController.instance?.DeployHook();
