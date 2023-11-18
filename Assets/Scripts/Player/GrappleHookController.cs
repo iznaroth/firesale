@@ -217,4 +217,11 @@ public class GrappleHookController : MonoBehaviour
 
         DialogueManager.DialogueInteractionEnded -= HandleDialogueEnded;
     }
+
+    public float GetNormallizedCharge()
+	{
+        if (Time.time > timeToNextGrapple) return 1f;
+
+        return 1f - (timeToNextGrapple - Time.time) / grappleCooldown;
+	}
 }

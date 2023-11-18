@@ -25,6 +25,8 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI gameTimerText;
     public TextMeshProUGUI CurioText;
     public TextMeshProUGUI NPC_Name;
+    public TextMeshProUGUI AbilityName;
+    public Slider AbilityCooldown;
     private Animator anime;
     private Microgame_Base currentMicrogame;
     private GameObject currentNPC;
@@ -455,4 +457,14 @@ public class DialogueManager : MonoBehaviour
         T V = (T)A.GetValue(UnityEngine.Random.Range(1, A.Length));
         return V;
     }
+
+    public static void SetAbilityName(string newName)
+	{
+        instance.AbilityName.text = newName;
+	}
+
+    public static void SetAbilityCooldown(float fillAmt)
+	{
+        instance.AbilityCooldown.value = fillAmt;
+	}
 }
