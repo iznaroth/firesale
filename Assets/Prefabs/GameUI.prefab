@@ -579,7 +579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   customerTextbox: {fileID: 8808549247041730200}
   playerTextbox: {fileID: 6410977054262400308}
-  customerImage: {fileID: 6079803354048864163}
+  customerImage: {fileID: 1009463786332080530}
   customerImages:
   - {fileID: 21300000, guid: 37f15ed241ce3ad429710d7f90c59567, type: 3}
   - {fileID: 21300000, guid: 4195d4d1320cceb40b26614773b6e912, type: 3}
@@ -4321,11 +4321,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1256116252987466595}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 10}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -3.1828918, y: 3.940979}
-  m_SizeDelta: {x: 237.1632, y: 291.897}
-  m_Pivot: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 1.3987427, y: -0.50749207}
+  m_SizeDelta: {x: 9.163193, y: 8.897003}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4729072052745702747
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4354,7 +4354,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: babe4d96cf6b8ec47b8385eac8aa53ff, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 37f15ed241ce3ad429710d7f90c59567, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

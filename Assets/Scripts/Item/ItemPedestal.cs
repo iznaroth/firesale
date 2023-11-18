@@ -92,6 +92,12 @@ public class ItemPedestal : MonoBehaviour
                 toSwap.transform.SetParent(this.gameObject.transform);
                 this.storedItem.transform.SetParent(pl.gameObject.transform);
 
+                Item pickedItem = storedItem.GetComponent<Item>();
+                if (pickedItem != null)
+				{
+                    GameManager.currentCuriosValue = pickedItem.value;
+                }
+
                 pl.setHolding(this.storedItem);
                 this.storedItem = toSwap;
                 this.storedItem.transform.eulerAngles = new Vector3(0, 0, this.storedItem.GetComponent<Item>().spritePedestalRotation);

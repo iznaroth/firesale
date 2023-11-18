@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
     public static GameObject Player;
     public static float timeRemaining;
     public static float curiosRemaining;
@@ -24,11 +25,18 @@ public class GameManager : MonoBehaviour
 
     public delegate void NewAudioSource(AudioClip newClip, float volumeScaler, float newPitch, Vector3 position);
     public static event NewAudioSource newAudioEvent;
-    // Start is called before the first frame update
-    void Start()
+
+
+	private void Awake()
+	{
+        instance = this;
+	}
+
+	// Start is called before the first frame update
+	void Start()
     {
         totalTime = totalGameTime;
-        timeRemaining = 15; //totalGameTime;
+        timeRemaining = totalGameTime;
         hpRemaining = 100;
         currentIncome = 666;
         curiosRemaining = 20;
