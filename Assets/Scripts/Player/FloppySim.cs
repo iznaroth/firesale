@@ -10,10 +10,12 @@ public class FloppySim : MonoBehaviour
     public int segments = 5;
     public float totalLength = 2f;
     public Vector2 spawnDirection = new Vector2(-1f, 0f);
+    public float maxBendDegrees = 15f;
 
     List<Vector2> ropeVertices;
     LineRenderer lineRenderer;
     float segmentLength;
+    Vector2 startDir;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,7 @@ public class FloppySim : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         ropeVertices = new List<Vector2>(segments);
         segmentLength = totalLength / segments;
+        startDir = spawnDirection.normalized;
 
         lineRenderer.positionCount = segments + 1;
 
@@ -55,6 +58,7 @@ public class FloppySim : MonoBehaviour
     void UpdateRope()
 	{
         Vector2 prevPos = ropeRoot.position;
+        Vector2 dir = startDir;
 
         for (int i = 0; i < segments; i++)
 		{
@@ -62,9 +66,17 @@ public class FloppySim : MonoBehaviour
             Vector2 toVertex = oldPos - prevPos;
             toVertex = segmentLength * toVertex.normalized;
 
+            float angle = Vector2.SignedAngle(dir, toVertex);
+
+            if (Mathf.Abs(angle) > maxBendDegrees)
+			{
+                toVertex = Vector3.RotateTowards(dir, toVertex.normalized, maxBendDegrees * Mathf.Deg2Rad, 0f) * segmentLength;
+			}
+
             Vector2 newPos = prevPos + toVertex;
             ropeVertices[i] = newPos;
 
+            dir = (newPos - prevPos).normalized;
             prevPos = newPos;
 		}
 	}
