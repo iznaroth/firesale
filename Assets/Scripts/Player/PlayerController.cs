@@ -57,13 +57,8 @@ public class PlayerController : MonoBehaviour
     [Range(0f, 1f)] public float baseBounciness = 0.3f;
     [Range(0f, 1f)] public float maxBounciness = 0.63f;
     [Range(0f, 1f)] public float thudSoundThreshhold = 0.3f; // what percentage of max speed do we need to reach to play the thud sound
-<<<<<<< HEAD
     [Range(0f, 1f)] public float thudSoundBaseVolume = 0.02f;
     [Range(0f, 1f)] public float thudSoundMaxVolume = 0.1f; 
-=======
-    [Range(0f, 1f)] public float thudSoundBaseVolume = 0.1f;
-    [Range(0f, 1f)] public float thudSoundMaxVolume = 1;
->>>>>>> 255399a1a210b1bf45ce143a2db98102d6d9ca7d
     public float thudSoundPitchRandomRange = 0.65f;
 
     public PlayerAbility defaultAbility = PlayerAbility.YELL;
