@@ -279,7 +279,10 @@ public class DialogueManager : MonoBehaviour
         InputManager.PopActionMap();
         DialogueInteractionEnded?.Invoke();
 
-        ped?.TakeItem(pc.RemoveItem());
+        if (wonLastMicrogame)
+		{
+            ped?.TakeItem(pc.RemoveItem());
+        }
     }
 
     public void StartDialogueInteraction(GameObject newNPC, Start_Conditions wasStartedHow = Start_Conditions.Normal)

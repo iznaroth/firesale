@@ -24,6 +24,9 @@ public class TypewriterEffect : MonoBehaviour
 	[SerializeField] float speechPitch = 1;
 	[SerializeField] float speechPitchRandomizationRange = 0.25f;
 
+	Coroutine typewriterCoroutine;
+	Coroutine timeWaserCoroutine;
+
 	// Use this for initialization
 	void Start()
 	{
@@ -47,7 +50,12 @@ public class TypewriterEffect : MonoBehaviour
 		_tmpProText.text = "";
 		DialogueManager.newDialogueStarted = true;
 		Keyboard.current.onTextInput += SkipText;
-		StartCoroutine("TypeWriterTMP");
+		typewriterCoroutine = StartCoroutine("TypeWriterTMP");
+	}
+
+	private void OnDestroy()
+	{
+		Keyboard.current.onTextInput -= SkipText;
 	}
 
 	public void ChangeSoundSettings(AudioClip newSpeechSound, float newSpeechVolume, float newSpeechPitch, float newSpeechPitchRandomizationRange)
@@ -62,13 +70,21 @@ public class TypewriterEffect : MonoBehaviour
     {
 		if (skippable)
 		{
-			StopCoroutine("TypeWriterTMP");
-			Keyboard.current.onTextInput -= SkipText;
-			_tmpProText.text = currentText;
-			if(delayAfterEnd != 0)
-            {
-				StartCoroutine("TimeWaster");
-            }
+			if (typewriterCoroutine != null)
+			{
+				StopCoroutine(typewriterCoroutine);
+				typewriterCoroutine = null;
+			}
+
+			if (delayAfterEnd >= 0)
+			{
+				timeWaserCoroutine = StartCoroutine("TimeWaster");
+			}
+			else
+			{
+				Keyboard.current.onTextInput -= SkipText;
+				_tmpProText.text = currentText;
+			}
 		}
 	}
 
@@ -129,11 +145,17 @@ public class TypewriterEffect : MonoBehaviour
 		yield return new WaitForSeconds(delayAfterEnd);
 		DialogueManager.newDialogueStarted = false;
 		Keyboard.current.onTextInput -= SkipText;
+
+		typewriterCoroutine = null;
 	}
 	IEnumerator TimeWaster()
 	{
+		Keyboard.current.onTextInput -= SkipText;
+		_tmpProText.text = currentText;
 		yield return new WaitForSeconds(delayAfterEnd);
 		DialogueManager.newDialogueStarted = false;
+
+		timeWaserCoroutine = null;
 	}
 
 
