@@ -438,6 +438,7 @@ public class PlayerController : MonoBehaviour
 
     private void PickUp(InputAction.CallbackContext context)
     {
+        Debug.Log("Test");
         NearestItemCheck();
         if (closestItem != null)
         {
