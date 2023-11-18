@@ -202,6 +202,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Submit",
+                    "type": "Button",
+                    "id": "e3e1fb14-2170-4959-9712-b412755c845a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -224,6 +233,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b66970ac-4819-4ab7-b41c-b2de6e9c4e88",
+                    "path": "<Keyboard>/{Submit}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Kbm",
+                    "action": "Submit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

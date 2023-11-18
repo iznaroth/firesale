@@ -21,6 +21,7 @@ public enum EInGameAction
 public enum EMinigameAction
 {
     SELECT,
+    SUBMIT,
 
 }
 
@@ -66,6 +67,7 @@ public class InputManager : MonoBehaviour
     static Dictionary<EMinigameAction, string> minigameActionNames = new Dictionary<EMinigameAction, string>
     {
         { EMinigameAction.SELECT, "Select" },
+        { EMinigameAction.SUBMIT, "Submit" },
     };
 
     static Dictionary<EUIAction, string> uiActionNames = new Dictionary<EUIAction, string>

@@ -713,6 +713,7 @@ MonoBehaviour:
   - "...@#&$. Ow\u2026 Watch where you\u2019re skating creep!"
   - AEKGASGHH... <b>I CAN'T FEEL MY LEGS</b>
   - Please don't hurt me.
+  - are.... ARE THOSE $&!$ING ROCKETS?!?!
   customerChancesRange: {x: 2, y: 2}
   customerDifficultyRange: {x: 2, y: 2}
   currencyCounterAnimationFrameRate: 30
@@ -3136,7 +3137,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 1048.1799, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &634347142987339589
@@ -4509,7 +4510,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 32, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &3951222387867545511
@@ -4703,6 +4704,8 @@ MonoBehaviour:
   timerText: {fileID: 4753118928122341971}
   AllMicrogames:
   - {fileID: 7741748080109840330, guid: 468ea2b0c61416a41a3ddff7595e8c07, type: 3}
+  - {fileID: 8717636992302519228, guid: 15031247892598449854648414adb930, type: 3}
+  - {fileID: 5783405490777962800, guid: d5a49bdbe38cece408d8dd9558b7ee8a, type: 3}
   winPhrases:
   - Great Job!
   - Wonderful!
