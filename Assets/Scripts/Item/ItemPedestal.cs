@@ -86,10 +86,8 @@ public class ItemPedestal : MonoBehaviour
         } else {
             if (pl != null && isClosest){
                 Vector3 hold = this.storedItem.transform.position;
-                this.storedItem.transform.position = toSwap.transform.position;
-                toSwap.transform.position = hold;
 
-                toSwap.transform.SetParent(this.gameObject.transform);
+                this.storedItem.transform.position = toSwap.transform.position;
                 this.storedItem.transform.SetParent(pl.gameObject.transform);
 
                 Item pickedItem = storedItem.GetComponent<Item>();
@@ -99,10 +97,16 @@ public class ItemPedestal : MonoBehaviour
                 }
 
                 pl.setHolding(this.storedItem);
-                this.storedItem = toSwap;
-                this.storedItem.transform.eulerAngles = new Vector3(0, 0, this.storedItem.GetComponent<Item>().spritePedestalRotation);
-                nameplate.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "-" + storedItem.GetComponent<Item>().curioName + "-\n-" + storedItem.GetComponent<Item>().value + "-";
                 //disable animation clip
+
+                if (toSwap != null)
+				{
+                    toSwap.transform.SetParent(this.gameObject.transform);
+                    toSwap.transform.eulerAngles = new Vector3(0, 0, this.storedItem.GetComponent<Item>().spritePedestalRotation);
+                    toSwap.transform.position = hold;
+                }
+                this.storedItem = toSwap;
+                nameplate.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "-" + storedItem.GetComponent<Item>().curioName + "-\n-" + storedItem.GetComponent<Item>().value + "-";
             }
         }
     }

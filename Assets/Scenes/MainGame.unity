@@ -93809,6 +93809,10 @@ PrefabInstance:
       propertyPath: skating
       value: 
       objectReference: {fileID: 8300000, guid: a50598b238e1f1d45b4d6a427e2f464a, type: 3}
+    - target: {fileID: 2674160242445267128, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
+      propertyPath: defaultAbility
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3248619308902045473, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
       propertyPath: m_audioClip
       value: 

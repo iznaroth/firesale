@@ -535,7 +535,15 @@ public class PlayerController : MonoBehaviour
 		}
 
         Transform item = holding.transform;
-        holding = null;
+
+        holding = new GameObject();
+        holding.transform.parent = holdAnchor;
+        holding.transform.localPosition = Vector3.zero;
+        holding.AddComponent<SpriteRenderer>();
+        Item heldItem = holding.AddComponent<Item>();
+        heldItem.curioName = "";
+        heldItem.value = 0;
+
         return item;
 	}
 

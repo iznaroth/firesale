@@ -6037,7 +6037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotSpeed: 25
-  maxDist: 10
+  maxDist: 25
   retractSpeed: 50
   grappleCooldown: 1
   startOffset: 1
@@ -6268,8 +6268,12 @@ MonoBehaviour:
   playerYellCooldown: 6
   holdAnchor: {fileID: 7314323440014131407}
   camera: {fileID: 0}
+  isPasswordSaved: 0
+  savedPassword: 
   skating: {fileID: 8300000, guid: a50598b238e1f1d45b4d6a427e2f464a, type: 3}
   thud: {fileID: 0}
+  screech: {fileID: 0}
+  isCoroutineRunning: 0
 --- !u!114 &1087557437383896256
 MonoBehaviour:
   m_ObjectHideFlags: 0
