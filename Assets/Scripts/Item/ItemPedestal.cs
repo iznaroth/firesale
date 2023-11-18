@@ -12,6 +12,7 @@ public class ItemPedestal : MonoBehaviour
     bool actionable = false;
     private PlayerController pl;
     private GameObject nameplate;
+    private string storedItemName;
 
     public float startDelay;
     public bool isClosest = false;
@@ -37,7 +38,7 @@ public class ItemPedestal : MonoBehaviour
 
     private void Update()
     {
-        if(isClosest && playerInRange && storedItem != null)
+        if(isClosest && playerInRange && storedItem != null && storedItemName != "")
         {
             nameplate.SetActive(true);
         }
@@ -107,6 +108,7 @@ public class ItemPedestal : MonoBehaviour
                 }
                 this.storedItem = toSwap;
                 nameplate.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "-" + storedItem.GetComponent<Item>().curioName + "-\n-" + storedItem.GetComponent<Item>().value + "-";
+                storedItemName = storedItem.GetComponent<Item>().curioName;
             }
         }
     }

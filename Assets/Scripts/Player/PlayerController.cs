@@ -472,7 +472,10 @@ public class PlayerController : MonoBehaviour
     }
 
     private void cancelPickup(InputAction.CallbackContext context) {
-        closestItem.gameObject.GetComponent<ItemPedestal>().flagPickup(false);
+        if(closestItem != null)
+        {
+            closestItem.gameObject.GetComponent<ItemPedestal>().flagPickup(false);
+        }
     }
 
     public void setHolding(GameObject to) {

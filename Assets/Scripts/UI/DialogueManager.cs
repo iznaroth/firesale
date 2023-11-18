@@ -206,6 +206,7 @@ public class DialogueManager : MonoBehaviour
             default:
                 break;
         }
+        Debug.Log("currentDialogue");
     }
 
     private void WarningTimer()
@@ -295,6 +296,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (!isThisEvenActive) 
         {
+            Debug.Log("Started Dialogue");
             startCondition = wasStartedHow;
             GameManager.SpawnAudio(startDialogueSound, 1, 1, this.transform.position);
             PedestrianAI newPed = newNPC.GetComponent<PedestrianAI>();
@@ -318,7 +320,7 @@ public class DialogueManager : MonoBehaviour
             InputManager.PushActionMap(EActionMap.MINIGAME);
         }
     }
-    public void StartDialogueInteraction(GameObject newNPC)
+/*    public void StartDialogueInteraction(GameObject newNPC)
     {
         if (!isThisEvenActive)
         {
@@ -343,7 +345,7 @@ public class DialogueManager : MonoBehaviour
             CutIn();
             InputManager.PushActionMap(EActionMap.MINIGAME);
         }
-    }
+    }*/
 
     private void PickRandomCustomerPortrait()
     {
