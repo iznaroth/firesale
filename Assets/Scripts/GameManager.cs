@@ -28,9 +28,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         totalTime = totalGameTime;
-        timeRemaining = totalGameTime;
+        timeRemaining = 15; //totalGameTime;
         hpRemaining = 100;
         currentIncome = 666;
+        curiosRemaining = 20;
         //Player = FindAnyObjectByType<PlayerController>().gameObject;
     }
     private void OnEnable()

@@ -37,9 +37,9 @@ public class MainMenuManager : MonoBehaviour
             victory.SetActive(GameManager.didWin);
             defeat.SetActive(!GameManager.didWin);
 
-            timeLeft.text = GameManager.finalTime;
-            money.text = GameManager.finalBalance;
-            relicsLeft = """A shiver runs down your spine. Without warning, you find yourself standing in a limitless void of pitch darkness .""" + GameManager.finalCurios + """ curios remain unsold, their curses still weighing on your soul. Suddenly, you feel something tapping on your shoulder...""";
+            timeLeft.text = "" +  GameManager.finalTime;
+            money.text =  "" + GameManager.finalBalance;
+            relicsLeft.text = "A shiver runs down your spine. Without warning, you find yourself standing in a limitless void of pitch darkness ." + GameManager.finalCurios + " curios remain unsold, their curses still weighing on your soul. Suddenly, you feel something tapping on your shoulder...";
 
         }
 

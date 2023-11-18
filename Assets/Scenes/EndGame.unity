@@ -1009,11 +1009,11 @@ MonoBehaviour:
   nextScene: MainGame
   playingStartup: 0
   isEndscreen: 1
-  victory: {fileID: 0}
-  defeat: {fileID: 0}
-  timeLeft: {fileID: 0}
-  money: {fileID: 0}
-  relicsLeft: {fileID: 0}
+  victory: {fileID: 975052575}
+  defeat: {fileID: 737738891}
+  timeLeft: {fileID: 2096290438}
+  money: {fileID: 1338551926}
+  relicsLeft: {fileID: 1696128835}
 --- !u!114 &1196585261
 MonoBehaviour:
   m_ObjectHideFlags: 0
