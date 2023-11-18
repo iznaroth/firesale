@@ -8,4 +8,8 @@ PhysicsMaterial2D:
   m_PrefabAsset: {fileID: 0}
   m_Name: Bouncy
   friction: 0
+<<<<<<< HEAD
   bounciness: 0.25758255
+=======
+  bounciness: 0.25355673
+>>>>>>> 3606ad88bb1df77bb1df05f3283ab959de282fb4
