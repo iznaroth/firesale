@@ -271,10 +271,15 @@ public class DialogueManager : MonoBehaviour
         {
             currentNPC.GetComponent<SpeechBubble>().OpenSpeechBubble(customerRefusedBarks[Random.Range(0, customerRefusedBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"), 5);
         }
-        currentNPC.GetComponent<PedestrianAI>()?.UnFreeze();
-        GameManager.Player.GetComponent<PlayerController>()?.UnFreeze();
+        PedestrianAI ped = currentNPC.GetComponent<PedestrianAI>();
+        ped?.UnFreeze();
+        PlayerController pc = GameManager.Player.GetComponent<PlayerController>();
+        pc?.UnFreeze();
+
         InputManager.PopActionMap();
         DialogueInteractionEnded?.Invoke();
+
+        ped?.TakeItem(pc.RemoveItem());
     }
 
     public void StartDialogueInteraction(GameObject newNPC, Start_Conditions wasStartedHow = Start_Conditions.Normal)

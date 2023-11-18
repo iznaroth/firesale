@@ -10,6 +10,8 @@ public class CameraRoomChange : MonoBehaviour
     public bool hidesShop = false;
     public bool isShop = false;
     public SpriteRenderer sRend;
+    
+    private bool isCoroutineRunning = false;
 
     //private void Start()
     //{
@@ -53,16 +55,32 @@ public class CameraRoomChange : MonoBehaviour
     }
 
     private IEnumerator HideShop(){
+
+        if(isCoroutineRunning){
+            yield break;
+        }
+
+        isCoroutineRunning = true;
         while(sRend.color.a < 1f){
             sRend.color = new Color(sRend.color.r, sRend.color.g, sRend.color.b, sRend.color.a + 0.05f);
             yield return new WaitForSeconds(0.01f);
         }
+
+        isCoroutineRunning = false;
     }
 
     private IEnumerator ShowShop(){
+        
+        if(isCoroutineRunning){
+            yield break;
+        }
+
+        isCoroutineRunning = true;
         while(sRend.color.a > 0f){
             sRend.color = new Color(sRend.color.r, sRend.color.g, sRend.color.b, sRend.color.a - 0.05f);
             yield return new WaitForSeconds(0.01f);
         }
+
+        isCoroutineRunning = false;
     }
 }
