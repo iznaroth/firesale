@@ -57,8 +57,8 @@ public class PlayerController : MonoBehaviour
     [Range(0f, 1f)] public float baseBounciness = 0.3f;
     [Range(0f, 1f)] public float maxBounciness = 0.63f;
     [Range(0f, 1f)] public float thudSoundThreshhold = 0.3f; // what percentage of max speed do we need to reach to play the thud sound
-    [Range(0f, 1f)] public float thudSoundBaseVolume = 0.1f;
-    [Range(0f, 1f)] public float thudSoundMaxVolume = 1;
+    [Range(0f, 1f)] public float thudSoundBaseVolume = 0.02f;
+    [Range(0f, 1f)] public float thudSoundMaxVolume = 0.1f; 
     public float thudSoundPitchRandomRange = 0.65f;
 
     public PlayerAbility defaultAbility = PlayerAbility.YELL;
@@ -93,6 +93,8 @@ public class PlayerController : MonoBehaviour
     public string savedPassword;
     public AudioClip skating;
     public AudioClip thud;
+
+    public bool isCoroutineRunning = false;
 
     private static Dictionary<PlayerAbility, string> PlayerAbilityDisplayNames = new Dictionary<PlayerAbility, string>
     {
@@ -282,11 +284,11 @@ public class PlayerController : MonoBehaviour
                 physMat.bounciness = maxBounciness * (vel.magnitude / speedLimit);
             }
 
-            if ((vel.magnitude / speedLimit) >= thudSoundThreshhold)
+            if ((vel.magnitude / speedLimit) >= thudSoundThreshhold && !isCoroutineRunning)
             {
-                audioSource.volume = thudSoundMaxVolume * (vel.magnitude / speedLimit);
+                audioSource.volume = Mathf.Min(thudSoundBaseVolume * (vel.magnitude / speedLimit), thudSoundMaxVolume);
             }
-            else
+            else if(!isCoroutineRunning)
             {
                 audioSource.volume = thudSoundBaseVolume;
             }
@@ -306,15 +308,15 @@ public class PlayerController : MonoBehaviour
 
         //Debug.Log(body.velocity);
 
-        if(body.velocity.magnitude > 0f && !audioSource.isPlaying){
+        if(body.velocity.sqrMagnitude > 0.1f && !audioSource.isPlaying){
             audioSource.clip = this.skating;
             audioSource.Play();
             audioSource.loop = true;
             
         }
 
-        if(body.velocity.magnitude == 0f){
-            audioSource.Stop();
+        if(body.velocity.sqrMagnitude <= 0.15f && !isCoroutineRunning && audioSource.isPlaying){
+            StartCoroutine(FadeOut(audioSource, 0.1f));
         }
     }
 
@@ -328,8 +330,8 @@ public class PlayerController : MonoBehaviour
             moveVector = Vector2.zero;
         }
         body.sharedMaterial = physMat;
-        audioSource.pitch = 1 + Random.Range(-thudSoundPitchRandomRange, thudSoundPitchRandomRange);
-        if (collision.gameObject.GetComponent<Rigidbody2D>() != null)
+        //audioSource.pitch = 1 + Random.Range(-thudSoundPitchRandomRange, thudSoundPitchRandomRange);
+        if(collision.gameObject.GetComponent<Rigidbody2D>() != null)
         {
             collision.gameObject.GetComponent<Rigidbody2D>().velocity = body.velocity / 0.25f;
         }
@@ -541,4 +543,19 @@ public class PlayerController : MonoBehaviour
         currentAbility = newAbility;
         DialogueManager.SetAbilityName(PlayerAbilityDisplayNames[newAbility]);
 	}
+
+    public IEnumerator FadeOut (AudioSource audioSource, float FadeTime) {
+        isCoroutineRunning = true;
+        float startVolume = audioSource.volume;
+ 
+        while (audioSource.volume > 0) {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+ 
+            yield return null;
+        }
+ 
+        audioSource.Stop ();
+        audioSource.volume = startVolume;
+        isCoroutineRunning = false;
+    }
 }

@@ -52,6 +52,11 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.LoadSceneAsync(nextScene);
     }
 
+    public void SwitchScenesDirect(string name)
+    {
+        SceneManager.LoadSceneAsync(nextScene);
+    }
+
     public void QuitGame()
     {
         Application.Quit();
