@@ -23,7 +23,7 @@ public class ItemPedestal : MonoBehaviour
     
     void Awake(){
         PlayerController.interactEvent += PickUp;
-        paEvent += disableOnOtherPickup;
+        if(isPowerup){paEvent += disableOnOtherPickup;}
         StartCoroutine(animOffset());
         nameplate = GetComponentInChildren<Canvas>().gameObject;
         nameplate.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "-" + storedItem.GetComponent<Item>().name + "-\n-" + storedItem.GetComponent<Item>().value + "-";
@@ -48,7 +48,7 @@ public class ItemPedestal : MonoBehaviour
         if(col.gameObject.tag == "Player"){ //using name here is bad, use tags
             pl = col.gameObject.GetComponent<PlayerController>();
             string flexchar = isPowerup ? "- COST: $" : "-";
-            nameplate.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = flexchar + storedItem.GetComponent<Item>().name + "-\n-" + storedItem.GetComponent<Item>().value + "-";
+            nameplate.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "-" + storedItem.GetComponent<Item>().name + "-\n" + flexchar + storedItem.GetComponent<Item>().value + "-";
             playerInRange = true;
             //interactIcon.SetActive(true);
         }
@@ -69,7 +69,7 @@ public class ItemPedestal : MonoBehaviour
         if(isPowerup){
             //Take powerup
             if(GameManager.currentIncome >= storedItem.GetComponent<Item>().value){
-                switch(storedItem.GetComponent<Item>().name){
+                switch(storedItem.GetComponent<Item>().curioName){
                     case "Grappling Hook":
                         this.pl.SetAbility(PlayerAbility.GRAPPLE_HOOK);
                         break;
@@ -78,7 +78,9 @@ public class ItemPedestal : MonoBehaviour
                         break;
                 }
 
+                Debug.Log(GameManager.currentIncome);
                 GameManager.currentIncome -= storedItem.GetComponent<Item>().value;
+                Debug.Log(GameManager.currentIncome);
                 //fire acquisition sfx
                 paEvent?.Invoke(); //kill all other powerups
 
