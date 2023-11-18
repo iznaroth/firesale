@@ -18,6 +18,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject customerTextbox;  // these maybe just need to be the typewriter effects tbh
     public GameObject playerTextbox;    // these maybe just need to be the typewriter effects tbh
     public Image customerImage;
+    public Sprite[] customerImages;
     public MicrogameManager microgameManager;
     public Slider healthbar;
     public TextMeshProUGUI moneyText;
@@ -341,7 +342,7 @@ public class DialogueManager : MonoBehaviour
 
     private void PickRandomCustomerPortrait()
     {
-
+        customerImage.sprite = customerImages[Random.Range(0, customerImages.Length)];
     }
 
     private void PickRandomCustomerName()

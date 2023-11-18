@@ -580,6 +580,27 @@ MonoBehaviour:
   customerTextbox: {fileID: 8808549247041730200}
   playerTextbox: {fileID: 6410977054262400308}
   customerImage: {fileID: 6079803354048864163}
+  customerImages:
+  - {fileID: 21300000, guid: 37f15ed241ce3ad429710d7f90c59567, type: 3}
+  - {fileID: 21300000, guid: 4195d4d1320cceb40b26614773b6e912, type: 3}
+  - {fileID: 21300000, guid: e445440edf00c2c4bb85a743bf74a253, type: 3}
+  - {fileID: 21300000, guid: fc3f482311f7b3243bae933b288a5890, type: 3}
+  - {fileID: 21300000, guid: 0ae98e660d8a8b0498209cc836f82f76, type: 3}
+  - {fileID: 21300000, guid: 32dd869a250f6ce44af047b39d077c9e, type: 3}
+  - {fileID: 21300000, guid: 4719a69e7f9a9454787cc970c8166aa8, type: 3}
+  - {fileID: 21300000, guid: aa3c1a7737279234d9aa77c360cdc0da, type: 3}
+  - {fileID: 21300000, guid: c02f38ab4bbbe7a4b8c308e6588bc784, type: 3}
+  - {fileID: 21300000, guid: a90f8b5d37d7c5343b86e8b4b5d23715, type: 3}
+  - {fileID: 21300000, guid: 125b269372501df42abf685c4adda245, type: 3}
+  - {fileID: 21300000, guid: d49b55aa803511542a030688141d80ce, type: 3}
+  - {fileID: 21300000, guid: 2ec4597350c6f044ba26f8955de06ad2, type: 3}
+  - {fileID: 21300000, guid: 774c24a06a950fe489747a588678faa3, type: 3}
+  - {fileID: 21300000, guid: 526117f33ffb2a74eb563afa4a2a048d, type: 3}
+  - {fileID: 21300000, guid: 8898edc40b847a144a1ad02e850f14c0, type: 3}
+  - {fileID: 21300000, guid: 3b720039b06a3e542916a84c4d90977c, type: 3}
+  - {fileID: 21300000, guid: 88c86dae293d7194e90efa5d4ca0fb23, type: 3}
+  - {fileID: 21300000, guid: e07932efb65bae84097eb6529fe75807, type: 3}
+  - {fileID: 21300000, guid: 7ec2bc925cef951479cab24dc5286671, type: 3}
   microgameManager: {fileID: 3158080493879675986}
   healthbar: {fileID: 7623659255882991824}
   moneyText: {fileID: 5654118429730094929}
