@@ -301,6 +301,12 @@ MonoBehaviour:
   maxForceStrength: 30
   pointAvoidanceStrenth: 10
   obstacleForceCurlAmt: 0.581
+  speechSounds:
+  - {fileID: 8300000, guid: eb91b7294266e7844b1ae8d2ebd5e875, type: 3}
+  speechSound: {fileID: 0}
+  speechVolume: 1
+  speechPitch: 1
+  speechPitchRandomizationRange: 0.25
 --- !u!114 &5358431438193188435
 MonoBehaviour:
   m_ObjectHideFlags: 0
