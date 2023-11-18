@@ -93,6 +93,7 @@ public class PlayerController : MonoBehaviour
     public string savedPassword;
     public AudioClip skating;
     public AudioClip thud;
+    public AudioClip screech;
 
     public bool isCoroutineRunning = false;
 

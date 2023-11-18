@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -17,27 +18,47 @@ public class MainMenuManager : MonoBehaviour
     public string nextScene = "";
     public bool playingStartup;
 
+    public bool isEndscreen;
+
+    public GameObject victory;
+    public GameObject defeat;
+
+    public TextMeshProUGUI timeLeft;
+    public TextMeshProUGUI money;
+    public TextMeshProUGUI relicsLeft;
+
     // Start is called before the first frame update
     void Awake()
     {
         startupDone = false;
         startButton.enabled = true;
+
+        if(isEndscreen){
+            victory.SetActive(GameManager.didWin);
+            defeat.SetActive(!GameManager.didWin);
+        }
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!playingStartup) { SetHandPosition(); }
-        if (startupDone)
-        {
-            startupDone = false;
-            SwitchScenes();
+        if(!isEndscreen){
+            if (!playingStartup) { SetHandPosition(); }
+            if (startupDone)
+            {
+                startupDone = false;
+                SwitchScenes();
+            }
         }
     }
 
     public void PlayAnimation()
     {
-        this.GetComponentInChildren<Animation>().Play();
+        if(!isEndscreen){
+            this.GetComponentInChildren<Animation>().Play();
+        }
     }
 
     public void SetHandPosition()
@@ -54,11 +75,13 @@ public class MainMenuManager : MonoBehaviour
 
     public void SwitchScenesDirect(string name)
     {
+        Debug.Log("Hello??");
         SceneManager.LoadSceneAsync(nextScene);
     }
 
     public void QuitGame()
     {
+        Debug.Log("Button?");
         Application.Quit();
     }
 }

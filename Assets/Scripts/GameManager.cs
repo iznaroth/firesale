@@ -16,6 +16,11 @@ public class GameManager : MonoBehaviour
     public float totalGameTime = 900;
     public GameObject AudioPrefab;
 
+    public static bool didWin;
+    public static float finalTime;
+    public static float finalBalance;
+    public static int finalCurios;
+
     public delegate void NewAudioSource(AudioClip newClip, float volumeScaler, float newPitch, Vector3 position);
     public static event NewAudioSource newAudioEvent;
     // Start is called before the first frame update
@@ -46,15 +51,20 @@ public class GameManager : MonoBehaviour
         }    
         if(timeRemaining < 0)
         {
-            EndGame();
+            EndGame(false);
         }
     }
 
 
-    public void EndGame()
+    public void EndGame(bool winOrLose)
     {
         Debug.Log("GAME OVER");
         //go to stats screen
+        finalTime = timeRemaining;
+        finalBalance = currentIncome;
+        finalCurios = curiosRemaining;
+        didWin = winOrLose;
+        SceneManager.LoadSceneAsync("EndGame");
     }
 
     public void StartGame()

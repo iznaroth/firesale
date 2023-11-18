@@ -25,6 +25,7 @@ public class ItemPedestal : MonoBehaviour
 
     public Slider buyItemSlider;
     public GameObject soldPrefab;
+    public GameObject noMoneyPrefab;
     
     void Awake(){
         PlayerController.interactEvent += PickUp;
