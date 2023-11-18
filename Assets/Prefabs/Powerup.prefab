@@ -680,18 +680,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5717207737253005625}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.24787118}
-  m_LocalScale: {x: 0.0625, y: 0.0625, z: 0.3125}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.3125}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6987567337097658708}
   - {fileID: 54839094763661579}
   m_Father: {fileID: 1032320181384095555}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.82, y: -5.64}
+  m_AnchoredPosition: {x: -0.07, y: -3.65}
   m_SizeDelta: {x: 80, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7641615309495564698
@@ -741,7 +741,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -782,7 +782,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 2}
+  m_AnchoredPosition: {x: 0, y: 2.37}
   m_SizeDelta: {x: 11.1033, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7644215143375561179
@@ -901,7 +901,9 @@ MonoBehaviour:
   startDelay: 0
   isClosest: 0
   isPowerup: 1
-  buyItemSlider: {fileID: 0}
+  pickingUp: 0
+  buyItemSlider: {fileID: 7641615309495564698}
+  soldPrefab: {fileID: 7404287441917505424, guid: 954bfe9941065bf45ac0a8bab41e0571, type: 3}
 --- !u!61 &7567805359523316496
 BoxCollider2D:
   m_ObjectHideFlags: 0
