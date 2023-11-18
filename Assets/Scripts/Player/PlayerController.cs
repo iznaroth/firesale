@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public enum PlayerAbility
 {
@@ -47,6 +48,9 @@ public class PlayerController : MonoBehaviour
     public float rocketBoostCooldown = 10f;
     public float rocketBoostMaxSpeed = 40f;
     public float rocketBoostAccel = 40f;
+    public GameObject rocketBoostCanvas;
+    public Slider boostSlider;
+    public ParticleSystem flameParticles;
 
     [Header("Physics Variables")]
     [Range(0f, 1f)] public float bouncinessEnableThreshhold = 0.4f; // what percentage of max speed do we need to reach start to increase bounciness
@@ -126,6 +130,8 @@ public class PlayerController : MonoBehaviour
         audioSource = this.GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        rocketBoostCanvas.SetActive(false);
+        flameParticles.Stop();
 
         moveAction.performed += OnMove;
         moveAction.canceled += OnMove;
@@ -229,6 +235,12 @@ public class PlayerController : MonoBehaviour
 			{
                 rocketBoosting = false;
                 timeToNextRocketBoost = Time.time + rocketBoostCooldown;
+                rocketBoostCanvas.SetActive(false);
+                flameParticles.Stop();
+			}
+            else
+			{
+                boostSlider.value = rocketBoostRemaining / rocketBoostDuration;
 			}
 		}
         else if (!cantMove)
@@ -390,6 +402,9 @@ public class PlayerController : MonoBehaviour
 				}
                 rocketBoosting = true;
                 rocketBoostRemaining = rocketBoostDuration;
+                rocketBoostCanvas.SetActive(true);
+                flameParticles.Play();
+                boostSlider.value = 1f;
                 
                 break;
         }
