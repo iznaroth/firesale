@@ -12,12 +12,10 @@ public class MainMenuManager : MonoBehaviour
     public Button startButton;
 
     public float handSpeed = 1;
-    public float faceLimit = 10;
 
     public bool startupDone = false;
     public string nextScene = "";
     public bool playingStartup;
-    private int textIndex = 0;
 
     // Start is called before the first frame update
     void Awake()
@@ -52,5 +50,10 @@ public class MainMenuManager : MonoBehaviour
     public void SwitchScenes()
     {
         SceneManager.LoadSceneAsync(nextScene);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
