@@ -6255,7 +6255,7 @@ MonoBehaviour:
   rocketBoostAccel: 40
   rocketBoostCanvas: {fileID: 782937759480122371}
   boostSlider: {fileID: 347787383440765116}
-  flameParticles: {fileID: 2266127926004004951}
+  flameParticles: {fileID: 8170301061812154108}
   bouncinessEnableThreshhold: 0.4
   baseBounciness: 0.2
   maxBounciness: 0.63
