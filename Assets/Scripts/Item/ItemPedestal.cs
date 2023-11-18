@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class ItemPedestal : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class ItemPedestal : MonoBehaviour
 
     public delegate void PowerupAcquireEvent();
     public static event PowerupAcquireEvent paEvent;
+
+    public Slider buyItemSlider;
     
     void Awake(){
         PlayerController.interactEvent += PickUp;

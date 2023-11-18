@@ -420,6 +420,9 @@ public class DialogueManager : MonoBehaviour
         int currentVal = GameManager.currentIncome;
         int stepAmount;
 
+        Debug.Log("IN DM: " + currentVal);
+        Debug.Log("TRACK: " + currentTrackedIncome);
+
         if (currentVal - currentTrackedIncome < 0)
         {
             stepAmount = Mathf.FloorToInt((currentVal - currentTrackedIncome) / (currencyCounterAnimationFrameRate * currencyCounterAnimationMaxDuration));
@@ -428,6 +431,8 @@ public class DialogueManager : MonoBehaviour
         {
             stepAmount = Mathf.CeilToInt((currentVal - currentTrackedIncome) / (currencyCounterAnimationFrameRate * currencyCounterAnimationMaxDuration));
         }
+
+        stepAmount = Mathf.Abs(stepAmount); //WARNING
 
         if(currentTrackedIncome < currentVal)
         {
@@ -446,6 +451,7 @@ public class DialogueManager : MonoBehaviour
         {
             while (currentTrackedIncome > currentVal)
             {
+                Debug.Log("Subtracting! " + stepAmount);
                 currentTrackedIncome -= stepAmount;
                 if (currentTrackedIncome < currentVal)
                 {
@@ -457,6 +463,8 @@ public class DialogueManager : MonoBehaviour
         }
         currentTrackedIncome = currentVal;
         changingIncomeValue = false;
+
+        Debug.Log(currentTrackedIncome);
     }
 
     public static T GetRandomEnum<T>()
