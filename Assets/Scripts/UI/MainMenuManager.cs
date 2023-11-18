@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,7 @@ public class MainMenuManager : MonoBehaviour
 {
     public GameObject faceImage;
     public GameObject handImage;
+    public Button startButton;
 
     public float handSpeed = 1;
     public float faceLimit = 10;
@@ -15,11 +17,13 @@ public class MainMenuManager : MonoBehaviour
     public bool startupDone = false;
     public string nextScene = "";
     public bool playingStartup;
+    private int textIndex = 0;
 
     // Start is called before the first frame update
     void Awake()
     {
-        startupDone = false;   
+        startupDone = false;
+        startButton.enabled = true;
     }
 
     // Update is called once per frame
