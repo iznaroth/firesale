@@ -481,6 +481,18 @@ public class PlayerController : MonoBehaviour
         return holding.GetComponent<Item>()?.curioName.Length > 0;
 	}
 
+    public Transform RemoveItem()
+	{
+        if (holding == null)
+		{
+            return null;
+		}
+
+        Transform item = holding.transform;
+        holding = null;
+        return item;
+	}
+
     public void SetAbility(PlayerAbility newAbility)
 	{
         currentAbility = newAbility;

@@ -17,6 +17,7 @@ public class PedestrianAI : MonoBehaviour
     public float speedVariation = 1f;
     public LayerMask viewMask;
     public GameObject actionBubble;
+    public Transform itemHoldParent;
 
     [Header("Force Settings")]
     public float goalForceStrength = 5f;
@@ -44,6 +45,8 @@ public class PedestrianAI : MonoBehaviour
     List<PathingNode> path = new List<PathingNode>();
     bool frozen = false;
     bool actionBubbleShown = false;
+    Transform heldItem;
+    AvoidPoint heldRepulsor;
 
     // Start is called before the first frame update
     void Start()
@@ -99,6 +102,16 @@ public class PedestrianAI : MonoBehaviour
             Destroy(this);
         }
     }
+
+    public void TakeItem(Transform item)
+	{
+        if (item == null) return;
+
+        item.parent = itemHoldParent;
+        heldItem = item;
+        heldRepulsor = item.GetComponent<AvoidPoint>();
+        item.localPosition = Vector2.zero;
+	}
 
     public void Freeze(bool showActionBubble = true)
 	{
@@ -250,6 +263,8 @@ public class PedestrianAI : MonoBehaviour
         List<AvoidPoint> pointAvoiders = PedestrianManager.GetAvoidancePoints();
         foreach (AvoidPoint avoid in pointAvoiders)
         {
+            if (avoid == heldRepulsor) continue;
+
             Vector2 offset = transform.position - avoid.transform.position; // pointing TO player since we wwanna avoid it
             float sqrDist = offset.sqrMagnitude;
             float dist = offset.magnitude;
