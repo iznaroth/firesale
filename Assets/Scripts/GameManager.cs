@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,11 @@ public class GameManager : MonoBehaviour
     public static float totalTime = 900;
     public float totalGameTime = 900;
     public GameObject AudioPrefab;
+
+    public static bool didWin;
+    public static float finalTime;
+    public static float finalBalance;
+    public static float finalCurios;
 
     public delegate void NewAudioSource(AudioClip newClip, float volumeScaler, float newPitch, Vector3 position);
     public static event NewAudioSource newAudioEvent;
@@ -46,15 +52,20 @@ public class GameManager : MonoBehaviour
         }    
         if(timeRemaining < 0)
         {
-            EndGame();
+            EndGame(false);
         }
     }
 
 
-    public void EndGame()
+    public void EndGame(bool winOrLose)
     {
         Debug.Log("GAME OVER");
         //go to stats screen
+        finalTime = timeRemaining;
+        finalBalance = currentIncome;
+        finalCurios = curiosRemaining;
+        didWin = winOrLose;
+        SceneManager.LoadSceneAsync("EndGame");
     }
 
     public void StartGame()
