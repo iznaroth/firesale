@@ -485,7 +485,7 @@ public class PlayerController : MonoBehaviour
         to.transform.position = holdAnchor.position;
         to.transform.eulerAngles = new Vector3(0, 0, to.GetComponent<Item>().spriteHoldRotation);
         //to.transform.rotation = new Quaternion(0, 0, 45, 0); // What the fuck are you doing here jonas????
-        DialogueManager.currentCurio = this.holding.GetComponent<Item>().name;
+        DialogueManager.currentCurio = this.holding.GetComponent<Item>().curioName;
     }
 
     public Sprite GiveNPCItem()
