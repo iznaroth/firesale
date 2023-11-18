@@ -71,6 +71,11 @@ public class StartInteraction : MonoBehaviour
 			return;
 		}
 
+		if (DialogueManager.IsInDialogue())
+		{
+			return;
+		}
+
 		if (interactedWith.Contains(collision.gameObject))
 		{
 			return;

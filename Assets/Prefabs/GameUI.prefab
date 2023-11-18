@@ -4703,9 +4703,7 @@ MonoBehaviour:
   timerBar: {fileID: 7819778409347173326}
   timerText: {fileID: 4753118928122341971}
   AllMicrogames:
-  - {fileID: 7741748080109840330, guid: 468ea2b0c61416a41a3ddff7595e8c07, type: 3}
-  - {fileID: 8717636992302519228, guid: 15031247892598449854648414adb930, type: 3}
-  - {fileID: 5783405490777962800, guid: d5a49bdbe38cece408d8dd9558b7ee8a, type: 3}
+  - {fileID: 1511335603083440334, guid: 7442520656ef8324fa14370b9252eb28, type: 3}
   winPhrases:
   - Great Job!
   - Wonderful!

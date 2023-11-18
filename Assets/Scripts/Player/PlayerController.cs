@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
     [Range(0f, 1f)] public float maxBounciness = 0.63f;
     [Range(0f, 1f)] public float thudSoundThreshhold = 0.3f; // what percentage of max speed do we need to reach to play the thud sound
     [Range(0f, 1f)] public float thudSoundBaseVolume = 0.1f;
-    [Range(0f, 1f)] public float thudSoundMaxVolume = 1; 
+    [Range(0f, 1f)] public float thudSoundMaxVolume = 1;
     public float thudSoundPitchRandomRange = 0.65f;
 
     public PlayerAbility defaultAbility = PlayerAbility.YELL;
@@ -88,6 +88,10 @@ public class PlayerController : MonoBehaviour
 
     public static bool inShop = false;
 
+    [HideInInspector]
+    public bool isPasswordSaved = false;
+    public string savedPassword;
+
     private static Dictionary<PlayerAbility, string> PlayerAbilityDisplayNames = new Dictionary<PlayerAbility, string>
     {
         { PlayerAbility.YELL, "YELL" },
@@ -112,15 +116,15 @@ public class PlayerController : MonoBehaviour
     float timeToNextYell;
     Vector2 rocketBoostDir;
     FacingDir playerDirection = FacingDir.DOWN;
-/*    bool m_Started = false;*/
+    /*    bool m_Started = false;*/
 
-	private void Awake()
-	{
+    private void Awake()
+    {
         GameManager.Player = this.gameObject;
         holding = this.GetComponentInChildren<Item>().gameObject;
-	}
+    }
 
-	void Start()
+    void Start()
     {
         // find the "move" action, and keep the reference to it, for use in Update
         moveAction = InputManager.GetInputAction(EInGameAction.MOVE);
@@ -154,35 +158,35 @@ public class PlayerController : MonoBehaviour
 
         float charge;
         switch (currentAbility)
-		{
+        {
             case PlayerAbility.GRAPPLE_HOOK:
                 DialogueManager.SetAbilityCooldown(GrappleHookController.instance.GetNormallizedCharge());
                 break;
             case PlayerAbility.YELL:
                 charge = 1f;
                 if (Time.time < timeToNextYell)
-				{
+                {
                     charge -= (timeToNextYell - Time.time) / playerYellCooldown;
-				}
+                }
                 DialogueManager.SetAbilityCooldown(charge);
                 break;
             case PlayerAbility.ROCKET_BOOST:
                 charge = 1f;
                 if (Time.time < timeToNextRocketBoost)
-				{
+                {
                     charge -= (timeToNextRocketBoost - Time.time) / rocketBoostCooldown;
-				}
+                }
                 else if (rocketBoosting)
-				{
+                {
                     charge = 0f;
-				}
+                }
                 DialogueManager.SetAbilityCooldown(charge);
                 break;
         }
     }
 
     public void Freeze()
-	{
+    {
         if (frozen) return;
 
         body.velocity = Vector2.zero;
@@ -190,18 +194,18 @@ public class PlayerController : MonoBehaviour
         moveVector = Vector2.zero;
 
         frozen = true;
-	}
+    }
 
     public void UnFreeze()
-	{
+    {
         if (!frozen) return;
 
         body.simulated = true;
 
         frozen = false;
-	}
+    }
 
-    private void FixedUpdate(){
+    private void FixedUpdate() {
         //
         // float velX = Mathf.Clamp(body.velocity.x + (moveVector.x * accelRate), -speedLimit, speedLimit);
         // float velY = Mathf.Clamp(body.velocity.y + (moveVector.y * accelRate), -speedLimit, speedLimit);
@@ -211,19 +215,19 @@ public class PlayerController : MonoBehaviour
         }
 
         if (!cantMove && rocketBoosting && !frozen)
-		{
+        {
             /*Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 forceDir = mousePos - (Vector2)transform.position;
             forceDir.Normalize();*/
             if (moveVector.normalized.magnitude > 0.9f)
-			{
+            {
                 rocketBoostDir = moveVector.normalized;
             }
 
             if (rocketBoostDir.magnitude < 0.9f)
-			{
+            {
                 rocketBoostDir = Directions[playerDirection];
-			}
+            }
 
             Vector2 vel = body.velocity;
             vel += rocketBoostDir * rocketBoostAccel * Time.deltaTime;
@@ -233,17 +237,17 @@ public class PlayerController : MonoBehaviour
 
             rocketBoostRemaining -= Time.deltaTime;
             if (rocketBoostRemaining < 0f)
-			{
+            {
                 rocketBoosting = false;
                 timeToNextRocketBoost = Time.time + rocketBoostCooldown;
                 rocketBoostCanvas.SetActive(false);
                 flameParticles.Stop();
-			}
+            }
             else
-			{
+            {
                 boostSlider.value = rocketBoostRemaining / rocketBoostDuration;
-			}
-		}
+            }
+        }
         else if (!cantMove)
         {
             Vector2 vel = body.velocity;
@@ -256,7 +260,7 @@ public class PlayerController : MonoBehaviour
 
             if (moveVector.sqrMagnitude < 0.1f)
             {
-                float slowdownAmt = (inShop? shopDecelRate : decelRate) * Time.deltaTime; // fixed wrong delta time, shouldn't have used fixedDeltaTime like that
+                float slowdownAmt = (inShop ? shopDecelRate : decelRate) * Time.deltaTime; // fixed wrong delta time, shouldn't have used fixedDeltaTime like that
                 slowdownAmt = Mathf.Min(slowdownAmt, vel.magnitude);
 
                 vel -= slowdownAmt * vel.normalized;
@@ -303,7 +307,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if((body.velocity.magnitude / speedLimit) >= thudSoundThreshhold && !inShop) // player crashed at a high speed, disable controls to make them bounce
+        if ((body.velocity.magnitude / speedLimit) >= thudSoundThreshhold && !inShop) // player crashed at a high speed, disable controls to make them bounce
         {
             cantMove = true;
             StartCoroutine("MoveDelay");
@@ -311,7 +315,7 @@ public class PlayerController : MonoBehaviour
         }
         body.sharedMaterial = physMat;
         audioSource.pitch = 1 + Random.Range(-thudSoundPitchRandomRange, thudSoundPitchRandomRange);
-        if(collision.gameObject.GetComponent<Rigidbody2D>() != null)
+        if (collision.gameObject.GetComponent<Rigidbody2D>() != null)
         {
             collision.gameObject.GetComponent<Rigidbody2D>().velocity = body.velocity / 0.25f;
         }
@@ -319,10 +323,10 @@ public class PlayerController : MonoBehaviour
 
 
     private void OnMove(InputAction.CallbackContext context)
-	{
+    {
         Vector2 input = context.ReadValue<Vector2>();
 
-        if (!cantMove) 
+        if (!cantMove)
         {
             input.Normalize();
             moveVector = input;
@@ -330,7 +334,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void UpdateAnimatorBools()
-	{
+    {
         Vector2 dir = rocketBoosting ? rocketBoostDir : moveVector;
 
         animator.SetBool("hasItem", IsHolding());
@@ -369,47 +373,47 @@ public class PlayerController : MonoBehaviour
     }
 
     void SetFacingDir(FacingDir newDir)
-	{
+    {
         if (newDir == playerDirection) return;
 
         playerDirection = newDir;
         OnPlayerChangeDirection?.Invoke(playerDirection);
-	}
+    }
 
     private void OnAbility(InputAction.CallbackContext context)
-	{
-		switch (currentAbility)
-		{
-			case PlayerAbility.YELL:
+    {
+        switch (currentAbility)
+        {
+            case PlayerAbility.YELL:
                 if (Time.time < timeToNextYell) return;
 
                 SpeechBubble bubble = GetComponent<SpeechBubble>();
                 if (bubble != null)
-				{
+                {
                     string text = DialogueManager.instance.playerYells[Random.Range(0, DialogueManager.instance.playerYells.Length)];
                     bubble.OpenSpeechBubble(text, playerYellDuration);
                     pedRepulsor.enabled = true;
                     pedRepulsor.RemoveAfterSec(playerYellDuration);
                     timeToNextYell = Time.time + playerYellCooldown;
-				}
+                }
                 break;
             case PlayerAbility.GRAPPLE_HOOK:
                 GrappleHookController.instance?.DeployHook();
                 break;
-			case PlayerAbility.ROCKET_BOOST:
+            case PlayerAbility.ROCKET_BOOST:
                 if (frozen || rocketBoosting || Time.time < timeToNextRocketBoost)
-				{
+                {
                     break;
-				}
+                }
                 rocketBoosting = true;
                 rocketBoostRemaining = rocketBoostDuration;
                 rocketBoostCanvas.SetActive(true);
                 flameParticles.Play();
                 boostSlider.value = 1f;
-                
+
                 break;
         }
-	}
+    }
 
     private void NearestItemCheck()
     {
@@ -450,11 +454,11 @@ public class PlayerController : MonoBehaviour
         //interactEvent?.Invoke(holding);
     }
 
-    private void cancelPickup(InputAction.CallbackContext context){
+    private void cancelPickup(InputAction.CallbackContext context) {
         closestItem.gameObject.GetComponent<ItemPedestal>().flagPickup(false);
     }
 
-    public void setHolding(GameObject to){
+    public void setHolding(GameObject to) {
         this.holding = to;
         if (to.GetComponent<Animation>() != null)
         {
@@ -466,7 +470,7 @@ public class PlayerController : MonoBehaviour
         //to.transform.rotation = new Quaternion(0, 0, 45, 0); // What the fuck are you doing here jonas????
         DialogueManager.currentCurio = this.holding.GetComponent<Item>().name;
     }
-    
+
     public Sprite GiveNPCItem()
     {
         if (holding != null)
@@ -494,11 +498,14 @@ public class PlayerController : MonoBehaviour
         }*/
 
     public bool IsHolding()
-	{
-        if (holding == null)
+    {
+        Item item = GetComponentInChildren<Item>();
+        if (item == null)
 		{
             return false;
 		}
+
+        holding = item.gameObject;
 
         return holding.GetComponent<Item>()?.curioName.Length > 0;
 	}

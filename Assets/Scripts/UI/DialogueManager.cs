@@ -483,4 +483,8 @@ public class DialogueManager : MonoBehaviour
 	{
         instance.AbilityCooldown.value = fillAmt;
 	}
+    public static bool IsInDialogue()
+	{
+        return instance.isThisEvenActive;
+	}
 }
