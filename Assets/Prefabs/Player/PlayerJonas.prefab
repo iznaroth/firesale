@@ -458,7 +458,17 @@ MonoBehaviour:
   segments: 25
   totalLength: 4
   spawnDirection: {x: 0, y: -1}
-  maxBendDegrees: 15
+  maxBendDegrees: 20
+  downRootPos: {x: 0, y: 0.042}
+  downDirection: {x: 0, y: -1}
+  downSortOrder: 2
+  rightRootPos: {x: 0.2, y: 0.15}
+  rightDirection: {x: 1, y: 0}
+  rightSortOrder: 2
+  upRootPos: {x: 0, y: 0.042}
+  upDirection: {x: 0, y: -1}
+  upSortOrder: -1
+  listenForPlayerDirection: 1
 --- !u!1 &2898456378456485455
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,6 +623,16 @@ MonoBehaviour:
   totalLength: 1.5
   spawnDirection: {x: 0, y: 1}
   maxBendDegrees: 10
+  downRootPos: {x: 0.076, y: 0.815}
+  downDirection: {x: 0, y: 1}
+  downSortOrder: 1
+  rightRootPos: {x: 0.076, y: 0.815}
+  rightDirection: {x: 0, y: 1}
+  rightSortOrder: 1
+  upRootPos: {x: 0.076, y: 0.815}
+  upDirection: {x: 0, y: 1}
+  upSortOrder: 1
+  listenForPlayerDirection: 1
 --- !u!1 &3641036807371931106
 GameObject:
   m_ObjectHideFlags: 0
@@ -888,6 +908,7 @@ GameObject:
   - component: {fileID: 3248619308902045473}
   - component: {fileID: 3101825667903874092}
   - component: {fileID: 1115688522819505287}
+  - component: {fileID: 3382541755393239179}
   m_Layer: 10
   m_Name: PlayerJonas
   m_TagString: Player
@@ -996,6 +1017,7 @@ MonoBehaviour:
   shopSpeedLimit: 15
   shopAccelRate: 20
   shopDecelRate: 10
+  idleInputDeadzone: 0.1
   bouncinessEnableThreshhold: 0.4
   baseBounciness: 0.2
   maxBounciness: 0.63
@@ -1222,3 +1244,24 @@ MonoBehaviour:
   avoidStrength: 20
   pedSpeedMultiplier: 4
   pedSpeedInfluenceDistance: 10
+--- !u!95 &3382541755393239179
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8118839963843011988}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1c533dd70b7db894798a07b38ec33264, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

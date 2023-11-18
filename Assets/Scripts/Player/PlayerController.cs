@@ -3,12 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using UnityEngine.Events;
 
 public enum PlayerAbility
 {
     YELL,
     GRAPPLE_HOOK,
     ROCKET_BOOST,
+}
+
+public enum FacingDir
+{
+    UP,
+    RIGHT,
+    DOWN,
+    LEFT
 }
 
 public class PlayerController : MonoBehaviour
@@ -33,6 +42,7 @@ public class PlayerController : MonoBehaviour
     public float shopSpeedLimit;
     public float shopAccelRate;
     public float shopDecelRate;
+    public float idleInputDeadzone = 0.1f;
 
     [Header("Physics Variables")]
     [Range(0f, 1f)] public float bouncinessEnableThreshhold = 0.4f; // what percentage of max speed do we need to reach start to increase bounciness
@@ -55,6 +65,8 @@ public class PlayerController : MonoBehaviour
     private GameObject closestItem;
     private PlayerAbility currentAbility = PlayerAbility.YELL;
     private AvoidPoint pedRepulsor;
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     private InputAction pickupAction;
 
@@ -63,10 +75,12 @@ public class PlayerController : MonoBehaviour
 
     public Transform holdAnchor;
     public CinemachineVirtualCamera camera;
+    public UnityAction<FacingDir> OnPlayerChangeDirection;
 
     public static bool inShop = false;
 
     bool frozen = false;
+    FacingDir playerDirection = FacingDir.DOWN;
 /*    bool m_Started = false;*/
 
 	private void Awake()
@@ -83,6 +97,8 @@ public class PlayerController : MonoBehaviour
         body = this.GetComponent<Rigidbody2D>();
         physMat = body.sharedMaterial;
         audioSource = this.GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         moveAction.performed += OnMove;
         moveAction.canceled += OnMove;
@@ -98,6 +114,8 @@ public class PlayerController : MonoBehaviour
     {
         // our update loop polls the "move" action value each frame
         // moveVector = moveAction.ReadValue<Vector2>();
+
+        UpdateAnimatorBools();
     }
 
     public void Freeze()
@@ -205,8 +223,58 @@ public class PlayerController : MonoBehaviour
 
     private void OnMove(InputAction.CallbackContext context)
 	{
-        if (!cantMove) { moveVector = context.ReadValue<Vector2>().normalized; }
+        Vector2 input = context.ReadValue<Vector2>();
 
+        if (!cantMove) 
+        {
+            input.Normalize();
+            moveVector = input;
+        }
+    }
+
+    void UpdateAnimatorBools()
+	{
+        animator.SetBool("hasItem", IsHolding());
+        animator.SetBool("isIdle", frozen || moveVector.magnitude < idleInputDeadzone);
+
+        if (moveVector.y > 0.5f)
+        {
+            animator.SetBool("up", true);
+            animator.SetBool("down", false);
+            animator.SetBool("right", false);
+            SetFacingDir(FacingDir.UP);
+        }
+        else if (moveVector.y < -0.5f)
+        {
+            animator.SetBool("up", false);
+            animator.SetBool("down", true);
+            animator.SetBool("right", false);
+            SetFacingDir(FacingDir.DOWN);
+        }
+        else if (moveVector.x > 0.5f)
+        {
+            animator.SetBool("up", false);
+            animator.SetBool("down", false);
+            animator.SetBool("right", true);
+            spriteRenderer.flipX = false;
+            SetFacingDir(FacingDir.RIGHT);
+        }
+        else if (moveVector.x < -0.5f)
+        {
+            animator.SetBool("up", false);
+            animator.SetBool("down", false);
+            animator.SetBool("right", true);
+            spriteRenderer.flipX = true;
+            SetFacingDir(FacingDir.LEFT);
+        }
+    }
+
+    void SetFacingDir(FacingDir newDir)
+	{
+        if (newDir == playerDirection) return;
+
+        playerDirection = newDir;
+        OnPlayerChangeDirection?.Invoke(playerDirection);
 	}
 
     private void OnAbility(InputAction.CallbackContext context)
