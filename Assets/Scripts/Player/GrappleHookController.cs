@@ -81,9 +81,9 @@ public class GrappleHookController : MonoBehaviour
         shotDir.Normalize();
 
         Vector2 startPos = (Vector2)grappleRoot.position + shotDir * startOffset;
+        Rigidbody2D rb = grappleHead.GetComponent<Rigidbody2D>();
         grappleHead.gameObject.SetActive(true);
         grappleHead.transform.position = startPos;
-        grappleHead.transform.up = shotDir;
 
         lineRenderer.positionCount = 2;
 
@@ -153,7 +153,9 @@ public class GrappleHookController : MonoBehaviour
 
     void UpdateShooting()
 	{
-        grappleHead.transform.position += (Vector3)shotDir * shotSpeed * Time.deltaTime;
+        Vector2 newPos = grappleHead.transform.position + (Vector3)shotDir * shotSpeed * Time.deltaTime;
+        grappleHead.transform.position = newPos;
+
         UpdateView();
 
         float length = Vector2.Distance(grappleHead.transform.position, grappleRoot.position);

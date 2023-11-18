@@ -13,7 +13,12 @@ public class GrappleHookHead : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		PedestrianAI ped = collision.gameObject.GetComponent<PedestrianAI>();
+		HandleCollision(collision.collider);
+	}
+
+	void HandleCollision(Collider2D collider)
+	{
+		PedestrianAI ped = collider.GetComponent<PedestrianAI>();
 
 		if (ped == null)
 		{
