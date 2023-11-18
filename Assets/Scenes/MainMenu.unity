@@ -779,7 +779,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "  DEV TEAM:\n  Michael Boschwitz     Brett Schumacher \n  Jonas Bull    
-    Ava Smith\n  Audrey Gasser "
+    Ava Smith\n     Audrey Gasser     Kerri Newcomer"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 99514c0e4e3bd9f469eb9d9728df9159, type: 2}
   m_sharedMaterial: {fileID: 7295620250318039537, guid: 99514c0e4e3bd9f469eb9d9728df9159, type: 2}
@@ -2198,6 +2198,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: '|
+
+    |
 
     |'
   m_isRightToLeft: 0
