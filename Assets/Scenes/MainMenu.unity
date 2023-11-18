@@ -1544,7 +1544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   faceImage: {fileID: 824373194}
   handImage: {fileID: 1916236326}
-  startButton: {fileID: 0}
+  startButton: {fileID: 767959773}
   handSpeed: 1
   startupDone: 0
   nextScene: MainGame
