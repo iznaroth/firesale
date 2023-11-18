@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
 public class PedestrianManager : MonoBehaviour
 {
     public static PedestrianManager instance;
@@ -15,7 +14,6 @@ public class PedestrianManager : MonoBehaviour
     public Vector2 spawnTimeBounds;
 
     List<PedestrianAI> currentPedestrians = new List<PedestrianAI>();
-    Collider2D levelBounds;
     float nextSpawnAttempt;
 
     private void Awake()
@@ -28,8 +26,6 @@ public class PedestrianManager : MonoBehaviour
         }
 
         instance = this;
-
-        levelBounds = GetComponent<Collider2D>();
     }
 
     private void OnDestroy()

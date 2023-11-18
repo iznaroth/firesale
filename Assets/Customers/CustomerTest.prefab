@@ -318,8 +318,8 @@ MonoBehaviour:
   rotationRoot: {fileID: 8430107335865062588}
   maxSpeed: 2
   startSpeed: 1
-  minMiddleNodes: 0
-  maxmiddleNodes: 2
+  minMiddleNodes: 1
+  maxmiddleNodes: 4
   pedRadius: 1
   speedVariation: 1
   viewMask:
