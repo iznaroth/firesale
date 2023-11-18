@@ -43,6 +43,10 @@ public class PlayerController : MonoBehaviour
     public float shopAccelRate;
     public float shopDecelRate;
     public float idleInputDeadzone = 0.1f;
+    public float rocketBoostDuration = 5f;
+    public float rocketBoostCooldown = 10f;
+    public float rocketBoostMaxSpeed = 40f;
+    public float rocketBoostAccel = 40f;
 
     [Header("Physics Variables")]
     [Range(0f, 1f)] public float bouncinessEnableThreshhold = 0.4f; // what percentage of max speed do we need to reach start to increase bounciness
@@ -55,6 +59,7 @@ public class PlayerController : MonoBehaviour
 
     public PlayerAbility defaultAbility = PlayerAbility.YELL;
     public float playerYellDuration = 5f;
+    public float playerYellCooldown = 6f;
 
     private Rigidbody2D body;
     private AudioSource audioSource;
@@ -79,7 +84,29 @@ public class PlayerController : MonoBehaviour
 
     public static bool inShop = false;
 
+    private static Dictionary<PlayerAbility, string> PlayerAbilityDisplayNames = new Dictionary<PlayerAbility, string>
+    {
+        { PlayerAbility.YELL, "YELL" },
+        { PlayerAbility.ROCKET_BOOST, "ROCKET BOOTS" },
+        { PlayerAbility.GRAPPLE_HOOK, "GRAPPLE HOOK" },
+
+    };
+
+    private static Dictionary<FacingDir, Vector2> Directions = new Dictionary<FacingDir, Vector2>
+    {
+        { FacingDir.DOWN, Vector2.down },
+        { FacingDir.LEFT, Vector2.left },
+        { FacingDir.RIGHT, Vector2.right },
+        { FacingDir.UP, Vector2.up },
+
+    };
+
     bool frozen = false;
+    bool rocketBoosting = false;
+    float timeToNextRocketBoost;
+    float rocketBoostRemaining;
+    float timeToNextYell;
+    Vector2 rocketBoostDir;
     FacingDir playerDirection = FacingDir.DOWN;
 /*    bool m_Started = false;*/
 
@@ -105,8 +132,9 @@ public class PlayerController : MonoBehaviour
         pickupAction.performed += PickUp;
         InputManager.GetInputAction(EInGameAction.ABILITY).started += OnAbility;
 
-        currentAbility = defaultAbility;
         pedRepulsor = GetComponent<AvoidPoint>();
+
+        SetAbility(defaultAbility);
 
         //m_Started = true;
     }
@@ -116,6 +144,34 @@ public class PlayerController : MonoBehaviour
         // moveVector = moveAction.ReadValue<Vector2>();
 
         UpdateAnimatorBools();
+
+        float charge;
+        switch (currentAbility)
+		{
+            case PlayerAbility.GRAPPLE_HOOK:
+                DialogueManager.SetAbilityCooldown(GrappleHookController.instance.GetNormallizedCharge());
+                break;
+            case PlayerAbility.YELL:
+                charge = 1f;
+                if (Time.time < timeToNextYell)
+				{
+                    charge -= (timeToNextYell - Time.time) / playerYellCooldown;
+				}
+                DialogueManager.SetAbilityCooldown(charge);
+                break;
+            case PlayerAbility.ROCKET_BOOST:
+                charge = 1f;
+                if (Time.time < timeToNextRocketBoost)
+				{
+                    charge -= (timeToNextRocketBoost - Time.time) / rocketBoostCooldown;
+				}
+                else if (rocketBoosting)
+				{
+                    charge = 0f;
+				}
+                DialogueManager.SetAbilityCooldown(charge);
+                break;
+        }
     }
 
     public void Freeze()
@@ -147,7 +203,35 @@ public class PlayerController : MonoBehaviour
             NearestItemCheck();
         }
 
-        if (!cantMove)
+        if (!cantMove && rocketBoosting && !frozen)
+		{
+            /*Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 forceDir = mousePos - (Vector2)transform.position;
+            forceDir.Normalize();*/
+            if (moveVector.normalized.magnitude > 0.9f)
+			{
+                rocketBoostDir = moveVector.normalized;
+            }
+
+            if (rocketBoostDir.magnitude < 0.9f)
+			{
+                rocketBoostDir = Directions[playerDirection];
+			}
+
+            Vector2 vel = body.velocity;
+            vel += rocketBoostDir * rocketBoostAccel * Time.deltaTime;
+            vel = Vector2.ClampMagnitude(vel, rocketBoostMaxSpeed);
+
+            body.velocity = vel;
+
+            rocketBoostRemaining -= Time.deltaTime;
+            if (rocketBoostRemaining < 0f)
+			{
+                rocketBoosting = false;
+                timeToNextRocketBoost = Time.time + rocketBoostCooldown;
+			}
+		}
+        else if (!cantMove)
         {
             Vector2 vel = body.velocity;
             float applyTurnaround = 0f;
@@ -234,24 +318,26 @@ public class PlayerController : MonoBehaviour
 
     void UpdateAnimatorBools()
 	{
-        animator.SetBool("hasItem", IsHolding());
-        animator.SetBool("isIdle", frozen || moveVector.magnitude < idleInputDeadzone);
+        Vector2 dir = rocketBoosting ? rocketBoostDir : moveVector;
 
-        if (moveVector.y > 0.5f)
+        animator.SetBool("hasItem", IsHolding());
+        animator.SetBool("isIdle", frozen || dir.magnitude < idleInputDeadzone);
+
+        if (dir.y > 0.5f)
         {
             animator.SetBool("up", true);
             animator.SetBool("down", false);
             animator.SetBool("right", false);
             SetFacingDir(FacingDir.UP);
         }
-        else if (moveVector.y < -0.5f)
+        else if (dir.y < -0.5f)
         {
             animator.SetBool("up", false);
             animator.SetBool("down", true);
             animator.SetBool("right", false);
             SetFacingDir(FacingDir.DOWN);
         }
-        else if (moveVector.x > 0.5f)
+        else if (dir.x > 0.5f)
         {
             animator.SetBool("up", false);
             animator.SetBool("down", false);
@@ -259,7 +345,7 @@ public class PlayerController : MonoBehaviour
             spriteRenderer.flipX = false;
             SetFacingDir(FacingDir.RIGHT);
         }
-        else if (moveVector.x < -0.5f)
+        else if (dir.x < -0.5f)
         {
             animator.SetBool("up", false);
             animator.SetBool("down", false);
@@ -282,6 +368,8 @@ public class PlayerController : MonoBehaviour
 		switch (currentAbility)
 		{
 			case PlayerAbility.YELL:
+                if (Time.time < timeToNextYell) return;
+
                 SpeechBubble bubble = GetComponent<SpeechBubble>();
                 if (bubble != null)
 				{
@@ -289,13 +377,20 @@ public class PlayerController : MonoBehaviour
                     bubble.OpenSpeechBubble(text, playerYellDuration);
                     pedRepulsor.enabled = true;
                     pedRepulsor.RemoveAfterSec(playerYellDuration);
+                    timeToNextYell = Time.time + playerYellCooldown;
 				}
                 break;
             case PlayerAbility.GRAPPLE_HOOK:
                 GrappleHookController.instance?.DeployHook();
                 break;
 			case PlayerAbility.ROCKET_BOOST:
-                print("ROCKET TIME");
+                if (frozen || rocketBoosting || Time.time < timeToNextRocketBoost)
+				{
+                    break;
+				}
+                rocketBoosting = true;
+                rocketBoostRemaining = rocketBoostDuration;
+                
                 break;
         }
 	}
@@ -384,5 +479,11 @@ public class PlayerController : MonoBehaviour
 		}
 
         return holding.GetComponent<Item>()?.curioName.Length > 0;
+	}
+
+    public void SetAbility(PlayerAbility newAbility)
+	{
+        currentAbility = newAbility;
+        DialogueManager.SetAbilityName(PlayerAbilityDisplayNames[newAbility]);
 	}
 }

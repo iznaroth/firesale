@@ -9,6 +9,7 @@ public class CameraRoomChange : MonoBehaviour
     public GameObject virtualCam;
     public bool hidesShop = false;
     public bool isShop = false;
+    public SpriteRenderer sRend;
 
     //private void Start()
     //{
@@ -20,7 +21,8 @@ public class CameraRoomChange : MonoBehaviour
         if (collision.CompareTag("Player") && !collision.isTrigger)
         {
             virtualCam.SetActive(true);
-            if (hidesShop){ HideShop(); }
+            if (hidesShop){ StartCoroutine(HideShop()); }
+            else { StartCoroutine(ShowShop()); }
             PlayerController.inShop = isShop;
         }
     }
@@ -30,7 +32,8 @@ public class CameraRoomChange : MonoBehaviour
         if (collision.CompareTag("Player") && !collision.isTrigger)
         {
             virtualCam.SetActive(true);
-            if (hidesShop) { HideShop(); }
+            if (hidesShop) { StartCoroutine(HideShop()); }
+            else { StartCoroutine(ShowShop()); }
             PlayerController.inShop = isShop;
         }
     }
@@ -40,7 +43,8 @@ public class CameraRoomChange : MonoBehaviour
         if (collision.CompareTag("Player") && !collision.isTrigger)
         {
             virtualCam.SetActive(false);
-            if (hidesShop) { HideShop(); }
+            if (hidesShop) { StartCoroutine(HideShop()); }
+            else { StartCoroutine(ShowShop()); }
             if (isShop)
             {
                 PlayerController.inShop = false;
@@ -48,8 +52,17 @@ public class CameraRoomChange : MonoBehaviour
         }
     }
 
-    private void HideShop()
-    {
-        // hide shop anim goes here
+    private IEnumerator HideShop(){
+        while(sRend.color.a < 1f){
+            sRend.color = new Color(sRend.color.r, sRend.color.g, sRend.color.b, sRend.color.a + 0.05f);
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
+
+    private IEnumerator ShowShop(){
+        while(sRend.color.a > 0f){
+            sRend.color = new Color(sRend.color.r, sRend.color.g, sRend.color.b, sRend.color.a - 0.05f);
+            yield return new WaitForSeconds(0.01f);
+        }
     }
 }
