@@ -169,22 +169,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2071452976}
     m_Modifications:
-    - target: {fileID: 22592512388606138, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 71921874111903821, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
-      propertyPath: m_Color.b
-      value: 0.08018869
-      objectReference: {fileID: 0}
-    - target: {fileID: 71921874111903821, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
-      propertyPath: m_Color.g
-      value: 0.08018869
-      objectReference: {fileID: 0}
-    - target: {fileID: 71921874111903821, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 44305715f7a73f04d9b555662391c38d, type: 3}
     - target: {fileID: 1004057517067692825, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -258,24 +246,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 44305715f7a73f04d9b555662391c38d, type: 3}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: curioName
+      value: Bottomless Bag
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: spriteHoldRotation
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5246369397627457890, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_Name
       value: ItemPedestal (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5246369397627457890, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 5246369397627457890, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5333663696489671036, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
-      propertyPath: startDelay
-      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -90106,6 +90090,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2071452976}
     m_Modifications:
+    - target: {fileID: 71921874111903821, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f3769cdf96724d248a29418ea34506e0, type: 3}
+    - target: {fileID: 71921874111903821, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 71921874111903821, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 71921874111903821, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1004057517067692825, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -90184,7 +90184,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: curioName
-      value: Sword
+      value: Cursed Spellbook
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: spriteHoldRotation
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5246369397627457890, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_Name
@@ -90355,6 +90359,128 @@ MonoBehaviour:
   isExit: 1
   nodeRadius: 1.02
   debugDraw: 1
+--- !u!1001 &558212050
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2071452976}
+    m_Modifications:
+    - target: {fileID: 22592512388606138, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 71921874111903821, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3cb681a49d1369f46aacc3f030653ee1, type: 3}
+    - target: {fileID: 1004057517067692825, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004057517067692825, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004057517067692825, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004057517067692825, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004057517067692825, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 174.835
+      objectReference: {fileID: 0}
+    - target: {fileID: 1004057517067692825, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541202787247678178, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541202787247678178, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541202787247678178, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541202787247678178, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541202787247678178, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541202787247678178, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541202787247678178, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541202787247678178, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541202787247678178, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541202787247678178, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287230977565269449, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287230977565269449, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: value
+      value: 380
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: curioName
+      value: Cursed Key
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: spriteHoldRotation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246369397627457890, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_Name
+      value: ItemPedestal (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246369397627457890, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246369397627457890, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+--- !u!4 &558212051 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1541202787247678178, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+  m_PrefabInstance: {fileID: 558212050}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &628582405
 GameObject:
   m_ObjectHideFlags: 0
@@ -92372,6 +92498,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 71921874111903821, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b6d8fe9767b1b674f99e9cb879c31fc1, type: 3}
     - target: {fileID: 1004057517067692825, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -92442,6 +92572,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3287230977565269449, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: value
+      value: 380
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: curioName
+      value: Cursed Pickaxe
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: spriteHoldRotation
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5246369397627457890, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
@@ -93722,8 +93864,12 @@ PrefabInstance:
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 71921874111903821, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a63e33726611ef546a712753fe6e8b93, type: 3}
+    - target: {fileID: 71921874111903821, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 71921874111903821, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_Color.g
@@ -93731,7 +93877,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 71921874111903821, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_Color.r
-      value: 0.92176676
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1004057517067692825, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_AnchorMax.y
@@ -93803,6 +93949,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3287230977565269449, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: value
+      value: 650
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: curioName
+      value: Cursed Orb
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: spriteHoldRotation
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5246369397627457890, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
@@ -97109,6 +97267,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 71921874111903821, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3cb681a49d1369f46aacc3f030653ee1, type: 3}
     - target: {fileID: 1004057517067692825, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -97179,6 +97341,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3287230977565269449, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: value
+      value: 380
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: curioName
+      value: Cursed Key
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: spriteHoldRotation
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5246369397627457890, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
@@ -106490,16 +106664,20 @@ PrefabInstance:
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 71921874111903821, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 79477f830c71c0041b0c8dbd31e62eaf, type: 3}
+    - target: {fileID: 71921874111903821, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 71921874111903821, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_Color.g
-      value: 0.71495414
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 71921874111903821, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1004057517067692825, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_AnchorMax.y
@@ -106574,8 +106752,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: curioName
+      value: Cursed Boots
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: spriteHoldRotation
-      value: -90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5246369397627457890, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_Name
@@ -106667,6 +106849,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 71921874111903821, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 17bc61585261595428440ba1f485bc5b, type: 3}
     - target: {fileID: 1004057517067692825, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -106737,6 +106923,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3287230977565269449, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: value
+      value: 265
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: curioName
+      value: Magic Magnifier
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: spriteHoldRotation
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5246369397627457890, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
@@ -106821,6 +107019,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 71921874111903821, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ed9e8fad3cdc39b4eb625b4fea7c5c4f, type: 3}
     - target: {fileID: 1004057517067692825, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -106891,6 +107093,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3287230977565269449, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: value
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: curioName
+      value: Cursed Box
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: spriteHoldRotation
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5246369397627457890, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
@@ -107170,6 +107384,7 @@ Transform:
   - {fileID: 1878719298}
   - {fileID: 2108842334}
   - {fileID: 1369384873}
+  - {fileID: 558212051}
   m_Father: {fileID: 2123802722}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2077416258
@@ -107184,6 +107399,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 71921874111903821, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 596da60a6567fd748a98defd2e8d2209, type: 3}
     - target: {fileID: 1004057517067692825, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -107256,6 +107475,18 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: value
+      value: 290
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: curioName
+      value: Daniel's Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: spriteHoldRotation
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5246369397627457890, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_Name
       value: ItemPedestal (3)
@@ -107290,6 +107521,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 71921874111903821, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c6727008d98d27e459f661b7f91acc3f, type: 3}
     - target: {fileID: 1004057517067692825, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -107360,6 +107595,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3287230977565269449, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: value
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: curioName
+      value: Strange Potion
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533880450779498628, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
+      propertyPath: spriteHoldRotation
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5246369397627457890, guid: e720bd408f8f4ca4a8687a46f90a3ab2, type: 3}
