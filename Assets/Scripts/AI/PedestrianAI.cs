@@ -14,6 +14,7 @@ public class PedestrianAI : MonoBehaviour
     public int minMiddleNodes = 0;
     public int maxmiddleNodes = 3;
     public float pedRadius = 1f;
+    public float speedVariation = 1f;
     public LayerMask viewMask;
     public GameObject actionBubble;
 
@@ -58,7 +59,8 @@ public class PedestrianAI : MonoBehaviour
 
         GeneratePath();
 
-        currentMaxSpeed = maxSpeed;
+        startSpeed = startSpeed +  Random.Range(0, speedVariation);
+        maxSpeed = maxSpeed + Random.Range(0, speedVariation * 2);
         speechSound = speechSounds[Random.Range(0, speechSounds.Length - 1)];
     }
 
