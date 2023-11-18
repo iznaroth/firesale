@@ -92321,6 +92321,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 91859387584755499, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
+      propertyPath: upRootPos.y
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 91859387584755499, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
+      propertyPath: downRootPos.y
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 91859387584755499, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
+      propertyPath: rightRootPos.y
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 385181183359968725, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 577800212477983785, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 1378183391674890506, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.878
+      objectReference: {fileID: 0}
     - target: {fileID: 1758739179858262635, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
       propertyPath: m_SpriteSortPoint
       value: 1
@@ -92333,13 +92357,21 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3484259630313210660, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 4047368123486737830, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.78
+      objectReference: {fileID: 0}
     - target: {fileID: 5818476852357469072, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
       propertyPath: m_Size.x
       value: 1.0556557
       objectReference: {fileID: 0}
     - target: {fileID: 5818476852357469072, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
       propertyPath: m_Size.y
-      value: 0.32008368
+      value: 0.33777267
       objectReference: {fileID: 0}
     - target: {fileID: 5818476852357469072, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
       propertyPath: m_Offset.x
@@ -92347,7 +92379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5818476852357469072, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
       propertyPath: m_Offset.y
-      value: -0.78953123
+      value: 0.20990792
       objectReference: {fileID: 0}
     - target: {fileID: 6229804925814251620, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -92388,6 +92420,26 @@ PrefabInstance:
     - target: {fileID: 6229804925814251620, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935928526163153193, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
+      propertyPath: upRootPos.y
+      value: 1.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935928526163153193, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
+      propertyPath: downRootPos.y
+      value: 1.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 6935928526163153193, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
+      propertyPath: rightRootPos.y
+      value: 1.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 7307282705557285661, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.045
+      objectReference: {fileID: 0}
+    - target: {fileID: 7314323440014131407, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.48
       objectReference: {fileID: 0}
     - target: {fileID: 8118839963843011988, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
       propertyPath: m_Name
@@ -96261,7 +96313,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!156049354 &1416267830
 Grid:
   m_ObjectHideFlags: 0
