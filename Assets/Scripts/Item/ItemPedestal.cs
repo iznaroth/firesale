@@ -121,7 +121,7 @@ public class ItemPedestal : MonoBehaviour
                     case "Grappling Hook":
                         this.pl.SetAbility(PlayerAbility.GRAPPLE_HOOK);
                         break;
-                    case "Rocket Boost":
+                    case "Rocket Boots":
                         this.pl.SetAbility(PlayerAbility.ROCKET_BOOST);
                         break;
                 }

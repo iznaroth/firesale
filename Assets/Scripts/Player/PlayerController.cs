@@ -88,6 +88,9 @@ public class PlayerController : MonoBehaviour
 
     public static bool inShop = false;
 
+    public AudioClip skating;
+    public AudioClip thud;
+
     private static Dictionary<PlayerAbility, string> PlayerAbilityDisplayNames = new Dictionary<PlayerAbility, string>
     {
         { PlayerAbility.YELL, "YELL" },
@@ -299,6 +302,17 @@ public class PlayerController : MonoBehaviour
         */
 
         //Debug.Log(body.velocity);
+
+        if(body.velocity.magnitude > 0f && !audioSource.isPlaying){
+            audioSource.clip = this.skating;
+            audioSource.Play();
+            audioSource.loop = true;
+            
+        }
+
+        if(body.velocity.magnitude == 0f){
+            audioSource.Stop();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -306,6 +320,7 @@ public class PlayerController : MonoBehaviour
         if((body.velocity.magnitude / speedLimit) >= thudSoundThreshhold && !inShop) // player crashed at a high speed, disable controls to make them bounce
         {
             cantMove = true;
+            GameManager.SpawnAudio(thud, audioSource.volume, 1 + Random.Range(-thudSoundPitchRandomRange, thudSoundPitchRandomRange),  this.transform.position); 
             StartCoroutine("MoveDelay");
             moveVector = Vector2.zero;
         }
