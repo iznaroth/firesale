@@ -47,13 +47,19 @@ public class PedestrianAI : MonoBehaviour
     bool actionBubbleShown = false;
     Transform heldItem;
     AvoidPoint heldRepulsor;
+    Animator animator;
+    SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
-        rb.velocity = transform.right * startSpeed;
+        Vector2 startVel = transform.right * startSpeed;
+        transform.right = Vector3.right;
+        rb.velocity = startVel;
 
         if (PedestrianManager.instance)
         {
@@ -141,6 +147,43 @@ public class PedestrianAI : MonoBehaviour
 		}
     }
 
+    void UpdateAnimatorBools()
+    {
+        if (animator == null) return;
+
+        Vector2 dir = rb.velocity.normalized;
+
+        animator.SetBool("hasItem", heldItem != null);
+        animator.SetBool("isIdle", rb.velocity.magnitude < 0.1f);
+
+        if (dir.y > 0.5f)
+        {
+            animator.SetBool("up", true);
+            animator.SetBool("down", false);
+            animator.SetBool("right", false);
+        }
+        else if (dir.y < -0.5f)
+        {
+            animator.SetBool("up", false);
+            animator.SetBool("down", true);
+            animator.SetBool("right", false);
+        }
+        else if (dir.x > 0.5f)
+        {
+            animator.SetBool("up", false);
+            animator.SetBool("down", false);
+            animator.SetBool("right", true);
+            spriteRenderer.flipX = false;
+        }
+        else if (dir.x < -0.5f)
+        {
+            animator.SetBool("up", false);
+            animator.SetBool("down", false);
+            animator.SetBool("right", true);
+            spriteRenderer.flipX = true;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -165,6 +208,7 @@ public class PedestrianAI : MonoBehaviour
         CalculateAndApplyForces();
 
         UpdateView();
+        UpdateAnimatorBools();
     }
 
     void UpdatePath()
