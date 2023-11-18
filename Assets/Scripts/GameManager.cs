@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class GameManager : MonoBehaviour
     public static bool didWin;
     public static float finalTime;
     public static float finalBalance;
-    public static int finalCurios;
+    public static float finalCurios;
 
     public delegate void NewAudioSource(AudioClip newClip, float volumeScaler, float newPitch, Vector3 position);
     public static event NewAudioSource newAudioEvent;

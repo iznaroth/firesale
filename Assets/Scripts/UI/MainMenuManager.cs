@@ -36,6 +36,13 @@ public class MainMenuManager : MonoBehaviour
         if(isEndscreen){
             victory.SetActive(GameManager.didWin);
             defeat.SetActive(!GameManager.didWin);
+
+            timeLeft.text = GameManager.finalTime;
+            money.text = GameManager.finalBalance;
+            relicsLeft = """A shiver runs down your spine. Without warning, you find yourself standing in a limitless void of pitch darkness .""" + GameManager.finalCurios + """ curios remain unsold, their curses still weighing on your soul.
+
+            Suddenly, you feel something tapping on your shoulder..."""
+
         }
 
         
@@ -48,6 +55,7 @@ public class MainMenuManager : MonoBehaviour
             if (!playingStartup) { SetHandPosition(); }
             if (startupDone)
             {
+                Debug.Log("Queue Sceneload Async");
                 startupDone = false;
                 SwitchScenes();
             }
@@ -75,13 +83,12 @@ public class MainMenuManager : MonoBehaviour
 
     public void SwitchScenesDirect(string name)
     {
-        Debug.Log("Hello??");
-        SceneManager.LoadSceneAsync(nextScene);
+
+        SceneManager.LoadSceneAsync(name);
     }
 
     public void QuitGame()
     {
-        Debug.Log("Button?");
         Application.Quit();
     }
 }
