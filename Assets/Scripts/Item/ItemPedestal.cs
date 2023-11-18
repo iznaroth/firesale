@@ -15,9 +15,15 @@ public class ItemPedestal : MonoBehaviour
     public float startDelay;
     public bool isClosest = false;
     private bool playerInRange = false;
+
+    public bool isPowerup;
+
+    public delegate void PowerupAcquireEvent();
+    public static event PowerupAcquireEvent paEvent;
     
     void Awake(){
         PlayerController.interactEvent += PickUp;
+        paEvent += disableOnOtherPickup;
         StartCoroutine(animOffset());
         nameplate = GetComponentInChildren<Canvas>().gameObject;
         nameplate.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "-" + storedItem.GetComponent<Item>().name + "-\n-" + storedItem.GetComponent<Item>().value + "-";
@@ -38,10 +44,11 @@ public class ItemPedestal : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        //Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
+        Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
         if(col.gameObject.tag == "Player"){ //using name here is bad, use tags
             pl = col.gameObject.GetComponent<PlayerController>();
-            nameplate.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "-" + storedItem.GetComponent<Item>().name + "-\n-" + storedItem.GetComponent<Item>().value + "-";
+            string flexchar = isPowerup ? "- COST: $" : "-";
+            nameplate.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = flexchar + storedItem.GetComponent<Item>().name + "-\n-" + storedItem.GetComponent<Item>().value + "-";
             playerInRange = true;
             //interactIcon.SetActive(true);
         }
@@ -56,20 +63,44 @@ public class ItemPedestal : MonoBehaviour
             playerInRange = false;
         }
     }
+
     public void PickUp(GameObject toSwap){
-        if (pl != null && isClosest){
-            Vector3 hold = this.storedItem.transform.position;
-            this.storedItem.transform.position = toSwap.transform.position;
-            toSwap.transform.position = hold;
+        //Wrap these in subfunctions
+        if(isPowerup){
+            //Take powerup
+            if(GameManager.currentIncome >= storedItem.GetComponent<Item>().value){
+                switch(storedItem.GetComponent<Item>().name){
+                    case "Grappling Hook":
+                        this.pl.SetAbility(PlayerAbility.GRAPPLE_HOOK);
+                        break;
+                    case "Rocket Boost":
+                        this.pl.SetAbility(PlayerAbility.ROCKET_BOOST);
+                        break;
+                }
 
-            toSwap.transform.SetParent(this.gameObject.transform);
-            this.storedItem.transform.SetParent(pl.gameObject.transform);
+                GameManager.currentIncome -= storedItem.GetComponent<Item>().value;
+                //fire acquisition sfx
+                paEvent?.Invoke(); //kill all other powerups
 
-            pl.setHolding(this.storedItem);
-            this.storedItem = toSwap;
-            this.storedItem.transform.eulerAngles = new Vector3(0, 0, this.storedItem.GetComponent<Item>().spritePedestalRotation);
-            nameplate.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "-" + storedItem.GetComponent<Item>().name + "-\n-" + storedItem.GetComponent<Item>().value + "-";
-            //disable animation clip
+            } else {
+                //Fire failure sfx
+            }
+
+        } else {
+            if (pl != null && isClosest){
+                Vector3 hold = this.storedItem.transform.position;
+                this.storedItem.transform.position = toSwap.transform.position;
+                toSwap.transform.position = hold;
+
+                toSwap.transform.SetParent(this.gameObject.transform);
+                this.storedItem.transform.SetParent(pl.gameObject.transform);
+
+                pl.setHolding(this.storedItem);
+                this.storedItem = toSwap;
+                this.storedItem.transform.eulerAngles = new Vector3(0, 0, this.storedItem.GetComponent<Item>().spritePedestalRotation);
+                nameplate.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "-" + storedItem.GetComponent<Item>().name + "-\n-" + storedItem.GetComponent<Item>().value + "-";
+                //disable animation clip
+            }
         }
     }
 
@@ -80,6 +111,10 @@ public class ItemPedestal : MonoBehaviour
     public IEnumerator animOffset(){
         yield return new WaitForSeconds(startDelay);
         this.GetComponent<Animation>().Play();
+    }
+
+    public void disableOnOtherPickup(){
+        this.gameObject.SetActive(false);
     }
 
 }
