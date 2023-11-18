@@ -136,6 +136,7 @@ public class PlayerController : MonoBehaviour
         moveAction.performed += OnMove;
         moveAction.canceled += OnMove;
         pickupAction.performed += PickUp;
+        pickupAction.canceled += cancelPickup;
         InputManager.GetInputAction(EInGameAction.ABILITY).started += OnAbility;
 
         pedRepulsor = GetComponent<AvoidPoint>();
@@ -443,9 +444,14 @@ public class PlayerController : MonoBehaviour
         if (closestItem != null)
         {
             closestItem.gameObject.GetComponent<ItemPedestal>().PickUp(holding);
+            closestItem.gameObject.GetComponent<ItemPedestal>().flagPickup(true);
         }
 
         //interactEvent?.Invoke(holding);
+    }
+
+    private void cancelPickup(InputAction.CallbackContext context){
+        closestItem.gameObject.GetComponent<ItemPedestal>().flagPickup(false);
     }
 
     public void setHolding(GameObject to){

@@ -18,18 +18,20 @@ public class ItemPedestal : MonoBehaviour
     private bool playerInRange = false;
 
     public bool isPowerup;
+    public bool pickingUp = false;
 
     public delegate void PowerupAcquireEvent();
     public static event PowerupAcquireEvent paEvent;
 
     public Slider buyItemSlider;
+    public GameObject soldPrefab;
     
     void Awake(){
         PlayerController.interactEvent += PickUp;
         if(isPowerup){paEvent += disableOnOtherPickup;}
         StartCoroutine(animOffset());
         nameplate = GetComponentInChildren<Canvas>().gameObject;
-        nameplate.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "-" + storedItem.GetComponent<Item>().name + "-\n-" + storedItem.GetComponent<Item>().value + "-";
+        nameplate.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "-" + storedItem.GetComponent<Item>().curioName + "-\n-" + storedItem.GetComponent<Item>().value + "-";
     }
 
     private void Update()
@@ -43,6 +45,15 @@ public class ItemPedestal : MonoBehaviour
 
             nameplate.SetActive(false);
         }
+
+        if(isPowerup && pickingUp){
+            buyItemSlider.value += 0.01f;
+            if(buyItemSlider.value >= buyItemSlider.maxValue){
+                this.buyPowerup();
+            }
+        } else if(isPowerup && !pickingUp && buyItemSlider.value > 0f){
+            buyItemSlider.value -= 0.01f;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -51,7 +62,7 @@ public class ItemPedestal : MonoBehaviour
         if(col.gameObject.tag == "Player"){ //using name here is bad, use tags
             pl = col.gameObject.GetComponent<PlayerController>();
             string flexchar = isPowerup ? "- COST: $" : "-";
-            nameplate.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "-" + storedItem.GetComponent<Item>().name + "-\n" + flexchar + storedItem.GetComponent<Item>().value + "-";
+            nameplate.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "-" + storedItem.GetComponent<Item>().curioName + "-\n" + flexchar + storedItem.GetComponent<Item>().value + "-";
             playerInRange = true;
             //interactIcon.SetActive(true);
         }
@@ -70,6 +81,40 @@ public class ItemPedestal : MonoBehaviour
     public void PickUp(GameObject toSwap){
         //Wrap these in subfunctions
         if(isPowerup){
+
+        } else {
+            if (pl != null && isClosest){
+                Vector3 hold = this.storedItem.transform.position;
+                this.storedItem.transform.position = toSwap.transform.position;
+                toSwap.transform.position = hold;
+
+                toSwap.transform.SetParent(this.gameObject.transform);
+                this.storedItem.transform.SetParent(pl.gameObject.transform);
+
+                pl.setHolding(this.storedItem);
+                this.storedItem = toSwap;
+                this.storedItem.transform.eulerAngles = new Vector3(0, 0, this.storedItem.GetComponent<Item>().spritePedestalRotation);
+                nameplate.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "-" + storedItem.GetComponent<Item>().curioName + "-\n-" + storedItem.GetComponent<Item>().value + "-";
+                //disable animation clip
+            }
+        }
+    }
+
+    public void OnDisable(){
+        PlayerController.interactEvent -= PickUp;
+    }
+
+    public IEnumerator animOffset(){
+        yield return new WaitForSeconds(startDelay);
+        this.GetComponent<Animation>().Play();
+    }
+
+    public void disableOnOtherPickup(){
+        Destroy(this.gameObject);
+    }
+
+    public void buyPowerup(){
+        if(isPowerup){
             //Take powerup
             if(GameManager.currentIncome >= storedItem.GetComponent<Item>().value){
                 switch(storedItem.GetComponent<Item>().curioName){
@@ -86,40 +131,19 @@ public class ItemPedestal : MonoBehaviour
                 Debug.Log(GameManager.currentIncome);
                 //fire acquisition sfx
                 paEvent?.Invoke(); //kill all other powerups
+                Instantiate(soldPrefab, this.gameObject.transform.position, Quaternion.identity);
+                disableOnOtherPickup();
+
 
             } else {
                 //Fire failure sfx
             }
-
-        } else {
-            if (pl != null && isClosest){
-                Vector3 hold = this.storedItem.transform.position;
-                this.storedItem.transform.position = toSwap.transform.position;
-                toSwap.transform.position = hold;
-
-                toSwap.transform.SetParent(this.gameObject.transform);
-                this.storedItem.transform.SetParent(pl.gameObject.transform);
-
-                pl.setHolding(this.storedItem);
-                this.storedItem = toSwap;
-                this.storedItem.transform.eulerAngles = new Vector3(0, 0, this.storedItem.GetComponent<Item>().spritePedestalRotation);
-                nameplate.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "-" + storedItem.GetComponent<Item>().name + "-\n-" + storedItem.GetComponent<Item>().value + "-";
-                //disable animation clip
-            }
         }
     }
 
-    public void OnDisable(){
-        PlayerController.interactEvent -= PickUp;
-    }
-
-    public IEnumerator animOffset(){
-        yield return new WaitForSeconds(startDelay);
-        this.GetComponent<Animation>().Play();
-    }
-
-    public void disableOnOtherPickup(){
-        this.gameObject.SetActive(false);
+    public void flagPickup(bool flag){
+        Debug.Log("Picking Up:" + flag);
+        this.pickingUp = flag;
     }
 
 }

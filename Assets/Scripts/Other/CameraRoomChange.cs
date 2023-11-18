@@ -22,9 +22,9 @@ public class CameraRoomChange : MonoBehaviour
     {
         if (collision.CompareTag("Player") && !collision.isTrigger)
         {
-            virtualCam.SetActive(true);
-            if (hidesShop){ StartCoroutine(HideShop()); }
+            if (hidesShop) { StartCoroutine(HideShop()); }
             else { StartCoroutine(ShowShop()); }
+            virtualCam.SetActive(true);
             PlayerController.inShop = isShop;
         }
     }
@@ -33,9 +33,9 @@ public class CameraRoomChange : MonoBehaviour
     {
         if (collision.CompareTag("Player") && !collision.isTrigger)
         {
-            virtualCam.SetActive(true);
             if (hidesShop) { StartCoroutine(HideShop()); }
             else { StartCoroutine(ShowShop()); }
+            virtualCam.SetActive(true);
             PlayerController.inShop = isShop;
         }
     }
@@ -44,9 +44,9 @@ public class CameraRoomChange : MonoBehaviour
     {
         if (collision.CompareTag("Player") && !collision.isTrigger)
         {
-            virtualCam.SetActive(false);
             if (hidesShop) { StartCoroutine(HideShop()); }
             else { StartCoroutine(ShowShop()); }
+            virtualCam.SetActive(false);
             if (isShop)
             {
                 PlayerController.inShop = false;
