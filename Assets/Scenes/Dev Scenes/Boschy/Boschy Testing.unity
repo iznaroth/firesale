@@ -163,20 +163,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameUI
       objectReference: {fileID: 0}
+    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: playerBarks.Array.size
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
+      propertyPath: playerBarks.Array.data[33]
+      value: THIS {item} IS WORTH EVERYTHING! YOU SHOULD BUY THIS {ITEM}, NOW!!
+      objectReference: {fileID: 0}
     - target: {fileID: 2551194966746024034, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3893116942864079106, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 99514c0e4e3bd9f469eb9d9728df9159, type: 2}
-    - target: {fileID: 3893116942864079106, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 7295620250318039537, guid: 99514c0e4e3bd9f469eb9d9728df9159, type: 2}
-    - target: {fileID: 3893116942864079106, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6264412573982543349, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
