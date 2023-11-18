@@ -764,7 +764,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &737738892
 Transform:
   m_ObjectHideFlags: 0
@@ -1011,6 +1011,9 @@ MonoBehaviour:
   isEndscreen: 1
   victory: {fileID: 0}
   defeat: {fileID: 0}
+  timeLeft: {fileID: 0}
+  money: {fileID: 0}
+  relicsLeft: {fileID: 0}
 --- !u!114 &1196585261
 MonoBehaviour:
   m_ObjectHideFlags: 0
