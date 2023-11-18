@@ -163,14 +163,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameUI
       objectReference: {fileID: 0}
-    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: playerBarks.Array.size
-      value: 34
-      objectReference: {fileID: 0}
-    - target: {fileID: 2239991139982206542, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: playerBarks.Array.data[33]
-      value: THIS {item} IS WORTH EVERYTHING! YOU SHOULD BUY THIS {ITEM}, NOW!!
-      objectReference: {fileID: 0}
     - target: {fileID: 2551194966746024034, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0

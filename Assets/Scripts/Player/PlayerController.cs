@@ -295,6 +295,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(crashDisableTime);
         cantMove = false;
+        moveVector = moveAction.ReadValue<Vector2>().normalized;
     }
 
     //Draw the Box Overlap as a gizmo to show where it currently is testing. Click the Gizmos button to see this
