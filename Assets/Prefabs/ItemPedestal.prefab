@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 79885ba4ed1674b41976fd13dbd98e7c, type: 3}
-  m_Color: {r: 0.6415094, g: 0.2753649, b: 0.2753649, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -118,7 +118,7 @@ MonoBehaviour:
   curioName: 
   value: 150
   sprite: {fileID: 0}
-  spriteHoldRotation: 180
+  spriteHoldRotation: 90
   spritePedestalRotation: 0
 --- !u!1 &689486821039834085
 GameObject:
@@ -480,7 +480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   storedItem: {fileID: 22592512388606138}
-  startDelay: 0
+  startDelay: 0.25
   isClosest: 0
   isPowerup: 0
   pickingUp: 0

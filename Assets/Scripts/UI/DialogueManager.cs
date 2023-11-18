@@ -264,7 +264,7 @@ public class DialogueManager : MonoBehaviour
         anime.ResetTrigger("CutIn");
         if (wonLastMicrogame)
         {
-            
+            GameManager.curiosRemaining--;
             currentNPC.GetComponent<SpeechBubble>().OpenSpeechBubble(customerSoldBarks[Random.Range(0, customerSoldBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"), 5);
         }
         else
