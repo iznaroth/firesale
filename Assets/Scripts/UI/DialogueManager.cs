@@ -101,12 +101,12 @@ public class DialogueManager : MonoBehaviour
     {
         //customerTextbox.GetComponent<TypewriterEffect>().NewText(customerStartBarks[0]);
         anime = this.GetComponent<Animator>();
-        this.transform.GetChild(0).gameObject.SetActive(false);
+        this.transform.GetChild(1).gameObject.SetActive(false);
         microgameActive = false;
     }
     private void OnEnable()
     {
-        this.transform.GetChild(0).gameObject.SetActive(false);
+        this.transform.GetChild(1).gameObject.SetActive(false);
         anime = this.GetComponent<Animator>();
         microgameActive = false;
         microgameManager.transform.GetChild(0).transform.localScale = Vector3.zero;
