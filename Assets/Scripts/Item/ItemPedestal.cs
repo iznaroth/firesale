@@ -60,7 +60,6 @@ public class ItemPedestal : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
         if(col.gameObject.tag == "Player"){ //using name here is bad, use tags
             pl = col.gameObject.GetComponent<PlayerController>();
             string flexchar = isPowerup ? "- COST: $" : "-";
@@ -155,7 +154,6 @@ public class ItemPedestal : MonoBehaviour
     }
 
     public void flagPickup(bool flag){
-        Debug.Log("Picking Up:" + flag);
         this.pickingUp = flag;
     }
 

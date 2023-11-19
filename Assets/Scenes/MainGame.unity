@@ -93890,10 +93890,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8341319530479418535, guid: fff7abbd109a4b348a8136fd339fbf79, type: 3}
-      propertyPath: m_MaxValue
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -99692,7 +99688,6 @@ MonoBehaviour:
   hidesShop: 1
   isShop: 0
   sRend: {fileID: 1968161827}
-  hideTime: 0
 --- !u!1 &1561872569
 GameObject:
   m_ObjectHideFlags: 0
@@ -108669,7 +108664,6 @@ MonoBehaviour:
   hidesShop: 0
   isShop: 1
   sRend: {fileID: 1968161827}
-  hideTime: 0
 --- !u!1 &1968161825
 GameObject:
   m_ObjectHideFlags: 0

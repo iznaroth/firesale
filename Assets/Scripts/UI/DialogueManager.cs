@@ -206,7 +206,7 @@ public class DialogueManager : MonoBehaviour
             default:
                 break;
         }
-        Debug.Log("currentDialogue");
+        Debug.Log(currentDialogue);
     }
 
     private void WarningTimer()
@@ -296,7 +296,6 @@ public class DialogueManager : MonoBehaviour
     {
         if (!isThisEvenActive) 
         {
-            Debug.Log("Started Dialogue");
             startCondition = wasStartedHow;
             GameManager.SpawnAudio(startDialogueSound, 1, 1, this.transform.position);
             PedestrianAI newPed = newNPC.GetComponent<PedestrianAI>();
@@ -428,9 +427,6 @@ public class DialogueManager : MonoBehaviour
         int currentVal = GameManager.currentIncome;
         int stepAmount;
 
-        Debug.Log("IN DM: " + currentVal);
-        Debug.Log("TRACK: " + currentTrackedIncome);
-
         if (currentVal - currentTrackedIncome < 0)
         {
             stepAmount = Mathf.FloorToInt((currentVal - currentTrackedIncome) / (currencyCounterAnimationFrameRate * currencyCounterAnimationMaxDuration));
@@ -471,8 +467,6 @@ public class DialogueManager : MonoBehaviour
         }
         currentTrackedIncome = currentVal;
         changingIncomeValue = false;
-
-        Debug.Log(currentTrackedIncome);
     }
 
     public static T GetRandomEnum<T>()

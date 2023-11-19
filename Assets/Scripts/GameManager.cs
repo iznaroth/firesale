@@ -95,7 +95,6 @@ public class GameManager : MonoBehaviour
 
     public static void SpawnAudio(AudioClip newClip, float volumeScaler, float pitch, Vector3 position)
     {
-        Debug.Log("Audio spawned!");
         newAudioEvent?.Invoke(newClip, volumeScaler, pitch, position);
     }
 
