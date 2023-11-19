@@ -28,6 +28,8 @@ public class MainMenuManager : MonoBehaviour
     public TextMeshProUGUI money;
     public TextMeshProUGUI relicsLeft;
 
+    private bool loadingNewScene = false;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -43,6 +45,8 @@ public class MainMenuManager : MonoBehaviour
             relicsLeft.text = "A shiver runs down your spine. Without warning, you find yourself standing in a limitless void of pitch darkness ." + GameManager.finalCurios + " curios remain unsold, their curses still weighing on your soul. Suddenly, you feel something tapping on your shoulder...";
 
         }
+        loadingNewScene = false;
+        SceneManager.sceneLoaded += SceneLoaded;
 
         
     }
@@ -90,4 +94,6 @@ public class MainMenuManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void SceneLoaded(Scene scene, LoadSceneMode mode) { loadingNewScene = false; }
 }

@@ -15,6 +15,7 @@ public enum EInGameAction
     MOVE,
     PICK_UP,
     ABILITY,
+    PAUSE,
 
 }
 
@@ -28,7 +29,6 @@ public enum EMinigameAction
 public enum EUIAction
 {
     SELECT,
-    PAUSE,
 
 }
 
@@ -63,6 +63,7 @@ public class InputManager : MonoBehaviour
         { EInGameAction.MOVE, "Move" },
         { EInGameAction.PICK_UP, "Pick Up" },
         { EInGameAction.ABILITY, "Ability" },
+        { EInGameAction.PAUSE, "Pause" },
     };
 
     static Dictionary<EMinigameAction, string> minigameActionNames = new Dictionary<EMinigameAction, string>
@@ -74,7 +75,6 @@ public class InputManager : MonoBehaviour
     static Dictionary<EUIAction, string> uiActionNames = new Dictionary<EUIAction, string>
     {
         { EUIAction.SELECT, "Select" },
-        { EUIAction.PAUSE, "Pause" },
     };
 
 

@@ -36,11 +36,12 @@ public class GameManager : MonoBehaviour
 
 	private void Awake()
 	{
-        if(instance != this){
+        if(instance != null && instance != this){
             Destroy(instance.gameObject);
         }
 
         instance = this;
+        Debug.Log(instance);
 	}
 
 	// Start is called before the first frame update
@@ -52,9 +53,6 @@ public class GameManager : MonoBehaviour
         currentIncome = 666;
         curiosRemaining = 20;
         //Player = FindAnyObjectByType<PlayerController>().gameObject;
-
-        pauseAction = InputManager.GetInputAction(EUIAction.PAUSE);
-        pauseAction.performed += togglePause;
     }
     private void OnEnable()
     {
@@ -109,10 +107,6 @@ public class GameManager : MonoBehaviour
         currentIncome = 666;
     }
 
-    private void togglePause(InputAction.CallbackContext context){
-        pauseCanvas.SetActive(!pauseCanvas.activeSelf);
-    }
-
     public static void IncreaseMoney()
     {
        currentIncome += currentCuriosValue;
@@ -139,7 +133,9 @@ public class GameManager : MonoBehaviour
     public Slider slider;
 
     public void changeVolume(){
-        masterMixer.SetFloat("musicVol", Mathf.Log(slider.value) * 20);
+        if(slider != null){
+            masterMixer.SetFloat("musicVol", Mathf.Log(slider.value) * 20);
+        }
     }
 
 }

@@ -20,7 +20,7 @@ public class TypewriterEffect : MonoBehaviour
 	[SerializeField] bool skippable = true;
 	[Header("Speech Sounds")]
 	[SerializeField] AudioClip speechSound;
-	[SerializeField] float speechVolume = 1;
+	[SerializeField] float speechVolume = 1f;
 	[SerializeField] float speechPitch = 1;
 	[SerializeField] float speechPitchRandomizationRange = 0.25f;
 

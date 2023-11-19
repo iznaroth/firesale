@@ -89744,7 +89744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3e3d2653dd8992439b21e1013d2190d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volSlider: {fileID: 0}
+  volSlider: {fileID: 579399318}
 --- !u!1 &260980236
 GameObject:
   m_ObjectHideFlags: 0
@@ -91565,7 +91565,19 @@ MonoBehaviour:
   m_Value: 0.001
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1419396679}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: changeVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &588674396
 GameObject:
   m_ObjectHideFlags: 0
@@ -94739,6 +94751,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: a50598b238e1f1d45b4d6a427e2f464a, type: 3}
     - target: {fileID: 2674160242445267128, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
+      propertyPath: pauseCanvas
+      value: 
+      objectReference: {fileID: 220229200}
+    - target: {fileID: 2674160242445267128, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
       propertyPath: defaultAbility
       value: 0
       objectReference: {fileID: 0}
@@ -95088,6 +95104,10 @@ PrefabInstance:
       propertyPath: masterMixer
       value: 
       objectReference: {fileID: 24100000, guid: 51d55ba86cee27e429adb174ad66a368, type: 2}
+    - target: {fileID: 1074071791399643036, guid: 096e824421ba5c846a7c5ff3458d0b80, type: 3}
+      propertyPath: pauseCanvas
+      value: 
+      objectReference: {fileID: 220229200}
     - target: {fileID: 3400345497272143387, guid: 096e824421ba5c846a7c5ff3458d0b80, type: 3}
       propertyPath: m_Name
       value: InputManager
@@ -99916,6 +99936,17 @@ Transform:
   - {fileID: 649659184}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1419396679 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1074071791399643036, guid: 096e824421ba5c846a7c5ff3458d0b80, type: 3}
+  m_PrefabInstance: {fileID: 1081941175}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce1d4d8abcd8d5499f36e9edff76ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1426998871
 GameObject:
   m_ObjectHideFlags: 0
@@ -100908,7 +100939,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 51d55ba86cee27e429adb174ad66a368, type: 2}
   m_audioClip: {fileID: 8300000, guid: 170d3184ebb23f54493b9569c98c62ef, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.024
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0

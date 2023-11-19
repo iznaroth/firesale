@@ -57,8 +57,8 @@ public class PlayerController : MonoBehaviour
     [Range(0f, 1f)] public float baseBounciness = 0.3f;
     [Range(0f, 1f)] public float maxBounciness = 0.63f;
     [Range(0f, 1f)] public float thudSoundThreshhold = 0.3f; // what percentage of max speed do we need to reach to play the thud sound
-    [Range(0f, 1f)] public float thudSoundBaseVolume = 0.02f;
-    [Range(0f, 1f)] public float thudSoundMaxVolume = 0.1f; 
+    [Range(0f, 1f)] public float thudSoundBaseVolume = 0.4f;
+    [Range(0f, 1f)] public float thudSoundMaxVolume = 0.8f; 
     public float thudSoundPitchRandomRange = 0.65f;
 
     public PlayerAbility defaultAbility = PlayerAbility.YELL;
@@ -123,6 +123,9 @@ public class PlayerController : MonoBehaviour
     FacingDir playerDirection = FacingDir.DOWN;
     /*    bool m_Started = false;*/
 
+    private InputAction pauseAction;
+    public GameObject pauseCanvas;
+
     private void Awake()
     {
         GameManager.Player = this.gameObject;
@@ -147,6 +150,11 @@ public class PlayerController : MonoBehaviour
         pickupAction.performed += PickUp;
         pickupAction.canceled += cancelPickup;
         InputManager.GetInputAction(EInGameAction.ABILITY).started += OnAbility;
+
+        Debug.Log("Grab pauseac");
+        pauseAction = InputManager.GetInputAction(EInGameAction.PAUSE);
+        Debug.Log(pauseAction);
+        pauseAction.performed += togglePause;
 
         pedRepulsor = GetComponent<AvoidPoint>();
 
@@ -336,6 +344,13 @@ public class PlayerController : MonoBehaviour
         {
             collision.gameObject.GetComponent<Rigidbody2D>().velocity = body.velocity / 0.25f;
         }
+    }
+
+
+
+    private void togglePause(InputAction.CallbackContext context){
+        Debug.Log("tog");
+        pauseCanvas.SetActive(!pauseCanvas.activeSelf);
     }
 
 
