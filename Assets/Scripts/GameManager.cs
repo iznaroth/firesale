@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.Audio;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,12 +26,20 @@ public class GameManager : MonoBehaviour
     public static float finalBalance;
     public static float finalCurios;
 
+    public GameObject pauseCanvas;
+
     public delegate void NewAudioSource(AudioClip newClip, float volumeScaler, float newPitch, Vector3 position);
     public static event NewAudioSource newAudioEvent;
+
+    private InputAction pauseAction;
 
 
 	private void Awake()
 	{
+        if(instance != this){
+            Destroy(instance.gameObject);
+        }
+
         instance = this;
 	}
 
@@ -41,6 +52,9 @@ public class GameManager : MonoBehaviour
         currentIncome = 666;
         curiosRemaining = 20;
         //Player = FindAnyObjectByType<PlayerController>().gameObject;
+
+        pauseAction = InputManager.GetInputAction(EUIAction.PAUSE);
+        pauseAction.performed += togglePause;
     }
     private void OnEnable()
     {
@@ -77,11 +91,26 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadSceneAsync("EndGame");
     }
 
+    public void SwitchScenesDirect(string name)
+    {
+
+        SceneManager.LoadSceneAsync(name);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
     public void StartGame()
     {
         timeRemaining = totalGameTime;
         hpRemaining = 100;
         currentIncome = 666;
+    }
+
+    private void togglePause(InputAction.CallbackContext context){
+        pauseCanvas.SetActive(!pauseCanvas.activeSelf);
     }
 
     public static void IncreaseMoney()
@@ -104,4 +133,14 @@ public class GameManager : MonoBehaviour
        GameObject newAudioObject = Instantiate(AudioPrefab, position, Quaternion.identity);
        newAudioObject.GetComponent<SoundScript>().PlayAudio(newClip, volumeScaler, newPitch);
     }
+
+    //where should this live?
+    public AudioMixer masterMixer;
+
+    public Slider slider;
+
+    public void changeVolume(){
+        masterMixer.SetFloat("musicVol", Mathf.Log(slider.value) * 20);
+    }
+
 }

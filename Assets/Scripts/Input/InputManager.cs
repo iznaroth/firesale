@@ -28,6 +28,7 @@ public enum EMinigameAction
 public enum EUIAction
 {
     SELECT,
+    PAUSE,
 
 }
 
@@ -73,6 +74,7 @@ public class InputManager : MonoBehaviour
     static Dictionary<EUIAction, string> uiActionNames = new Dictionary<EUIAction, string>
     {
         { EUIAction.SELECT, "Select" },
+        { EUIAction.PAUSE, "Pause" },
     };
 
 
