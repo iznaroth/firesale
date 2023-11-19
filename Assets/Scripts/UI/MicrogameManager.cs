@@ -113,22 +113,25 @@ public class MicrogameManager : MonoBehaviour
 
     public void GameResult(bool result)
     {
-        pauseTimer = true;
-        titleText.gameObject.SetActive(false);
-        statusText.gameObject.SetActive(true);
-
-        if (result)
+        if (DialogueManager.microgameActive)
         {
-            statusText.GetComponent<TypewriterEffect>().NewText(winPhrases[Random.Range(0, winPhrases.Length - 1)]);
-        }
-        else
-        {
-            statusText.GetComponent<TypewriterEffect>().NewText(losePhrases[Random.Range(0, losePhrases.Length - 1)]);
-        }
+            pauseTimer = true;
+            titleText.gameObject.SetActive(false);
+            statusText.gameObject.SetActive(true);
 
-        DialogueManager.wonLastMicrogame = result;
-        DialogueManager.dialogueState++;
-        DM.MicrogameResult();
+            if (result)
+            {
+                statusText.GetComponent<TypewriterEffect>().NewText(winPhrases[Random.Range(0, winPhrases.Length - 1)]);
+            }
+            else
+            {
+                statusText.GetComponent<TypewriterEffect>().NewText(losePhrases[Random.Range(0, losePhrases.Length - 1)]);
+            }
+
+            DialogueManager.wonLastMicrogame = result;
+            DialogueManager.dialogueState++;
+            DM.MicrogameResult();
+        }
     }
 
     public void EndGame()

@@ -2046,22 +2046,13 @@ GameObject:
   - component: {fileID: 1150149103}
   - component: {fileID: 1150149102}
   m_Layer: 5
-<<<<<<< HEAD
-  m_Name: Background
-=======
   m_Name: Text Volume Sider
->>>>>>> 593d3a9867195d7890a057be0ef089450245896f
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-<<<<<<< HEAD
-  m_IsActive: 1
---- !u!224 &1150149101
-=======
   m_IsActive: 0
 --- !u!224 &1113314916
->>>>>>> 593d3a9867195d7890a057be0ef089450245896f
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

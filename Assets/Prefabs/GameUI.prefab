@@ -3292,6 +3292,7 @@ MonoBehaviour:
   speechVolume: 0.5
   speechPitch: 0.25
   speechPitchRandomizationRange: 0.25
+  fromDM: 0
 --- !u!114 &743771895367158589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3884,6 +3885,7 @@ MonoBehaviour:
   speechVolume: 0
   speechPitch: 0
   speechPitchRandomizationRange: 0
+  fromDM: 0
 --- !u!1 &7316856853845456174
 GameObject:
   m_ObjectHideFlags: 0
@@ -4665,6 +4667,7 @@ MonoBehaviour:
   speechVolume: 1
   speechPitch: 0.5
   speechPitchRandomizationRange: 0.9
+  fromDM: 0
 --- !u!114 &3443799798470915737
 MonoBehaviour:
   m_ObjectHideFlags: 0
