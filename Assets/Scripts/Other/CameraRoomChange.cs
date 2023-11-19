@@ -33,8 +33,8 @@ public class CameraRoomChange : MonoBehaviour
     {
         if (collision.CompareTag("Player") && !collision.isTrigger)
         {
-            if (hidesShop) { StartCoroutine(HideShop()); }
-            else { StartCoroutine(ShowShop()); }
+            //if (hidesShop) { StartCoroutine(HideShop()); }
+            //else { StartCoroutine(ShowShop()); }
             virtualCam.SetActive(true);
             PlayerController.inShop = isShop;
         }
@@ -44,8 +44,8 @@ public class CameraRoomChange : MonoBehaviour
     {
         if (collision.CompareTag("Player") && !collision.isTrigger)
         {
-            if (hidesShop) { StartCoroutine(HideShop()); }
-            else { StartCoroutine(ShowShop()); }
+            //if (hidesShop) { StartCoroutine(HideShop()); }
+            //else { StartCoroutine(ShowShop()); }
             virtualCam.SetActive(false);
             if (isShop)
             {
@@ -55,6 +55,7 @@ public class CameraRoomChange : MonoBehaviour
     }
 
     private IEnumerator HideShop(){
+        Debug.Log("Hiding!");
 
         if(isCoroutineRunning){
             yield break;
@@ -62,6 +63,7 @@ public class CameraRoomChange : MonoBehaviour
 
         isCoroutineRunning = true;
         while(sRend.color.a < 1f){
+            Debug.Log("inc alpha!");
             sRend.color = new Color(sRend.color.r, sRend.color.g, sRend.color.b, sRend.color.a + 0.05f);
             yield return new WaitForSeconds(0.01f);
         }
@@ -70,6 +72,8 @@ public class CameraRoomChange : MonoBehaviour
     }
 
     private IEnumerator ShowShop(){
+
+        Debug.Log("Showing!");
         
         if(isCoroutineRunning){
             yield break;
@@ -77,6 +81,7 @@ public class CameraRoomChange : MonoBehaviour
 
         isCoroutineRunning = true;
         while(sRend.color.a > 0f){
+            Debug.Log("dec alpha!");
             sRend.color = new Color(sRend.color.r, sRend.color.g, sRend.color.b, sRend.color.a - 0.05f);
             yield return new WaitForSeconds(0.01f);
         }
