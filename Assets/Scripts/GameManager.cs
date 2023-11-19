@@ -130,12 +130,19 @@ public class GameManager : MonoBehaviour
     //where should this live?
     public AudioMixer masterMixer;
 
-    public Slider slider;
+    public Slider musicSoundSlider;
+    public Slider sfxSoundSlider;
 
     public void changeVolume(){
-        if(slider != null){
-            masterMixer.SetFloat("musicVol", Mathf.Log(slider.value) * 20);
+        if(sfxSoundSlider != null){
+            masterMixer.SetFloat("sxfVol", Mathf.Log(sfxSoundSlider.value) * 20);
         }
     }
-
+    public void changeMusicVolume()
+    {
+        if (musicSoundSlider != null)
+        {
+            masterMixer.SetFloat("musicVol", Mathf.Log(musicSoundSlider.value) * 20);
+        }
+    }
 }

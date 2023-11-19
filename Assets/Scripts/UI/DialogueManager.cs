@@ -19,6 +19,8 @@ public class DialogueManager : MonoBehaviour
     public GameObject playerTextbox;    // these maybe just need to be the typewriter effects tbh
     public Image customerImage;
     public Sprite[] customerImages;
+    public Image handImage;
+    public Image faceImage;
     public MicrogameManager microgameManager;
     public Slider healthbar;
     public TextMeshProUGUI moneyText;
@@ -53,6 +55,7 @@ public class DialogueManager : MonoBehaviour
     private int customerWinAmount = 2; //How many times the player needs to win to convince the customer to buy
     public int currencyCounterAnimationFrameRate = 30;
     public int currencyCounterAnimationMaxDuration = 2;
+    public float handSpeed = 1f;
     public AudioClip startDialogueSound;
 
 
@@ -153,6 +156,7 @@ public class DialogueManager : MonoBehaviour
                 Debug.Log("Normal Microgame Summon");
                 SummonMicrogame();
             }
+            SetHandPosition();
         }
     }
 
@@ -517,4 +521,9 @@ public class DialogueManager : MonoBehaviour
 	{
         return DialogueManager.isThisEvenActive;
 	}
+    public void SetHandPosition()
+    {
+        Vector3 goalVector = (Input.mousePosition + faceImage.transform.position) / 20;
+        handImage.transform.position = Vector3.Lerp(handImage.transform.position, goalVector, handSpeed * Time.deltaTime);
+    }
 }

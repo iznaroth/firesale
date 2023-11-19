@@ -6,17 +6,22 @@ using UnityEngine.UI;
 public class pauseMenu : MonoBehaviour
 {
 
-    public Slider volSlider;
+    public Slider musicVolSlider;
+    public Slider sfxVolSlider;
 
     void Awake(){
         
-        Debug.Log("PAUSE AWAKE");
+        //Debug.Log("PAUSE AWAKE");
         float volSetting;
         GameManager.instance.masterMixer.GetFloat("musicVol", out volSetting);
-        volSlider.value = Mathf.Exp( volSetting / 20);
-        Debug.Log(volSlider.value);
-        GameManager.instance.slider = volSlider;
-        Debug.Log("Paused!");
+        musicVolSlider.value = Mathf.Exp( volSetting / 20);
+        //Debug.Log(volSlider.value);
+        GameManager.instance.musicSoundSlider = musicVolSlider;
+        GameManager.instance.masterMixer.GetFloat("sfxVol", out volSetting);
+        sfxVolSlider.value = Mathf.Exp(volSetting / 20);
+        //Debug.Log(volSlider.value);
+        GameManager.instance.sfxSoundSlider = sfxVolSlider;
+        //Debug.Log("Paused!");
     }
 
     void OnEnable(){

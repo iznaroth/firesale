@@ -6274,6 +6274,7 @@ MonoBehaviour:
   thud: {fileID: 8300000, guid: 3f96a1181b9a2004e8dda03c2e035fe9, type: 3}
   screech: {fileID: 0}
   isCoroutineRunning: 0
+  pauseCanvas: {fileID: 0}
 --- !u!114 &1087557437383896256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6367,7 +6368,7 @@ AudioSource:
   m_GameObject: {fileID: 8118839963843011988}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6337168718460009529, guid: 51d55ba86cee27e429adb174ad66a368, type: 2}
   m_audioClip: {fileID: 8300000, guid: a50598b238e1f1d45b4d6a427e2f464a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1

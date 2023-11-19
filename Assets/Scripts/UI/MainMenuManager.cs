@@ -56,9 +56,10 @@ public class MainMenuManager : MonoBehaviour
     {
         if(!isEndscreen){
             if (!playingStartup) { SetHandPosition(); }
-            if (startupDone)
+            if (startupDone && !loadingNewScene)
             {
                 Debug.Log("Queue Sceneload Async");
+                loadingNewScene = true;
                 startupDone = false;
                 SwitchScenes();
             }
