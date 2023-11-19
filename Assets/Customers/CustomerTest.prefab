@@ -355,7 +355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speechBubbleUIPrefab: {fileID: 2936742986879914478, guid: deb46f0d283740047bc55ecca2f9cb67, type: 3}
-  speechBubbleStartOffset: {x: 0, y: 0}
+  speechBubbleStartOffset: {x: 0, y: 20}
   speechBubbleEndOffset: {x: 0, y: 1}
   speechBubbleStartScale: {x: 0, y: 0}
   speechBubbleEndScale: {x: 1, y: 1}

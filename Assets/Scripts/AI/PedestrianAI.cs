@@ -74,6 +74,7 @@ public class PedestrianAI : MonoBehaviour
     private void Awake()
     {
         speechSound = speechSounds[Random.Range(0, speechSounds.Length - 1)];
+        this.transform.GetComponent<SpeechBubble>().ChangeSoundSettings(speechSound, speechVolume, speechPitch, speechBasePitchRandomizationRange);
     }
 
     void GeneratePath()

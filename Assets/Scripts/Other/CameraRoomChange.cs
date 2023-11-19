@@ -10,13 +10,15 @@ public class CameraRoomChange : MonoBehaviour
     public bool hidesShop = false;
     public bool isShop = false;
     public SpriteRenderer sRend;
+    public static bool startingFadeTimer;
     
     private bool isCoroutineRunning = false;
 
-    //private void Start()
-    //{
-    //    Physics.OverlapBox(gameObject.transform.position, transform.localScale / 2, Quaternion.identity, m_LayerMask);
-    //}
+    private void Start()
+    {
+        //    Physics.OverlapBox(gameObject.transform.position, transform.localScale / 2, Quaternion.identity, m_LayerMask);
+        startingFadeTimer = true;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -80,12 +82,26 @@ public class CameraRoomChange : MonoBehaviour
         }
 
         isCoroutineRunning = true;
-        while(sRend.color.a > 0f){
-            Debug.Log("dec alpha!");
-            sRend.color = new Color(sRend.color.r, sRend.color.g, sRend.color.b, sRend.color.a - 0.05f);
-            yield return new WaitForSeconds(0.01f);
+        if (startingFadeTimer)
+        {
+            while (sRend.color.a > 0f)
+            {
+                Debug.Log("inc alpha!");
+                sRend.color = new Color(sRend.color.r, sRend.color.g, sRend.color.b, sRend.color.a - 0.01f);
+                yield return new WaitForSeconds(0.01f);
+            }
+        }
+        else
+        {
+            while (sRend.color.a > 0f)
+            {
+                Debug.Log("dec alpha!");
+                sRend.color = new Color(sRend.color.r, sRend.color.g, sRend.color.b, sRend.color.a - 0.05f);
+                yield return new WaitForSeconds(0.01f);
+            }
         }
 
+        startingFadeTimer = false;
         isCoroutineRunning = false;
     }
 }

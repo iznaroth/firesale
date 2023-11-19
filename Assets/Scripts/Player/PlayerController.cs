@@ -94,6 +94,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip skating;
     public AudioClip thud;
     public AudioClip screech;
+    public AudioClip speechSound;
+
 
     public bool isCoroutineRunning = false;
 
@@ -159,6 +161,7 @@ public class PlayerController : MonoBehaviour
         pedRepulsor = GetComponent<AvoidPoint>();
 
         SetAbility(defaultAbility);
+        this.transform.GetComponent<SpeechBubble>().ChangeSoundSettings(speechSound, 0.35f, 0.25f, 0.25f);
 
         //m_Started = true;
     }
@@ -425,7 +428,8 @@ public class PlayerController : MonoBehaviour
                     string text = DialogueManager.instance.playerYells[Random.Range(0, DialogueManager.instance.playerYells.Length)];
                     bubble.OpenSpeechBubble(text, playerYellDuration);
                     pedRepulsor.enabled = true;
-                    pedRepulsor.RemoveAfterSec(playerYellDuration);
+                    //pedRepulsor.RemoveAfterSec(playerYellDuration);
+                    pedRepulsor.ReduceAfterSec(playerYellDuration);
                     timeToNextYell = Time.time + playerYellCooldown;
                 }
                 break;

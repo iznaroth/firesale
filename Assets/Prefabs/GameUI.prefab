@@ -945,8 +945,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 88c86dae293d7194e90efa5d4ca0fb23, type: 3}
   - {fileID: 21300000, guid: e07932efb65bae84097eb6529fe75807, type: 3}
   - {fileID: 21300000, guid: 7ec2bc925cef951479cab24dc5286671, type: 3}
-  handImage: {fileID: 7279619361219799674}
-  faceImage: {fileID: 8953458385411839740}
+  handImage: {fileID: 8953458385411839740}
+  faceImage: {fileID: 7279619361219799674}
   microgameManager: {fileID: 3158080493879675986}
   healthbar: {fileID: 7623659255882991824}
   moneyText: {fileID: 5654118429730094929}
@@ -983,9 +983,8 @@ MonoBehaviour:
   - JUST TRY IT OUT. SEE IF YOU LIKE IT!
   - I'VE GOT A FAMILY TO FEED, Y'KNOW?
   - YOU GOT A BRAIN , RIGHT? YOU WOULDN'T WANT TO MISS A DEAL LIKE THIS!
-  - "YOU\u2019RE EITHER A FART SMELLA OR A SMART FELLA, CHOOSE WISELY!  BUY THIS
-    {item}"
-  - "HOW OFTEN ARE YOU GONNA FIND {item} AT THIS PRICE-POINT?NO\u2026 SERIOUSLY\u2026
+  - "YOU\u2019RE EITHER A FART SMELLA OR A SMART FELLA, CHOOSE WISELY! BUY THIS {item}"
+  - "HOW OFTEN ARE YOU GONNA FIND {item} AT THIS PRICE-POINT? NO\u2026 SERIOUSLY\u2026
     PLEASE TELL ME."
   - THIS IS A ONCE IN A LIFETIME OPPORTUNITY!
   - I AM ON MY KNEES. I AM BEGGING YOU. PLEASE.
@@ -994,10 +993,20 @@ MonoBehaviour:
   - 'BUY MY PRODUCT! '
   - THIS {item} IS WORTH EVERYTHING! YOU SHOULD BUY THIS {item}, NOW!!
   playerYells:
-  - HEY
-  - YOU THERE
-  - LOOK AT ME
-  - BUY MY &!#$ OR ELSE
+  - HEY!
+  - YOU THERE!
+  - LOOK AT ME!!
+  - BUY MY &!#$ OR ELSE!
+  - GET OVER HERE!
+  - PLEASE HELP!!
+  - BUY THIS!!
+  - SOMEONE BUY THIS!
+  - AAAAARGH!!
+  - SUPER CHEAP!!
+  - EVERYTHING MUST GO!!!
+  - I SEE YOU!
+  - LOOK AT MY WARES
+  - STOP RUNNING
   customerStartBarks:
   - Whats up?
   - "Uhh... Hi\u2026\u2026 Are you okay?"
@@ -1034,11 +1043,29 @@ MonoBehaviour:
   - What's that in your hands there? A "{item}"?
   - ... Well? Get on with it!
   customerSoldBarks:
-  - oh my god this {item} will change my life forever!
+  - This {item} will change my life forever!
   - YIPPIE!!!
+  - What a deal!
+  - Such odd sort...
+  - It's my lucky day!
+  - YAAAAYY!!!
+  - '{item} Aquired.'
+  - <i>Poggers</i>
+  - REALLY? SERIOUSLY?
+  - WOOHOO! New {item}!!
+  - Someone pinch me, I must be dreamin'!
   customerRefusedBarks:
-  - get away from me psycho!
-  - HELP! POLICE!! GUARDS... <br> SOMEONE!!
+  - Get away from me psycho!
+  - HELP! POLICE!! GUARDS... SOMEONE!!!
+  - Leave me alone!
+  - <i>Screaming</i>
+  - HELP! HELP HELP!!!
+  - Wreckless filth, begone!
+  - Get your disgusting {item} away from me!
+  - What is wrong with you?
+  - Yeah... no thanks
+  - Yeah... no way...
+  - What has this world come to...
   customerPositiveBarks:
   - Hmm, well i'm just not sure I need a {item}
   - ...interesting...
@@ -1089,7 +1116,7 @@ MonoBehaviour:
   currencyCounterAnimationMaxDuration: 2
   handSpeed: 1
   startDialogueSound: {fileID: 8300000, guid: cb8e876c4478d27419139b410884eebb, type: 3}
-  startCondition: 1
+  startCondition: 0
   animationDone: 0
 --- !u!95 &4267382610965787070
 Animator:

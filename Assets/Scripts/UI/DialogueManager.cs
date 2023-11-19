@@ -55,7 +55,7 @@ public class DialogueManager : MonoBehaviour
     private int customerWinAmount = 2; //How many times the player needs to win to convince the customer to buy
     public int currencyCounterAnimationFrameRate = 30;
     public int currencyCounterAnimationMaxDuration = 2;
-    public float handSpeed = 1f;
+    public float handSpeed = 5f;
     public AudioClip startDialogueSound;
 
 
@@ -523,7 +523,7 @@ public class DialogueManager : MonoBehaviour
 	}
     public void SetHandPosition()
     {
-        Vector3 goalVector = (Input.mousePosition + faceImage.transform.position) / 20;
-        handImage.transform.position = Vector3.Lerp(handImage.transform.position, goalVector, handSpeed * Time.deltaTime);
+        Vector3 goalVector = faceImage.transform.position + ((faceImage.transform.position + Input.mousePosition).normalized * 20);
+        handImage.transform.position = Vector3.Lerp(handImage.transform.position,goalVector, handSpeed * Time.deltaTime);
     }
 }

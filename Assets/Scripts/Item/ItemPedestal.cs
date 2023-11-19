@@ -27,6 +27,7 @@ public class ItemPedestal : MonoBehaviour
     public Slider buyItemSlider;
     public GameObject soldPrefab;
     public GameObject noMoneyPrefab;
+    public AudioClip pickUpSound;
     
     void Awake(){
         PlayerController.interactEvent += PickUp;
@@ -85,6 +86,7 @@ public class ItemPedestal : MonoBehaviour
 
         } else {
             if (pl != null && isClosest){
+                GameManager.SpawnAudio(pickUpSound, 1, 1, this.transform.position);
                 Vector3 hold = this.storedItem.transform.position;
 
                 this.storedItem.transform.position = toSwap.transform.position;
@@ -132,9 +134,11 @@ public class ItemPedestal : MonoBehaviour
                 switch(storedItem.GetComponent<Item>().curioName){
                     case "Grappling Hook":
                         this.pl.SetAbility(PlayerAbility.GRAPPLE_HOOK);
+                        GameManager.SpawnAudio(pickUpSound, 1, 1, this.transform.position);
                         break;
                     case "Rocket Boots":
                         this.pl.SetAbility(PlayerAbility.ROCKET_BOOST);
+                        GameManager.SpawnAudio(pickUpSound, 1, 1, this.transform.position);
                         break;
                     default:
                         this.pl.SetAbility(PlayerAbility.YELL);
@@ -145,7 +149,7 @@ public class ItemPedestal : MonoBehaviour
                 GameManager.currentIncome -= storedItem.GetComponent<Item>().value;
                 Debug.Log(GameManager.currentIncome);
                 //fire acquisition sfx
-                //paEvent?.Invoke(); //kill all other powerups
+                paEvent?.Invoke(); //kill all other powerups
                 Instantiate(soldPrefab, this.gameObject.transform.position, Quaternion.identity);
                 disableOnOtherPickup();
 

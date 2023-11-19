@@ -214,9 +214,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 517019218}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: changeVolume
+        m_MethodName: changeMusicVolume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1120,6 +1120,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 459703299}
   m_CullTransparentMesh: 1
+--- !u!114 &517019218 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1074071791399643036, guid: 096e824421ba5c846a7c5ff3458d0b80, type: 3}
+  m_PrefabInstance: {fileID: 863908966}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce1d4d8abcd8d5499f36e9edff76ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &525017202
 GameObject:
   m_ObjectHideFlags: 0
@@ -2091,6 +2102,14 @@ PrefabInstance:
       propertyPath: masterMixer
       value: 
       objectReference: {fileID: 24100000, guid: 51d55ba86cee27e429adb174ad66a368, type: 2}
+    - target: {fileID: 1074071791399643036, guid: 096e824421ba5c846a7c5ff3458d0b80, type: 3}
+      propertyPath: sfxSoundSlider
+      value: 
+      objectReference: {fileID: 26296631}
+    - target: {fileID: 1074071791399643036, guid: 096e824421ba5c846a7c5ff3458d0b80, type: 3}
+      propertyPath: musicSoundSlider
+      value: 
+      objectReference: {fileID: 1577282307}
     - target: {fileID: 3400345497272143387, guid: 096e824421ba5c846a7c5ff3458d0b80, type: 3}
       propertyPath: m_Name
       value: InputManager
@@ -2803,9 +2822,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 517019218}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: changeVolume
+        m_MethodName: changeMusicVolume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

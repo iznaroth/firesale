@@ -23,6 +23,10 @@ public class SpeechBubble : MonoBehaviour
     Coroutine deleteBubbleCoroutine;
     Coroutine displayTextCoroutine;
     Coroutine closeBubbleCoroutine;
+    private AudioClip speechSound;
+    private float speechVolume = 1;
+    private float speechPitch = 1;
+    private float speechPitchRandomizationRange = 0.25f;
 
     Tween positionTween;
     Tween scaleTween;
@@ -67,6 +71,11 @@ public class SpeechBubble : MonoBehaviour
         speechBubbleText.text = "";
 
         speechBubbleTypewriter = speechBubbleObject.GetComponentInChildren<TypewriterEffect>();
+
+        if (speechSound != null)
+        {
+            this.speechBubbleTypewriter.ChangeSoundSettings(speechSound, speechVolume, speechPitch, speechPitchRandomizationRange);
+        }
 
         if (!speechBubbleTypewriter)
         {
@@ -189,4 +198,12 @@ public class SpeechBubble : MonoBehaviour
         CloseSpeechBubble();
         closeBubbleCoroutine = null;
 	}
+
+    public void ChangeSoundSettings(AudioClip newSpeechSound, float newSpeechVolume, float newSpeechPitch, float newSpeechPitchRandomizationRange)
+    {
+        speechSound = newSpeechSound;
+        speechVolume = newSpeechVolume;
+        speechPitch = newSpeechPitch;
+        speechPitchRandomizationRange = newSpeechPitchRandomizationRange;
+    }
 }

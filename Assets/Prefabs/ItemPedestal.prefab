@@ -488,6 +488,7 @@ MonoBehaviour:
   buyItemSlider: {fileID: 0}
   soldPrefab: {fileID: 0}
   noMoneyPrefab: {fileID: 0}
+  pickUpSound: {fileID: 8300000, guid: f6b5c1e1c6b08f44f9c7ee991dbab5af, type: 3}
 --- !u!61 &8239978176075243173
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour
 
     public void changeVolume(){
         if(sfxSoundSlider != null){
-            masterMixer.SetFloat("sxfVol", Mathf.Log(sfxSoundSlider.value) * 20);
+            masterMixer.SetFloat("sfxVol", Mathf.Log(sfxSoundSlider.value) * 20);
         }
     }
     public void changeMusicVolume()

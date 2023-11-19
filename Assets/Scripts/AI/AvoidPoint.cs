@@ -30,10 +30,32 @@ public class AvoidPoint : MonoBehaviour
         disableCoroutine = StartCoroutine(Disable(sec));
 	}
 
+    public void ReduceAfterSec(float sec)
+    {
+        if (disableCoroutine != null)
+        {
+            StopCoroutine(disableCoroutine);
+        }
+
+        disableCoroutine = StartCoroutine(Reduce(sec));
+    }
+
     IEnumerator Disable(float delay)
 	{
         yield return new WaitForSeconds(delay);
 
         this.enabled = false;
 	}
+    IEnumerator Reduce(float delay)
+    {
+        avoidStrength = 50;
+        pedSpeedMultiplier = 4f;
+        pedSpeedInfluenceDistance = 15;
+
+    yield return new WaitForSeconds(delay);
+
+        avoidStrength = 5;
+        pedSpeedMultiplier = 1.5f;
+        pedSpeedInfluenceDistance = 3.5f;
+    }
 }
