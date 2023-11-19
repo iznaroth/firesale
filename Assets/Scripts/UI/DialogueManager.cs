@@ -287,11 +287,11 @@ public class DialogueManager : MonoBehaviour
         anime.ResetTrigger("CutIn");
         if (wonLastMicrogame)
         {
-            currentNPC.GetComponent<SpeechBubble>().OpenSpeechBubble(customerSoldBarks[Random.Range(0, customerSoldBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"), 5);
+            currentNPC.GetComponent<SpeechBubble>().OpenSpeechBubble(customerSoldBarks[Random.Range(0, customerSoldBarks.Length)].Replace("{item}", "<i>" + currentCurio + "</i>"), 5);
         }
         else
         {
-            currentNPC.GetComponent<SpeechBubble>().OpenSpeechBubble(customerRefusedBarks[Random.Range(0, customerRefusedBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"), 5);
+            currentNPC.GetComponent<SpeechBubble>().OpenSpeechBubble(customerRefusedBarks[Random.Range(0, customerRefusedBarks.Length)].Replace("{item}", "<i>" + currentCurio + "</i>"), 5);
         }
         PedestrianAI ped = currentNPC.GetComponent<PedestrianAI>();
         ped?.UnFreeze();

@@ -136,13 +136,16 @@ public class ItemPedestal : MonoBehaviour
                     case "Rocket Boots":
                         this.pl.SetAbility(PlayerAbility.ROCKET_BOOST);
                         break;
+                    default:
+                        this.pl.SetAbility(PlayerAbility.YELL);
+                        break;
                 }
 
                 Debug.Log(GameManager.currentIncome);
                 GameManager.currentIncome -= storedItem.GetComponent<Item>().value;
                 Debug.Log(GameManager.currentIncome);
                 //fire acquisition sfx
-                paEvent?.Invoke(); //kill all other powerups
+                //paEvent?.Invoke(); //kill all other powerups
                 Instantiate(soldPrefab, this.gameObject.transform.position, Quaternion.identity);
                 disableOnOtherPickup();
 

@@ -961,6 +961,7 @@ MonoBehaviour:
   - YIPPIE!!!
   customerRefusedBarks:
   - get away from me psycho!
+  - HELP! POLICE!! GUARDS... <br> SOMEONE!!
   customerPositiveBarks:
   - Hmm, well i'm just not sure I need a {item}
   - ...interesting...
