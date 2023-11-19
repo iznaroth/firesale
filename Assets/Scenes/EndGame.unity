@@ -160,7 +160,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1, y: -370}
+  m_AnchoredPosition: {x: 0, y: -285}
   m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &21630840
@@ -268,6 +268,7 @@ GameObject:
   - component: {fileID: 115298280}
   - component: {fileID: 115298282}
   - component: {fileID: 115298281}
+  - component: {fileID: 115298283}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -284,14 +285,14 @@ RectTransform:
   m_GameObject: {fileID: 115298279}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.9319947}
-  m_LocalScale: {x: 0.6509176, y: 0.6509176, z: 0.6509176}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 975052576}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -132, y: 52}
+  m_AnchoredPosition: {x: 0, y: 300}
   m_SizeDelta: {x: 1633.1, y: 89.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &115298281
@@ -314,19 +315,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '...with shelves empty and coffers full, you return to the demon.
-
-
-    They
-    greet you with a crooked smile followed shortly by rasping laughter. In an instant,
-    they vanish without a trace. Free at last?
-
-    ...
-
-    ...
-
-    Hey, wait.
-    This dude stole all my money!'
+  m_text: "...with shelves empty and coffers full, you return to the demon.\n\nThey
+    greet you with a crooked smile followed shortly by rasping laughter. \nIn an
+    instant, they vanish without a trace. Free at last?\n\n... ... ... ...!\n\nHey,
+    wait!  This dude stole all my money!!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a4daa12f442d8e54ea54fd38286096a9, type: 2}
   m_sharedMaterial: {fileID: 4654042722900967875, guid: a4daa12f442d8e54ea54fd38286096a9, type: 2}
@@ -361,7 +353,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -389,7 +381,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -262.65167, z: 0, w: -232.3244}
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -403,6 +395,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 115298279}
   m_CullTransparentMesh: 1
+--- !u!114 &115298283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115298279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e6628d6f7629a4694937ce0d3c6f0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayBeforeStart: 0
+  delayAfterEnd: 0
+  timeBtwChars: 0.1
+  timeBtwWords: 0.1
+  leadingChar: 
+  forceNewlineWidth: 10000
+  leadingCharBeforeDelay: 0
+  skippable: 1
+  speechSound: {fileID: 0}
+  speechVolume: 1
+  speechPitch: 1
+  speechPitchRandomizationRange: 0.25
+  fromDM: 0
 --- !u!1 &273466108
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,8 +454,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -446, y: -96}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -435, y: -130}
+  m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &273466110
 MonoBehaviour:
@@ -487,8 +504,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28
-  m_fontSizeBase: 28
+  m_fontSize: 38
+  m_fontSizeBase: 38
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -774,9 +791,9 @@ Transform:
   m_GameObject: {fileID: 737738891}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 222.7117, y: -9.541088, z: -1.5796521}
-  m_LocalScale: {x: 1.6949153, y: 1.6949153, z: 1.6949153}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1696128834}
   - {fileID: 1939623304}
@@ -819,7 +836,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -435, y: -370}
+  m_AnchoredPosition: {x: 0, y: -185}
   m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &757961347
@@ -941,8 +958,8 @@ Transform:
   m_GameObject: {fileID: 975052575}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 222.7117, y: -9.541088, z: -1.5796521}
-  m_LocalScale: {x: 1.6949153, y: 1.6949153, z: 1.6949153}
+  m_LocalPosition: {x: 0, y: 0, z: -1.5796521}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 115298280}
@@ -1014,6 +1031,7 @@ MonoBehaviour:
   timeLeft: {fileID: 2096290438}
   money: {fileID: 1338551926}
   relicsLeft: {fileID: 1696128835}
+  victoryText: {fileID: 115298281}
 --- !u!114 &1196585261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1135,8 +1153,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.9999933, y: -101}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 435, y: -101}
+  m_SizeDelta: {x: 410.4, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1204022603
 MonoBehaviour:
@@ -1160,7 +1178,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Money Earned
 
-    (and lost...):'
+    (and lost):'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c7eeba1dffac94479d195d63fde6a16, type: 2}
   m_sharedMaterial: {fileID: 7312228802386949519, guid: 1c7eeba1dffac94479d195d63fde6a16, type: 2}
@@ -1187,8 +1205,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 38
+  m_fontSizeBase: 38
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1614,7 +1632,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 184, y: -111}
+  m_AnchoredPosition: {x: 435, y: -205}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1338551926
@@ -1664,8 +1682,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28
-  m_fontSizeBase: 28
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1892,6 +1910,7 @@ GameObject:
   - component: {fileID: 1696128834}
   - component: {fileID: 1696128836}
   - component: {fileID: 1696128835}
+  - component: {fileID: 1696128837}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1908,14 +1927,14 @@ RectTransform:
   m_GameObject: {fileID: 1696128833}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.9319947}
-  m_LocalScale: {x: 0.6509131, y: 0.6509131, z: 0.6509131}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 737738892}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -132.00005, y: 76}
+  m_AnchoredPosition: {x: 0, y: 230}
   m_SizeDelta: {x: 1633.1, y: 89.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1696128835
@@ -1938,16 +1957,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'A shiver runs down your spine. Without warning, you find yourself standing
-    in a limitless void of pitch darkness .
-
-
-    ??? curios remain unsold, their
-    curses still weighing on your soul.
-
-
-    Suddenly, you feel something tapping
-    on your shoulder...'
+  m_text: "A shiver runs down your spine. \n\nWithout warning, you find yourself
+    standing in a limitless void of pitch darkness .\n\n{curios} curios remain unsold,
+    their curses still weighing on your soul.\nSuddenly, you feel something tapping
+    on your shoulder..."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a4daa12f442d8e54ea54fd38286096a9, type: 2}
   m_sharedMaterial: {fileID: 4654042722900967875, guid: a4daa12f442d8e54ea54fd38286096a9, type: 2}
@@ -1974,8 +1987,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2024,6 +2037,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1696128833}
   m_CullTransparentMesh: 1
+--- !u!114 &1696128837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696128833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e6628d6f7629a4694937ce0d3c6f0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayBeforeStart: 0
+  delayAfterEnd: 0
+  timeBtwChars: 0.1
+  timeBtwWords: 0.1
+  leadingChar: 
+  forceNewlineWidth: 100000
+  leadingCharBeforeDelay: 0
+  skippable: 1
+  speechSound: {fileID: 0}
+  speechVolume: 1
+  speechPitch: 1
+  speechPitchRandomizationRange: 0.25
+  fromDM: 0
 --- !u!1 &1939623303
 GameObject:
   m_ObjectHideFlags: 0
@@ -2049,17 +2087,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939623303}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.035771642, w: 0.99936}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 737738892}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 4.1}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -222.84988, y: -85.82076}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: -7}
+  m_SizeDelta: {x: 1085.2, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1939623305
 MonoBehaviour:
@@ -2108,15 +2146,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28
-  m_fontSizeBase: 28
+  m_fontSize: 71.6
+  m_fontSizeBase: 71.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2144,7 +2182,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -173.81778, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2270,8 +2308,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 415, y: -370}
-  m_SizeDelta: {x: 160, y: 40}
+  m_AnchoredPosition: {x: 0, y: -385}
+  m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2064636706
 MonoBehaviour:
@@ -2401,7 +2439,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -268, y: -111}
+  m_AnchoredPosition: {x: -435, y: -180}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2096290438
@@ -2424,7 +2462,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 000000
+  m_text: 010111001
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c7eeba1dffac94479d195d63fde6a16, type: 2}
   m_sharedMaterial: {fileID: 7312228802386949519, guid: 1c7eeba1dffac94479d195d63fde6a16, type: 2}
@@ -2451,13 +2489,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28
-  m_fontSizeBase: 28
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535

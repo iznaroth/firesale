@@ -27,6 +27,7 @@ public class MainMenuManager : MonoBehaviour
     public TextMeshProUGUI timeLeft;
     public TextMeshProUGUI money;
     public TextMeshProUGUI relicsLeft;
+    public TextMeshProUGUI victoryText;
 
     private bool loadingNewScene = false;
 
@@ -39,11 +40,16 @@ public class MainMenuManager : MonoBehaviour
         if(isEndscreen){
             victory.SetActive(GameManager.didWin);
             defeat.SetActive(!GameManager.didWin);
-
+            if (GameManager.didWin)
+            {
+                victoryText.gameObject.GetComponent<TypewriterEffect>().NewText(victoryText.text);
+            }
+            else
+            {
+                relicsLeft.gameObject.GetComponent<TypewriterEffect>().NewText(relicsLeft.text.Replace("{curios}", GameManager.finalCurios.ToString()));
+            }
             timeLeft.text = "" +  GameManager.finalTime;
             money.text =  "" + GameManager.finalBalance;
-            relicsLeft.text = "A shiver runs down your spine. Without warning, you find yourself standing in a limitless void of pitch darkness ." + GameManager.finalCurios + " curios remain unsold, their curses still weighing on your soul. Suddenly, you feel something tapping on your shoulder...";
-
         }
         loadingNewScene = false;
         SceneManager.sceneLoaded += SceneLoaded;
