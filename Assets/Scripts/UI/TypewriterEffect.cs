@@ -24,6 +24,8 @@ public class TypewriterEffect : MonoBehaviour
 	[SerializeField] float speechPitch = 1;
 	[SerializeField] float speechPitchRandomizationRange = 0.25f;
 
+	public bool fromDM = false;
+
 	Coroutine typewriterCoroutine;
 	Coroutine timeWaserCoroutine;
 
@@ -40,6 +42,7 @@ public class TypewriterEffect : MonoBehaviour
     private void Awake()
     {
 		_tmpProText = GetComponent<TMP_Text>()!;
+		fromDM = false;
 	}
 
     public void NewText(string newText)
@@ -48,7 +51,7 @@ public class TypewriterEffect : MonoBehaviour
 		currentText = ManualTextWrapping(newText, _tmpProText.font, _tmpProText.fontSize, _tmpProText.fontStyle);
 		writer = currentText;
 		_tmpProText.text = "";
-		DialogueManager.newDialogueStarted = true;
+        if (fromDM) { DialogueManager.newDialogueStarted = true; }
 		Keyboard.current.onTextInput += SkipText;
 		typewriterCoroutine = StartCoroutine("TypeWriterTMP");
 	}
@@ -90,7 +93,7 @@ public class TypewriterEffect : MonoBehaviour
 
 	IEnumerator TypeWriterTMP()
 	{
-		DialogueManager.newDialogueStarted = true;
+		if (fromDM) { DialogueManager.newDialogueStarted = true; }
 		_tmpProText.text = leadingCharBeforeDelay ? leadingChar : "";
 		string styleMarker = "";
 		bool changingStyle = false;
@@ -122,7 +125,7 @@ public class TypewriterEffect : MonoBehaviour
 				_tmpProText.text += leadingChar;
 				if(c != ' ')
                 {
-					GameManager.SpawnAudio(speechSound, speechVolume, speechPitch + Random.Range(-speechPitchRandomizationRange, speechPitchRandomizationRange), this.transform.position);
+					if(speechSound != null) { GameManager.SpawnAudio(speechSound, speechVolume, speechPitch + Random.Range(-speechPitchRandomizationRange, speechPitchRandomizationRange), this.transform.position); }
 					yield return new WaitForSeconds(timeBtwChars);
 				}
                 else
@@ -143,7 +146,7 @@ public class TypewriterEffect : MonoBehaviour
 		}
 
 		yield return new WaitForSeconds(delayAfterEnd);
-		DialogueManager.newDialogueStarted = false;
+		if (fromDM) { DialogueManager.newDialogueStarted = false; }
 		Keyboard.current.onTextInput -= SkipText;
 
 		typewriterCoroutine = null;
@@ -153,7 +156,7 @@ public class TypewriterEffect : MonoBehaviour
 		Keyboard.current.onTextInput -= SkipText;
 		_tmpProText.text = currentText;
 		yield return new WaitForSeconds(delayAfterEnd);
-		DialogueManager.newDialogueStarted = false;
+		if (fromDM) { DialogueManager.newDialogueStarted = false; }
 
 		timeWaserCoroutine = null;
 	}

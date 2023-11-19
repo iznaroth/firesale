@@ -520,10 +520,10 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: -1
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -100
   m_TargetDisplay: 0
 --- !u!114 &2911791707953477377
 MonoBehaviour:
@@ -637,8 +637,9 @@ MonoBehaviour:
   - JUST TRY IT OUT. SEE IF YOU LIKE IT!
   - I'VE GOT A FAMILY TO FEED, Y'KNOW?
   - YOU GOT A BRAIN , RIGHT? YOU WOULDN'T WANT TO MISS A DEAL LIKE THIS!
-  - "YOU\u2019RE EITHER A FART SMELLA OR A SMART FELLA, CHOOSE WISELY! BUY THIS {item}"
-  - "HOW OFTEN ARE YOU GONNA FIND {item} AT THIS PRICE-POINT? NO\u2026 SERIOUSLY\u2026
+  - "YOU\u2019RE EITHER A FART SMELLA OR A SMART FELLA, CHOOSE WISELY!<br> BUY THIS
+    {item}"
+  - "HOW OFTEN ARE YOU GONNA FIND {item} AT THIS PRICE-POINT?<br> NO\u2026 SERIOUSLY\u2026
     PLEASE TELL ME."
   - THIS IS A ONCE IN A LIFETIME OPPORTUNITY!
   - I AM ON MY KNEES. I AM BEGGING YOU. PLEASE.
@@ -870,11 +871,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1719091508395096266}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -3}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1352, y: 36.399994}
-  m_SizeDelta: {x: 200, y: 28.454}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -21, y: 32}
+  m_SizeDelta: {x: 200, y: 28}
+  m_Pivot: {x: 1, y: 0}
 --- !u!222 &2818046476884611012
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -930,10 +931,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 17.94
-  m_fontSizeBase: 17.94
+  m_fontSize: 22.05
+  m_fontSizeBase: 26
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -1481,11 +1482,11 @@ RectTransform:
   - {fileID: 2610923658402281563}
   m_Father: {fileID: 1719091508395096266}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -3}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1350, y: 14}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -21, y: 6}
   m_SizeDelta: {x: 200, y: 30}
-  m_Pivot: {x: 0, y: 0}
+  m_Pivot: {x: 1, y: 0}
 --- !u!114 &8341319530479418535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1529,9 +1530,9 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 4174577499160721757}
   m_HandleRect: {fileID: 0}
-  m_Direction: 0
+  m_Direction: 1
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 1
   m_OnValueChanged:
@@ -1772,6 +1773,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1719091508395096266}
+  - component: {fileID: 6467510154715493198}
   m_Layer: 0
   m_Name: HUD
   m_TagString: Untagged
@@ -1805,6 +1807,14 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &6467510154715493198
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3893212985557012455}
+  m_CullTransparentMesh: 1
 --- !u!1 &4083314938002243614
 GameObject:
   m_ObjectHideFlags: 0

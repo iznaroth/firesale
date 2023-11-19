@@ -12,6 +12,7 @@ public class ItemPedestal : MonoBehaviour
     bool actionable = false;
     private PlayerController pl;
     private GameObject nameplate;
+    private string storedItemName;
 
     public float startDelay;
     public bool isClosest = false;
@@ -37,7 +38,7 @@ public class ItemPedestal : MonoBehaviour
 
     private void Update()
     {
-        if(isClosest && playerInRange && storedItem != null)
+        if(isClosest && playerInRange && storedItem != null && storedItemName != "")
         {
             nameplate.SetActive(true);
         }
@@ -59,7 +60,6 @@ public class ItemPedestal : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
         if(col.gameObject.tag == "Player"){ //using name here is bad, use tags
             pl = col.gameObject.GetComponent<PlayerController>();
             string flexchar = isPowerup ? "- COST: $" : "-";
@@ -107,6 +107,7 @@ public class ItemPedestal : MonoBehaviour
                 }
                 this.storedItem = toSwap;
                 nameplate.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = "-" + storedItem.GetComponent<Item>().curioName + "-\n-" + storedItem.GetComponent<Item>().value + "-";
+                storedItemName = storedItem.GetComponent<Item>().curioName;
             }
         }
     }
@@ -153,7 +154,6 @@ public class ItemPedestal : MonoBehaviour
     }
 
     public void flagPickup(bool flag){
-        Debug.Log("Picking Up:" + flag);
         this.pickingUp = flag;
     }
 
