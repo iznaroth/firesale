@@ -61,7 +61,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 200
   m_TargetDisplay: 0
 --- !u!114 &3620581486100951729
 MonoBehaviour:
@@ -497,6 +497,7 @@ MonoBehaviour:
   speechVolume: 1
   speechPitch: 1
   speechPitchRandomizationRange: 0.25
+  fromDM: 0
 --- !u!1 &4397610079129716038
 GameObject:
   m_ObjectHideFlags: 0
@@ -1161,6 +1162,7 @@ MonoBehaviour:
   speechVolume: 1
   speechPitch: 1
   speechPitchRandomizationRange: 0.25
+  fromDM: 0
 --- !u!1 &8074964963386356232
 GameObject:
   m_ObjectHideFlags: 0
@@ -1320,6 +1322,7 @@ MonoBehaviour:
   speechVolume: 1
   speechPitch: 1
   speechPitchRandomizationRange: 0.25
+  fromDM: 0
 --- !u!1 &8162859389208710184
 GameObject:
   m_ObjectHideFlags: 0
@@ -1479,6 +1482,7 @@ MonoBehaviour:
   speechVolume: 1
   speechPitch: 1
   speechPitchRandomizationRange: 0.25
+  fromDM: 0
 --- !u!1 &8449054104341696518
 GameObject:
   m_ObjectHideFlags: 0

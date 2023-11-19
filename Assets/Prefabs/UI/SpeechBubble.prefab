@@ -84,7 +84,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &998573834815969709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,6 +396,7 @@ MonoBehaviour:
   speechVolume: 0
   speechPitch: 0
   speechPitchRandomizationRange: 0
+  fromDM: 0
 --- !u!114 &2580983056392740087
 MonoBehaviour:
   m_ObjectHideFlags: 0
