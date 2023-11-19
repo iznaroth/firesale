@@ -337,7 +337,7 @@ public class PlayerController : MonoBehaviour
         if ((body.velocity.magnitude / speedLimit) >= thudSoundThreshhold && !inShop) // player crashed at a high speed, disable controls to make them bounce
         {
             cantMove = true;
-            GameManager.SpawnAudio(thud, Mathf.Min(thudSoundBaseVolume * (body.velocity.magnitude / speedLimit), thudSoundMaxVolume), 1 + Random.Range(-thudSoundPitchRandomRange, thudSoundPitchRandomRange),  this.transform.position); 
+            GameManager.SpawnAudio(thud, Mathf.Min((thudSoundBaseVolume  * (body.velocity.magnitude / speedLimit)) + 1, thudSoundMaxVolume + 1), 1 + Random.Range(-thudSoundPitchRandomRange, thudSoundPitchRandomRange),  this.transform.position); 
             StartCoroutine("MoveDelay");
             moveVector = Vector2.zero;
         }

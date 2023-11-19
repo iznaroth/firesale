@@ -95962,7 +95962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2674160242445267128, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
       propertyPath: thudSoundBaseVolume
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 2674160242445267128, guid: 100148cc31b04054bbc723b2cdffed5b, type: 3}
       propertyPath: thudSoundThreshhold
