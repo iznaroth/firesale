@@ -102,9 +102,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingLayerID: -1126265843
+  m_SortingLayer: -1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5953c4e987b14b9498ee3b5e6763949a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -337,10 +337,11 @@ MonoBehaviour:
   obstacleForceCurlAmt: 0.581
   speechSounds:
   - {fileID: 8300000, guid: eb91b7294266e7844b1ae8d2ebd5e875, type: 3}
+  - {fileID: 8300000, guid: c8960f3c46b477747a5d9af53d42cc69, type: 3}
   speechSound: {fileID: 0}
   speechVolume: 1
   speechPitch: 1
-  speechPitchRandomizationRange: 0.25
+  speechBasePitchRandomizationRange: 0.25
 --- !u!114 &5358431438193188435
 MonoBehaviour:
   m_ObjectHideFlags: 0

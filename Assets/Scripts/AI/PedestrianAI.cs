@@ -35,7 +35,7 @@ public class PedestrianAI : MonoBehaviour
     [HideInInspector] public AudioClip speechSound;
     public float speechVolume = 1;
     public float speechPitch = 1;
-    public float speechPitchRandomizationRange = 0.25f;
+    public float speechBasePitchRandomizationRange = 0.25f;
 
     public UnityAction OnRemove;
 
@@ -70,6 +70,9 @@ public class PedestrianAI : MonoBehaviour
 
         startSpeed = startSpeed +  Random.Range(0, speedVariation);
         maxSpeed = maxSpeed + Random.Range(0, speedVariation * 2);
+    }
+    private void Awake()
+    {
         speechSound = speechSounds[Random.Range(0, speechSounds.Length - 1)];
     }
 

@@ -24,8 +24,16 @@ public class SoundScript : MonoBehaviour
 
     public void PlayAudio(AudioClip newClip, float volumeScaler, float newPitch)
     {
-        audioSource.pitch = newPitch;
-        audioSource.PlayOneShot(newClip,volumeScaler);
-        hasStarted = true;
+        if(newClip != null)
+        {
+            audioSource.pitch = newPitch;
+            audioSource.PlayOneShot(newClip, volumeScaler);
+            hasStarted = true;
+        }
+        else
+        {
+            Debug.Log("Spawned Audio Object with no audio clip");
+            Destroy(this.gameObject);
+        }
     }
 }

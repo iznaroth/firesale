@@ -86,6 +86,7 @@ public class DialogueManager : MonoBehaviour
             return;
 		}
 
+        dialogueState = 0;
         instance = this;
 	}
 
@@ -113,27 +114,14 @@ public class DialogueManager : MonoBehaviour
         microgameManager.transform.GetChild(0).transform.localScale = Vector3.zero;
         gameTimerText.fontSize = 40;
         gameTimerText.text = "";
+        customerTextbox.GetComponent<TypewriterEffect>().fromDM = true;
+        playerTextbox.GetComponent<TypewriterEffect>().fromDM = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isThisEvenActive)
-        {
-            if (animationDone && !newDialogueStarted && customerWinAmount > 0 && customerChances > 0)
-            {
-                StartDialogue();
-            }
-            else if (animationDone && !newDialogueStarted && dialogueState == 0 && (customerWinAmount <= 0 || customerChances <= 0))
-            {
-                CutOut();
-            }
-
-            if (!microgameActive && !newDialogueStarted && dialogueState >= 2)
-            {
-                SummonMicrogame();
-            }
-        }
+        //Debug.Log(isThisEvenActive"")
 
         healthbar.value = GameManager.hpRemaining;
         if(!changingIncomeValue && currentTrackedIncome != GameManager.currentIncome)
@@ -146,14 +134,35 @@ public class DialogueManager : MonoBehaviour
         WarningTimer();
     }
 
+    private void LateUpdate()
+    {
+        if (isThisEvenActive)
+        {
+            if (!microgameActive && animationDone && !newDialogueStarted && customerWinAmount > 0 && customerChances > 0 && dialogueState < 2)
+            {
+                StartDialogue();
+            }
+            else if (!microgameActive && animationDone && !newDialogueStarted && dialogueState == 0 && (customerWinAmount <= 0 || customerChances <= 0))
+            {
+                CutOut();
+            }
+            else if (!microgameActive && !newDialogueStarted && dialogueState >= 2)
+            {
+                Debug.Log("Normal Microgame Summon");
+                SummonMicrogame();
+            }
+        }
+    }
+
     private void SummonMicrogame()
     {
+        microgameActive = true;
+        newDialogue = false;
         microgameManager.transform.GetChild(0).gameObject.SetActive(true);
         currentMicrogame = microgameManager.GetNewMicrogame(npcType);
         currentGameDifficulty = currentMicrogame.microgameDifficulty;
         currentMicrogame.gameObject.SetActive(false);
         microgameManager.StartNewGame();
-        microgameActive = true;
     }
 
     public void MicrogameResult()
@@ -202,6 +211,14 @@ public class DialogueManager : MonoBehaviour
                 currentDialogue = playerBarks[Random.Range(0, playerBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>").ToUpper();
                 playerTextbox.GetComponent<TypewriterEffect>().NewText(currentDialogue);
                 dialogueState++;
+                break;
+            case 2:
+                if (!microgameActive)
+                {
+                    Debug.Log("Fucked Microgame Summon");
+                    microgameActive = true;
+                    SummonMicrogame();
+                }
                 break;
             default:
                 break;
@@ -301,7 +318,7 @@ public class DialogueManager : MonoBehaviour
             PedestrianAI newPed = newNPC.GetComponent<PedestrianAI>();
             if(newPed != null)
             {
-                customerTextbox.GetComponent<TypewriterEffect>().ChangeSoundSettings(newPed.speechSound, newPed.speechVolume, newPed.speechPitch, newPed.speechPitchRandomizationRange);
+                customerTextbox.GetComponent<TypewriterEffect>().ChangeSoundSettings(newPed.speechSound, newPed.speechVolume, newPed.speechPitch, newPed.speechBasePitchRandomizationRange);
             }
             animationDone = false;
             wonLastMicrogame = false;
@@ -309,12 +326,15 @@ public class DialogueManager : MonoBehaviour
             newDialogue = true;
             customerTextbox.GetComponent<TextMeshProUGUI>().text = "";
             playerTextbox.GetComponent<TextMeshProUGUI>().text = "";
+            customerTextbox.GetComponent<TypewriterEffect>().fromDM = true;
+            playerTextbox.GetComponent<TypewriterEffect>().fromDM = true;
             customerChances = (int)Random.Range(customerChancesRange.x, customerChancesRange.y);
             customerWinAmount = (int)Random.Range(customerDifficultyRange.x, customerDifficultyRange.y);
             npcType = GetRandomEnum<NPC_Types>();
             PickRandomCustomerName();
             PickRandomCustomerPortrait();
             currentNPC = newNPC;
+            dialogueState = 0;
             CutIn();
             InputManager.PushActionMap(EActionMap.MINIGAME);
         }
