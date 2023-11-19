@@ -349,7 +349,6 @@ GameObject:
   - component: {fileID: 5274944178889110046}
   - component: {fileID: 2276915209870866029}
   - component: {fileID: 3979117435908934914}
-  - component: {fileID: 1222635197684128337}
   m_Layer: 5
   m_Name: Riddletext
   m_TagString: Untagged
@@ -473,31 +472,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1222635197684128337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4132563389038826563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95e6628d6f7629a4694937ce0d3c6f0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delayBeforeStart: 0
-  delayAfterEnd: 0
-  timeBtwChars: 0.1
-  timeBtwWords: 0.1
-  leadingChar: 
-  forceNewlineWidth: 1110
-  leadingCharBeforeDelay: 0
-  skippable: 1
-  speechSound: {fileID: 0}
-  speechVolume: 1
-  speechPitch: 1
-  speechPitchRandomizationRange: 0.25
-  fromDM: 0
 --- !u!1 &4397610079129716038
 GameObject:
   m_ObjectHideFlags: 0
@@ -1014,7 +988,6 @@ GameObject:
   - component: {fileID: 685550705350761834}
   - component: {fileID: 5317297104112249040}
   - component: {fileID: 3044892779868627446}
-  - component: {fileID: 6107254481940751799}
   m_Layer: 5
   m_Name: Riddletext
   m_TagString: Untagged
@@ -1138,31 +1111,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &6107254481940751799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7938583917307333288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95e6628d6f7629a4694937ce0d3c6f0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delayBeforeStart: 0
-  delayAfterEnd: 0
-  timeBtwChars: 0.1
-  timeBtwWords: 0.1
-  leadingChar: 
-  forceNewlineWidth: 1110
-  leadingCharBeforeDelay: 0
-  skippable: 1
-  speechSound: {fileID: 0}
-  speechVolume: 1
-  speechPitch: 1
-  speechPitchRandomizationRange: 0.25
-  fromDM: 0
 --- !u!1 &8074964963386356232
 GameObject:
   m_ObjectHideFlags: 0
@@ -1174,7 +1122,6 @@ GameObject:
   - component: {fileID: 6666580143053589093}
   - component: {fileID: 6759692833274902354}
   - component: {fileID: 4178032289209032067}
-  - component: {fileID: 4432843681937432338}
   m_Layer: 5
   m_Name: Riddletext
   m_TagString: Untagged
@@ -1298,31 +1245,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4432843681937432338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8074964963386356232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95e6628d6f7629a4694937ce0d3c6f0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delayBeforeStart: 0
-  delayAfterEnd: 0
-  timeBtwChars: 0.1
-  timeBtwWords: 0.1
-  leadingChar: 
-  forceNewlineWidth: 1110
-  leadingCharBeforeDelay: 0
-  skippable: 1
-  speechSound: {fileID: 0}
-  speechVolume: 1
-  speechPitch: 1
-  speechPitchRandomizationRange: 0.25
-  fromDM: 0
 --- !u!1 &8162859389208710184
 GameObject:
   m_ObjectHideFlags: 0
@@ -1334,7 +1256,6 @@ GameObject:
   - component: {fileID: 1792297324937316358}
   - component: {fileID: 8886753142416690088}
   - component: {fileID: 4668380229447212722}
-  - component: {fileID: 9192005065808184246}
   m_Layer: 5
   m_Name: Riddletext
   m_TagString: Untagged
@@ -1458,31 +1379,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &9192005065808184246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8162859389208710184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95e6628d6f7629a4694937ce0d3c6f0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delayBeforeStart: 0
-  delayAfterEnd: 0
-  timeBtwChars: 0.1
-  timeBtwWords: 0.1
-  leadingChar: 
-  forceNewlineWidth: 1110
-  leadingCharBeforeDelay: 0
-  skippable: 1
-  speechSound: {fileID: 0}
-  speechVolume: 1
-  speechPitch: 1
-  speechPitchRandomizationRange: 0.25
-  fromDM: 0
 --- !u!1 &8449054104341696518
 GameObject:
   m_ObjectHideFlags: 0
