@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.56, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6115781551537161579}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 79885ba4ed1674b41976fd13dbd98e7c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -488,7 +488,6 @@ MonoBehaviour:
   buyItemSlider: {fileID: 0}
   soldPrefab: {fileID: 0}
   noMoneyPrefab: {fileID: 0}
-  evilAura: {fileID: 0}
 --- !u!61 &8239978176075243173
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -703,7 +702,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6215805681473582223, guid: 972d75a752b2f944aa9c6d27b304f062, type: 3}
       propertyPath: m_SortingOrder
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6478963251105461252, guid: 972d75a752b2f944aa9c6d27b304f062, type: 3}
+      propertyPath: lengthInSec
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6478963251105461252, guid: 972d75a752b2f944aa9c6d27b304f062, type: 3}
       propertyPath: InitialModule.startSize.scalar
@@ -720,6 +723,14 @@ PrefabInstance:
     - target: {fileID: 6478963251105461252, guid: 972d75a752b2f944aa9c6d27b304f062, type: 3}
       propertyPath: VelocityModule.radial.minMaxState
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6478963251105461252, guid: 972d75a752b2f944aa9c6d27b304f062, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6478963251105461252, guid: 972d75a752b2f944aa9c6d27b304f062, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6478963251105461252, guid: 972d75a752b2f944aa9c6d27b304f062, type: 3}
       propertyPath: InitialModule.startSpeed.minScalar
