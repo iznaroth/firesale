@@ -34,7 +34,7 @@ public class Microgame_Base : MonoBehaviour
     public float microgameStartDelay = 1.5f;    // delay before microgame starts 
     public float microgameTimeLimit;            // How long the player has to complete the microgame
     public int microgameDifficulty;             // difficulty of completion, used to determine if player has to do another microgame to convince the npc
-    public float microgameDamage = 10;          // Damage for losing this microgame
+    public int microgameDamage = 10;          // Damage for losing this microgame
     protected bool microgameWon = false;        // if microgame was won or lost
 
     //Event stuff for automating handling and all that

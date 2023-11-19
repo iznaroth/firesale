@@ -217,5 +217,5 @@ MonoBehaviour:
   - I Say
   - That's wonderful!
   - Truly inspiring
-  currentBoxScale: 2
-  unselectedBoxScale: 0.85
+  currentBoxScale: 1.5
+  unselectedBoxScale: 0.75

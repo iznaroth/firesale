@@ -59,7 +59,6 @@ public class DialogueManager : MonoBehaviour
     private NPC_Types npcType = NPC_Types.AnimeFan;
     public Start_Conditions startCondition = Start_Conditions.Normal;
     [HideInInspector] public bool animationDone = false;
-    private bool isThisEvenActive = false;
 
     //weird emergency cache stuff to avoid errors
     private int currentGameDifficulty = 0;
@@ -76,8 +75,9 @@ public class DialogueManager : MonoBehaviour
     public static string currentCurio = "Poggers";
     public static int dialogueState = 0;
     public static UnityAction DialogueInteractionEnded;
+    public static bool isThisEvenActive = false;
 
-	private void Awake()
+    private void Awake()
 	{
 		if (instance != null && instance != this)
 		{
@@ -138,9 +138,11 @@ public class DialogueManager : MonoBehaviour
     {
         if (isThisEvenActive)
         {
+            //Debug.Log("Is MicrogameActive?: " + microgameActive + "\n is Animation Done?: " + animationDone + "\n is newDialogue Started?: " + newDialogueStarted + "\n CustomerWinAmount?: " + customerWinAmount + "\n Customer Chances?: " + customerChances + "\n Dialogue State?: " + dialogueState);
             if (!microgameActive && animationDone && !newDialogueStarted && customerWinAmount > 0 && customerChances > 0 && dialogueState < 2)
             {
                 StartDialogue();
+
             }
             else if (!microgameActive && animationDone && !newDialogueStarted && dialogueState == 0 && (customerWinAmount <= 0 || customerChances <= 0))
             {
@@ -161,6 +163,7 @@ public class DialogueManager : MonoBehaviour
         microgameManager.transform.GetChild(0).gameObject.SetActive(true);
         currentMicrogame = microgameManager.GetNewMicrogame(npcType);
         currentGameDifficulty = currentMicrogame.microgameDifficulty;
+        currentGameDamage = currentMicrogame.microgameDamage;
         currentMicrogame.gameObject.SetActive(false);
         microgameManager.StartNewGame();
     }
@@ -174,13 +177,15 @@ public class DialogueManager : MonoBehaviour
         else
         {
             customerChances -= currentGameDifficulty;
-
+            GameManager.hpRemaining -= currentGameDamage;
         }
         if (currentMicrogame != null) { Destroy(currentMicrogame.gameObject); }
     }
 
     private void StartDialogue()
     {
+        //Debug.Log("fucking what?");
+        newDialogueStarted = true;
         string currentDialogue ="";
         switch (dialogueState)
         {
@@ -192,7 +197,6 @@ public class DialogueManager : MonoBehaviour
                     if (startCondition == Start_Conditions.Grappled) { currentDialogue = customerGrappleStartBarks[Random.Range(0, customerGrappleStartBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"); }
                     else if (startCondition == Start_Conditions.Rocketed) { currentDialogue = customerRocketStartBarks[Random.Range(0, customerRocketStartBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"); }
                     else { currentDialogue = customerStartBarks[Random.Range(0, customerStartBarks.Length - 1)].Replace("{item}", "<i>" + currentCurio + "</i>"); }
-                   
                     customerTextbox.GetComponent<TypewriterEffect>().NewText(currentDialogue);
                 }
                 else if(wonLastMicrogame && customerWinAmount > 0)
@@ -337,6 +341,10 @@ public class DialogueManager : MonoBehaviour
             dialogueState = 0;
             CutIn();
             InputManager.PushActionMap(EActionMap.MINIGAME);
+        }
+        else
+        {
+            Debug.Log("something tried to start a second dialogue");
         }
     }
 /*    public void StartDialogueInteraction(GameObject newNPC)
@@ -507,6 +515,6 @@ public class DialogueManager : MonoBehaviour
 	}
     public static bool IsInDialogue()
 	{
-        return instance.isThisEvenActive;
+        return DialogueManager.isThisEvenActive;
 	}
 }
