@@ -9,7 +9,7 @@ public class pauseMenu : MonoBehaviour
     public Slider volSlider;
 
     void Awake(){
-
+        
         Debug.Log("PAUSE AWAKE");
         float volSetting;
         GameManager.instance.masterMixer.GetFloat("musicVol", out volSetting);
@@ -17,5 +17,23 @@ public class pauseMenu : MonoBehaviour
         Debug.Log(volSlider.value);
         GameManager.instance.slider = volSlider;
         Debug.Log("Paused!");
+    }
+
+    void OnEnable(){
+        PauseGame();
+    }
+
+    void OnDisable(){
+        ResumeGame();
+    }
+
+    void PauseGame ()
+    {
+        Time.timeScale = 0;
+    }
+
+    void ResumeGame ()
+    {
+        Time.timeScale = 1;
     }
 }
